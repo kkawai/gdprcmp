@@ -1,4 +1,4 @@
-package org.gdprcmp;
+package org.gdprcmplib;
 
 import android.util.Log;
 

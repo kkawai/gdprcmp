@@ -1,6 +1,5 @@
-package org.gdprcmp;
+package org.gdprcmplib;
 
-import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -223,7 +222,7 @@ final class HttpMessage {
             return;
         }
         try {
-            setDefaultHostnameVerifier();
+            //setDefaultHostnameVerifier();
             sIsInitialized = true;
         } catch (final Exception e) {
             MLog.e(TAG, "", e);

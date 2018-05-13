@@ -1,4 +1,4 @@
-package org.gdprcmp;
+package org.gdprcmplib;
 
 final class Config {
     static final boolean IS_LOGGING_ENABLED = true;
