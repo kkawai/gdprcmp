@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import org.json.JSONObject;
 
-public class MainActivity2 extends AppCompatActivity {
+public class CmpActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity2";
     private TextView textView;
@@ -35,7 +35,7 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             protected void onPostExecute(GdprData gdprData) {
                 try {
-                    textView.setText("Vendor list size: " + GdprData.VENDORS.size());
+                    textView.setText("Vendor list size: " + GdprData.VENDORS.size() + " lastUpdated: "+gdprData.getLastUpdated());
                 }catch (Exception e) {
                     textView.setText("error displaying vendor list: "+e);
                 }

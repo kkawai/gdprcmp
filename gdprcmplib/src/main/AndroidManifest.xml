@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application>
-        <activity android:name="org.gdprcmplib.MainActivity2">
+        <activity android:name="org.gdprcmplib.CmpActivity">
         </activity>
     </application>
 

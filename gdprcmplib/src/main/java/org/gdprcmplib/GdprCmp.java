@@ -6,6 +6,6 @@ import android.content.Intent;
 public class GdprCmp {
 
     public static void startCmpActivity(Context context) {
-        context.startActivity(new Intent(context, MainActivity2.class));
+        context.startActivity(new Intent(context, CmpActivity.class));
     }
 }

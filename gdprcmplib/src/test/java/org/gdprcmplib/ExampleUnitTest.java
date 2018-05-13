@@ -1,4 +1,4 @@
-package com.samplebottom.gdprcmplib;
+package org.gdprcmplib;
 
 import org.junit.Test;
 
