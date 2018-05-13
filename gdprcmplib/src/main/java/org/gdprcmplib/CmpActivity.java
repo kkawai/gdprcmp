@@ -11,15 +11,12 @@ import org.json.JSONObject;
 public class CmpActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity2";
-    private TextView textView;
     private GdprData data;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gdpr_layout);
-        textView = findViewById(R.id.text);
-        textView.setText("Loading vendor list...");
         new AsyncTask<Void,Void,GdprData>() {
             @Override
             protected GdprData doInBackground(Void... voids) {
@@ -34,11 +31,11 @@ public class CmpActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(GdprData gdprData) {
-                try {
+                /*try {
                     textView.setText("Vendor list size: " + GdprData.VENDORS.size() + " lastUpdated: "+gdprData.getLastUpdated());
                 }catch (Exception e) {
                     textView.setText("error displaying vendor list: "+e);
-                }
+                }*/
             }
         }.execute();
     }

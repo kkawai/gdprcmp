@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">GdprCmpLib</string>
-
+    <string name="gdpr_cmp_activity_label">Consent Management</string>
+    <string name="gdpr_cmp_consent_description">As of May 25th, 2018, GDPR,
+        also known as the General Data Protection Regulation, takes effect.
+        This law is for the general protection of data and privacy for all
+        individuals within the EU.  By \'Consenting\' you are allowing this
+        application to utilize your personal data, if applicable, for purposes
+        such as, but not exclusive to personalized advertisements.  By
+        \'Not Consenting\' you are not allowing vendors to utilize your personal data
+        for these purposes.
+    </string>
+    <string name="i_consent">I Consent</string>
+    <string name="i_do_not_consent">I Do Not Consent</string>
+    <string name="details">More Details...</string>
 </resources>
