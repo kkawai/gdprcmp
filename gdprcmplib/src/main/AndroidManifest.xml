@@ -10,6 +10,11 @@
             android:name="org.gdprcmplib.CmpActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:label="@string/gdpr_cmp_activity_label"
+            android:name="org.gdprcmplib.CmpDetailsActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

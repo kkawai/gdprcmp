@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CmpDetailsActivity"
+    >
+
+    <TextView
+        android:layout_alignParentTop="true"
+        android:id="@+id/details_description"
+        style="@android:style/TextAppearance.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/details_description"/>
+
+    <ToggleButton
+        android:layout_below="@+id/details_description"
+        android:layout_alignParentRight="true"
+        android:paddingRight="16dp"
+        android:id="@+id/toggle"
+        android:textOn="@string/uncheck_all"
+        android:textOff="@string/check_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onToggle"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/toggle"
+        android:layout_above="@+id/save"
+        android:id="@+id/items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@android:layout/simple_list_item_checked"/>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/save"
+        android:onClick="onSave"/>
+
+</RelativeLayout>

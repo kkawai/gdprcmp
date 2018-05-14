@@ -1,0 +1,5 @@
+https://github.com/InteractiveAdvertisingBureau/
+https://github.com/InteractiveAdvertisingBureau/Consent-String-SDK-JS/blob/master/src/encode.js
+https://iabtechlab.com/standards/gdpr-transparency-and-consent-framework/
+https://vendorlist.consensu.org/vendorlist.json
+https://www.npmjs.com/package/consent-string

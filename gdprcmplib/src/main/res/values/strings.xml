@@ -13,4 +13,12 @@
     <string name="i_consent">I Consent</string>
     <string name="i_do_not_consent">I Do Not Consent</string>
     <string name="details">More Details...</string>
+    <string name="details_description">You can give consent on a line-by-line basis by
+        checking/unchecking the boxes.  The following is a list of data usage purposes
+        followed by a list of the official advertising partners.
+    </string>
+    <string name="go_back">Go Back</string>
+    <string name="save">SAVE</string>
+    <string name="check_all">Check All</string>
+    <string name="uncheck_all">Uncheck All</string>
 </resources>

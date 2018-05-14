@@ -1,50 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".CmpActivity"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:layout_centerInParent="true"
+    <data>
+
+        <import type="android.view.View"/>
+
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            style="@android:style/TextAppearance.Medium"
-            android:padding="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/gdpr_cmp_consent_description"/>
+        android:layout_height="match_parent"
+        tools:context=".CmpActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <TextView
+                style="@android:style/TextAppearance.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/gdpr_cmp_consent_description"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/i_consent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onConsent"
+                    android:text="@string/i_consent"/>
+
+                <Button
+                    android:id="@+id/i_do_not_consent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onDoNotConsent"
+                    android:text="@string/i_do_not_consent"/>
+
+            </LinearLayout>
 
             <Button
-                android:id="@+id/i_consent"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/i_consent"/>
-
-            <Button
-                android:id="@+id/i_do_not_consent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/i_do_not_consent"/>
+                android:onClick="onMoreDetailsClicked"
+                android:text="@string/details"/>
 
         </LinearLayout>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/details"/>
+    </RelativeLayout>
 
-    </LinearLayout>
-
-</RelativeLayout>
+</layout>
