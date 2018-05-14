@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
 
+    <TextView
+        android:paddingTop="8dp"
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ShowHeros GMBH"/>
 
+    <TextView
+        android:id="@+id/descr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:paddingTop="4dp"
+        android:text="https://www.showheros.com/privacy.html"/>
 
-</LinearLayout>
+    <TextView
+        android:paddingTop="4dp"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_below="@+id/descr"
+        android:id="@+id/features_and_purposes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sample_multi"/>
+
+    <CheckBox
+        android:paddingTop="8dp"
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toLeftOf="@id/name"/>
+
+</RelativeLayout>

@@ -21,4 +21,6 @@
     <string name="save">SAVE</string>
     <string name="check_all">Check All</string>
     <string name="uncheck_all">Uncheck All</string>
+
+    <string name="sample_multi">• Text and stuff \n• And more</string>
 </resources>

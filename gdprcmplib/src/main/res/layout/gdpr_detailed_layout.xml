@@ -31,7 +31,7 @@
     <android.support.v7.widget.RecyclerView
         android:layout_below="@+id/toggle"
         android:layout_above="@+id/save"
-        android:id="@+id/items"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@android:layout/simple_list_item_checked"/>
