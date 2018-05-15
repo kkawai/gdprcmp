@@ -3,6 +3,7 @@ package org.gdprcmplib;
 import org.junit.Test;
 
 import java.text.ParseException;
+import java.util.BitSet;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -10,6 +11,38 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class ConsentStringParserTest {
+
+    public static BitSet convert(int value) {
+        BitSet bits = new BitSet();
+        int index = 0;
+        while (value != 0L) {
+            if (value % 2L != 0) {
+                bits.set(index);
+            }
+            ++index;
+            value = value >>> 1;
+        }
+        return bits;
+    }
+
+    public static int convert(BitSet bits) {
+        int value = 0;
+        for (int i = 0; i < bits.length(); ++i) {
+            value += bits.get(i) ? (1 << i) : 0;
+        }
+        return value;
+    }
+
+    @Test
+    public void testSTuff() throws Exception {
+        byte[] bytes = new byte[30];
+        ConsentStringParser parser = new ConsentStringParser(bytes, false);
+        parser.setInt(3, 6, 12);
+        System.out.println("I dont know: " + parser.getInt(3, 6));
+
+        BitSet b = convert(100);
+        System.out.println("Converted back: " + convert(b));
+    }
 
     @Test
     public void testBitField() throws ParseException, Base64DecoderException {

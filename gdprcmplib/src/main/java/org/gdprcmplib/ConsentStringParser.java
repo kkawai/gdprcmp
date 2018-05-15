@@ -3,7 +3,7 @@ package org.gdprcmplib;
 import java.text.ParseException;
 import java.time.Instant;
 import java.util.ArrayList;
-
+import java.util.BitSet;
 import java.util.List;
 
 /**
@@ -53,16 +53,16 @@ class ConsentStringParser {
     private String consentString;
     private final Bits bits;
     // fields contained in the consent string
-    private final int version;
-    private final long consentRecordCreated;
-    private final long consentRecordLastUpdated;
-    private final int cmpID;
-    private final int cmpVersion;
-    private final int consentScreenID;
-    private final String consentLanguage;
-    private final int vendorListVersion;
-    private final int maxVendorSize;
-    private final int vendorEncodingType;
+    private int version;
+    private long consentRecordCreated;
+    private long consentRecordLastUpdated;
+    private int cmpID;
+    private int cmpVersion;
+    private int consentScreenID;
+    private String consentLanguage;
+    private  int vendorListVersion;
+    private int maxVendorSize;
+    private int vendorEncodingType;
     private final List<Boolean> allowedPurposes = new ArrayList<Boolean>();
     // only used when range entry is enabled
     private List<RangeEntry> rangeEntries;
@@ -82,6 +82,10 @@ class ConsentStringParser {
     public ConsentStringParser(String consentString) throws ParseException, Base64DecoderException {
         this(Base64.decodeWebSafe(consentString.getBytes()));
         this.consentString = consentString;
+    }
+
+    public ConsentStringParser(byte bytes[], boolean dummy) {
+        this.bits = new Bits(bytes);
     }
 
     /**
@@ -111,7 +115,7 @@ class ConsentStringParser {
             allowedPurposes.add(bits.getBit(i));
         }
         if (vendorEncodingType == VENDOR_ENCODING_RANGE) {
-            this.rangeEntries = new ArrayList<RangeEntry>();
+            this.rangeEntries = new ArrayList<>();
             this.defaultConsent = bits.getBit(DEFAULT_CONSENT_OFFSET);
             int numEntries = bits.getInt(NUM_ENTRIES_OFFSET, NUM_ENTRIES_SIZE);
             int currentOffset = RANGE_ENTRY_OFFSET;
@@ -329,6 +333,17 @@ class ConsentStringParser {
             return (b & bytePows[bitExact]) != 0;
         }
 
+        private void setBit(int index, boolean value) {
+            int byteIndex = index / 8;
+            int bitExact = index % 8;
+
+            if (value) {
+                bytes[byteIndex] |= 1 << bytePows[bitExact];
+            } else {
+                bytes[byteIndex] &= ~(1 << bytePows[bitExact]);
+            }
+        }
+
         /**
          * interprets n number of bits as a big endiant int
          *
@@ -355,6 +370,28 @@ class ConsentStringParser {
                 sigIndex--;
             }
             return val;
+        }
+
+        public void setInt(int startInclusive, int size, int value) {
+            BitSet bitSet = convert(value);
+            int f = bitSet.length() > size ? size : bitSet.length();
+            System.out.println(" setInt(a) bitSet.length: "+bitSet.length() + "  SIZE: "+size);
+            for (int i=0;i < f;i++) {
+                setBit(startInclusive+i, bitSet.get(i));
+            }
+        }
+
+        private BitSet convert(int value) {
+            BitSet bits = new BitSet();
+            int index = 0;
+            while (value != 0L) {
+                if (value % 2L != 0) {
+                    bits.set(index);
+                }
+                ++index;
+                value = value >>> 1;
+            }
+            return bits;
         }
 
         /**
@@ -455,6 +492,14 @@ class ConsentStringParser {
             }
             return s.toString();
         }
+    }
+
+    public void setInt(int startInclusive, int size, int value) {
+        bits.setInt(startInclusive,size,value);
+    }
+
+    public int getInt(int startInclusive, int size) throws ParseException {
+        return bits.getInt(startInclusive, size);
     }
 
 }
