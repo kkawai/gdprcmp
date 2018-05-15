@@ -2,11 +2,14 @@ package org.gdprcmplib;
 
 import org.json.JSONObject;
 
-public class GdprPurpose {
+import java.io.Serializable;
+
+public class GdprPurpose implements Serializable {
     private static final String TAG = "GdprPurpose";
     private int id;
     private String name;
     private String descr;
+    private boolean isAllowed;
 
     public GdprPurpose(int id, String name, String descr) {
         this.id = id;
@@ -66,5 +69,13 @@ public class GdprPurpose {
     @Override
     public String toString() {
         return "GDPR Purpose.  id: " + id + " name: "+name;
+    }
+
+    public boolean isAllowed() {
+        return isAllowed;
+    }
+
+    public void setAllowed(boolean allowed) {
+        isAllowed = allowed;
     }
 }

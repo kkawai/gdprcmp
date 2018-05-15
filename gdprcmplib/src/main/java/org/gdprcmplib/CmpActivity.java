@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
 
 import org.json.JSONObject;
 
@@ -16,6 +15,7 @@ public class CmpActivity extends AppCompatActivity {
 
     public static final String TAG = "CmpActivity";
     private GdprData data;
+    private static final int REQUEST_CODE = 8;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,19 +36,19 @@ public class CmpActivity extends AppCompatActivity {
             }
 
             @Override
-            protected void onPostExecute(GdprData gdprData) {
-                /*try {
-                    textView.setText("Vendor list size: " + GdprData.VENDORS.size() + " lastUpdated: "+gdprData.getLastUpdated());
-                }catch (Exception e) {
-                    textView.setText("error displaying vendor list: "+e);
-                }*/
+            protected void onPostExecute(GdprData data) {
+                if (data == null) {
+                    finish();
+                    return;
+                }
+                CmpActivity.this.data = data;
             }
         }.execute();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 8 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             finish();
         }
     }
@@ -61,6 +61,9 @@ public class CmpActivity extends AppCompatActivity {
 
     public void onMoreDetailsClicked(View view) {
         Intent intent = new Intent(this, CmpDetailsActivity.class);
-        startActivityForResult(intent, 8);
+        if (data != null) {
+            intent.putExtra("data", data);
+        }
+        startActivityForResult(intent, REQUEST_CODE);
     }
 }

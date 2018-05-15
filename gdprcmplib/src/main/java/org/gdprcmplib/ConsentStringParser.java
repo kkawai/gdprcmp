@@ -15,7 +15,7 @@ import java.util.List;
  *
  */
 
-public class ConsentStringParser {
+class ConsentStringParser {
 
     private static final String TAG = "ConsentStringParser";
 

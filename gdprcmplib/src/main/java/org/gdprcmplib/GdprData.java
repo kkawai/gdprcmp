@@ -3,6 +3,7 @@ package org.gdprcmplib;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,14 +11,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GdprData {
+public class GdprData implements Serializable {
     private static final String TAG = "GdprData";
 
     static final int NUM_PURPOSES = 5;
     static final int NUM_FEATURES = 3;
-    static Map<Integer, GdprPurpose> PURPOSES = new HashMap<>(NUM_PURPOSES);
-    static Map<Integer, GdprFeature> FEATURES = new HashMap<>(NUM_FEATURES);
-    static List<GdprVendor> VENDORS = new ArrayList<>(200);
+    private Map<Integer, GdprPurpose> purposesMap = new HashMap<>(NUM_PURPOSES);
+    private List<GdprPurpose> purposes = new ArrayList<>(NUM_PURPOSES);
+    private Map<Integer, GdprFeature> featuresMap = new HashMap<>(NUM_FEATURES);
+    private List<GdprVendor> vendors = new ArrayList<>(200);
 
     private SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -25,30 +27,31 @@ public class GdprData {
     private int vendorListVersion;
     public GdprData(JSONObject jsonObject) {
         try {
-            String s = jsonObject.getString("lastUpdated");
-            if (s.contains("T")) {
+            String s = jsonObject.optString("lastUpdated");
+            if (s != null && s.contains("T")) {
                 s = s.substring(0,s.indexOf('T'));
+                try {
+                    lastUpdated = SDF.parse(s).getTime();
+                }catch (Exception e) {
+                    MLog.e(TAG,"Could not parse date: "+s);
+                }
             }
-            try {
-                lastUpdated = SDF.parse(s).getTime();
-            }catch (Exception e) {
-                MLog.e(TAG,"Could not parse date: "+s);
+            vendorListVersion = jsonObject.optInt("vendorListVersion");
+            JSONArray purposesArr = jsonObject.optJSONArray("purposes");
+            for (int i=0;purposesArr != null && i < purposesArr.length();i++) {
+                GdprPurpose p = new GdprPurpose(purposesArr.getJSONObject(i));
+                purposesMap.put(p.getId(),p);
+                purposes.add(p);
             }
-            vendorListVersion = jsonObject.getInt("vendorListVersion");
-            JSONArray purposes = jsonObject.getJSONArray("purposes");
-            for (int i=0;i < purposes.length();i++) {
-                GdprPurpose p = new GdprPurpose(purposes.getJSONObject(i));
-                PURPOSES.put(p.getId(),p);
+            JSONArray featuresArr = jsonObject.optJSONArray("features");
+            for (int i=0;featuresArr != null && i < featuresArr.length();i++) {
+                GdprFeature f = new GdprFeature(featuresArr.getJSONObject(i));
+                featuresMap.put(f.getId(),f);
             }
-            JSONArray features = jsonObject.getJSONArray("features");
-            for (int i=0;i < features.length();i++) {
-                GdprFeature f = new GdprFeature(features.getJSONObject(i));
-                FEATURES.put(f.getId(),f);
-            }
-            JSONArray vendors = jsonObject.getJSONArray("vendors");
-            for (int i=0;i < vendors.length();i++) {
-                GdprVendor vendor = new GdprVendor(vendors.getJSONObject(i));
-                VENDORS.add(vendor);
+            JSONArray vendorsArr = jsonObject.optJSONArray("vendors");
+            for (int i=0;vendorsArr != null && i < vendorsArr.length();i++) {
+                GdprVendor vendor = new GdprVendor(vendorsArr.getJSONObject(i), purposesMap, featuresMap);
+                this.vendors.add(vendor);
             }
         }catch (Exception e) {
             MLog.e(TAG, "GdprData(jsonObject) failed",e);
@@ -61,5 +64,13 @@ public class GdprData {
 
     public int getVendorListVersion() {
         return vendorListVersion;
+    }
+
+    public List<GdprPurpose> getPurposes() {
+        return purposes;
+    }
+
+    public List<GdprVendor> getVendors() {
+        return vendors;
     }
 }

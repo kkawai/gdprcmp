@@ -2,7 +2,9 @@ package org.gdprcmplib;
 
 import org.json.JSONObject;
 
-public class GdprFeature {
+import java.io.Serializable;
+
+public class GdprFeature implements Serializable {
     private static final String TAG = "GdprFeature";
     private int id;
     private String name;
