@@ -101,7 +101,6 @@ class ConsentStringParser {
         // begin parsing
 
         this.version = bits.getInt(VERSION_BIT_OFFSET, VERSION_BIT_SIZE);
-        String s = bits.getBinaryString();
         this.consentRecordCreated = bits.getInstantFromEpochDemiseconds(CREATED_BIT_OFFSET, CREATED_BIT_SIZE);
         this.consentRecordLastUpdated = bits.getInstantFromEpochDemiseconds(UPDATED_BIT_OFFSET, UPDATED_BIT_SIZE);
         this.cmpID = bits.getInt(CMP_ID_OFFSET, CMP_ID_SIZE);
@@ -342,10 +341,12 @@ class ConsentStringParser {
             } else {
                 bytes[byteIndex] &= ~(1 << bytePows[bitExact]);
             }
+
+           // System.out.println("setBit bytes[byteIndex]: "+bytes[byteIndex] + " byteIndex: "+byteIndex + " index: "+index + " bitExact: "+bitExact);
         }
 
         /**
-         * interprets n number of bits as a big endiant int
+         * interprets n number of bits as a big endian int
          *
          * @param startInclusive:
          *            the nth to begin interpreting from
@@ -375,8 +376,9 @@ class ConsentStringParser {
         public void setInt(int startInclusive, int size, int value) {
             BitSet bitSet = convert(value);
             int f = bitSet.length() > size ? size : bitSet.length();
-            System.out.println(" setInt(a) bitSet.length: "+bitSet.length() + "  SIZE: "+size);
+            System.out.println(" setInt() bitSet.length: "+bitSet.length() + "  SIZE: "+size);
             for (int i=0;i < f;i++) {
+                System.out.println("i: "+i+" " + (bitSet.get(i) ? " 1 " : " 0 "));
                 setBit(startInclusive+i, bitSet.get(i));
             }
         }

@@ -98,32 +98,27 @@ public class CmpDetailsActivity extends AppCompatActivity {
             descr = itemView.findViewById(R.id.descr);
             featuresAndPurposes = itemView.findViewById(R.id.features_and_purposes);
             checkbox = itemView.findViewById(R.id.checkbox);
-            itemView.setOnClickListener(new View.OnClickListener() {
+            View.OnClickListener clickListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    Pair<GdprPurpose, GdprVendor> pair = getListItem(position);
-                    if (pair.first != null) {
-                        pair.first.setAllowed(!pair.first.isAllowed());
-                    } else {
-                        pair.second.setAllowed(!pair.second.isAllowed());
-                    }
-                    myAdapter.notifyItemChanged(position);
+                    updateCheckbox();
                 }
-            });
-            checkbox.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    Pair<GdprPurpose, GdprVendor> pair = getListItem(position);
-                    if (pair.first != null) {
-                        pair.first.setAllowed(!pair.first.isAllowed());
-                    } else {
-                        pair.second.setAllowed(!pair.second.isAllowed());
-                    }
-                    myAdapter.notifyItemChanged(position);
-                }
-            });
+            };
+            itemView.setOnClickListener(clickListener);
+            checkbox.setOnClickListener(clickListener);
+        }
+
+
+
+        private void updateCheckbox() {
+            int position = getAdapterPosition();
+            Pair<GdprPurpose, GdprVendor> pair = getListItem(position);
+            if (pair.first != null) {
+                pair.first.setAllowed(!pair.first.isAllowed());
+            } else {
+                pair.second.setAllowed(!pair.second.isAllowed());
+            }
+            myAdapter.notifyItemChanged(position);
         }
 
         void bind(int position) {

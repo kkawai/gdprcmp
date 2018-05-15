@@ -37,8 +37,8 @@ public class ConsentStringParserTest {
     public void testSTuff() throws Exception {
         byte[] bytes = new byte[30];
         ConsentStringParser parser = new ConsentStringParser(bytes, false);
-        parser.setInt(3, 6, 12);
-        System.out.println("I dont know: " + parser.getInt(3, 6));
+        parser.setInt(0, 6, 18);
+        System.out.println("I dont know: " + parser.getInt(0, 6));
 
         BitSet b = convert(100);
         System.out.println("Converted back: " + convert(b));
