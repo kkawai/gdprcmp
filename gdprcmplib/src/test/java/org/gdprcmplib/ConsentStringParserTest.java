@@ -36,9 +36,11 @@ public class ConsentStringParserTest {
     @Test
     public void testSTuff() throws Exception {
         byte[] bytes = new byte[30];
+        int value = 22;
+        int size = 6, startInclusive = 0;
         ConsentStringParser parser = new ConsentStringParser(bytes, false);
-        parser.setInt(0, 6, 18);
-        System.out.println("I dont know: " + parser.getInt(0, 6));
+        parser.setInt(startInclusive, size, value);
+        System.out.println("Does this match?: " + parser.getInt(startInclusive, size) + " == " + value);
 
         BitSet b = convert(100);
         System.out.println("Converted back: " + convert(b));

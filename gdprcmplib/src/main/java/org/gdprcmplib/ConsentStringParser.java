@@ -336,13 +336,26 @@ class ConsentStringParser {
             int byteIndex = index / 8;
             int bitExact = index % 8;
 
+            byte[] b = new byte[1];
+            b[0] = bytes[byteIndex];
+            BitSet bs = BitSet.valueOf(b);
+
             if (value) {
+                bs.set(bitExact);
+                bytes[byteIndex] = bs.toByteArray()[0];
+            } else {
+                if (bs.get(bitExact)) {
+                    bs.clear(bitExact);
+                    bytes[byteIndex] = bs.toByteArray()[0];
+                }
+            }
+            /*if (value) {
                 bytes[byteIndex] |= 1 << bytePows[bitExact];
             } else {
                 bytes[byteIndex] &= ~(1 << bytePows[bitExact]);
-            }
+            }*/
 
-           // System.out.println("setBit bytes[byteIndex]: "+bytes[byteIndex] + " byteIndex: "+byteIndex + " index: "+index + " bitExact: "+bitExact);
+           System.out.println("setBit bytes[byteIndex]: "+bytes[byteIndex] + " byteIndex: "+byteIndex + " index: "+index + " bitExact: "+bitExact);
         }
 
         /**
@@ -374,12 +387,13 @@ class ConsentStringParser {
         }
 
         public void setInt(int startInclusive, int size, int value) {
+            int padding = size < 8 ? (8-size) : 0;
             BitSet bitSet = convert(value);
             int f = bitSet.length() > size ? size : bitSet.length();
-            System.out.println(" setInt() bitSet.length: "+bitSet.length() + "  SIZE: "+size);
+            System.out.println(" setInt() bitSet.length: "+bitSet.length() + "  SIZE: "+size + " padding: "+padding);
             for (int i=0;i < f;i++) {
                 System.out.println("i: "+i+" " + (bitSet.get(i) ? " 1 " : " 0 "));
-                setBit(startInclusive+i, bitSet.get(i));
+                setBit(startInclusive+i+padding, bitSet.get(i));
             }
         }
 
