@@ -36,14 +36,15 @@ public class ConsentStringParserTest {
     @Test
     public void testSTuff() throws Exception {
         byte[] bytes = new byte[30];
-        int value = 22;
+        int value = 1;
         int size = 6, startInclusive = 0;
         ConsentStringParser parser = new ConsentStringParser(bytes, false);
         parser.setInt(startInclusive, size, value);
         System.out.println("Does this match?: " + parser.getInt(startInclusive, size) + " == " + value);
 
-        BitSet b = convert(100);
-        System.out.println("Converted back: " + convert(b));
+        for (int i=0; i < parser.bits.length();i++) {
+            System.out.println("my test i: "+i+ "  bit: "+(parser.bits.getBit(i)?"1":"0"));
+        }
     }
 
     @Test
@@ -51,6 +52,7 @@ public class ConsentStringParserTest {
         String consentString = "BN5lERiOMYEdiAOAWeFRAAYAAaAAptQ";
 
         ConsentStringParser consent = new ConsentStringParser(consentString);
+
         assertEquals(14, consent.getCmpId());
         assertEquals(22, consent.getCmpVersion());
         assertEquals("FR", consent.getConsentLanguage());
@@ -74,6 +76,11 @@ public class ConsentStringParserTest {
         String consentString = "BN5lERiOMYEdiAKAWXEND1HoSBE6CAFAApAMgBkIDIgM0AgOJxAnQA==";
 
         ConsentStringParser consent = new ConsentStringParser(consentString);
+        System.out.println(consent.getCmpVersion());
+        for (int i=0; i < consent.bits.length();i++) {
+            System.out.println("test i: "+i+ "  bit: "+(consent.bits.getBit(i)?"1":"0"));
+        }
+        System.out.println("version: "+consent.getVersion());
         assertEquals(10, consent.getCmpId());
         assertEquals(22, consent.getCmpVersion());
         assertEquals("EN", consent.getConsentLanguage());

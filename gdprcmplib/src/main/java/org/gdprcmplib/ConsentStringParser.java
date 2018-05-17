@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -51,7 +52,7 @@ class ConsentStringParser {
     private static final int VENDOR_ID_SIZE = 16;
 
     private String consentString;
-    private final Bits bits;
+    final Bits bits;
     // fields contained in the consent string
     private int version;
     private long consentRecordCreated;
@@ -310,7 +311,7 @@ class ConsentStringParser {
 
     // since java.util.BitSet is inappropriate to use here--as it reversed the bit order of the consent string--we
     // implement our own bitwise operations here.
-    private static class Bits {
+    static class Bits {
         // big endian
         private static final byte[] bytePows = { -128, 64, 32, 16, 8, 4, 2, 1 };
         private final byte[] bytes;
@@ -387,6 +388,25 @@ class ConsentStringParser {
         }
 
         public void setInt(int startInclusive, int size, int value) {
+
+            BitSet bitSet = convert(value);
+            List<Boolean> list = new ArrayList<>(size);
+            int diff = size - bitSet.length();
+            for (int i=0; i < bitSet.length();i++) {
+                list.add(bitSet.get(i));
+            }
+            for (int i=0; i < diff;i++) {
+                list.add(false);
+            }
+            Collections.reverse(list);
+            for (int i=0; i < list.size();i++) {
+                System.out.println("setInt() i: "+i + " bit: "+(list.get(i)?"1":"0"));
+                setBit(startInclusive+i, list.get(i));
+            }
+        }
+
+
+        /*public void setInt(int startInclusive, int size, int value) {
             int padding = size < 8 ? (8-size) : 0;
             BitSet bitSet = convert(value);
             int f = bitSet.length() > size ? size : bitSet.length();
@@ -395,7 +415,7 @@ class ConsentStringParser {
                 System.out.println("i: "+i+" " + (bitSet.get(i) ? " 1 " : " 0 "));
                 setBit(startInclusive+i+padding, bitSet.get(i));
             }
-        }
+        }*/
 
         private BitSet convert(int value) {
             BitSet bits = new BitSet();
