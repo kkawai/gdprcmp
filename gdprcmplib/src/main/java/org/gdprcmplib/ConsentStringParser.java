@@ -337,26 +337,22 @@ class ConsentStringParser {
             int byteIndex = index / 8;
             int bitExact = index % 8;
 
-            byte[] b = new byte[1];
-            b[0] = bytes[byteIndex];
-            BitSet bs = BitSet.valueOf(b);
-
+            //BitSet bs = new BitSet();
             if (value) {
-                bs.set(bitExact);
-                bytes[byteIndex] = bs.toByteArray()[0];
-            } else {
-                if (bs.get(bitExact)) {
-                    bs.clear(bitExact);
-                    bytes[byteIndex] = bs.toByteArray()[0];
-                }
+                bytes[byteIndex] |= 1 << bitExact;
+                //bs.set(bitExact);
+                //bytes[byteIndex] = bs.toByteArray()[0];
             }
+
+
             /*if (value) {
                 bytes[byteIndex] |= 1 << bytePows[bitExact];
             } else {
                 bytes[byteIndex] &= ~(1 << bytePows[bitExact]);
             }*/
 
-           System.out.println("setBit bytes[byteIndex]: "+bytes[byteIndex] + " byteIndex: "+byteIndex + " index: "+index + " bitExact: "+bitExact);
+           System.out.println("setBit bytes[byteIndex]: "+bytes[byteIndex] + " byteIndex: "+byteIndex
+                   + " index: "+index + " bitExact: "+bitExact + " value: "+value + " getBit(index):" +getBit(index));
         }
 
         /**
@@ -398,7 +394,7 @@ class ConsentStringParser {
             for (int i=0; i < diff;i++) {
                 list.add(false);
             }
-            Collections.reverse(list);
+            //Collections.reverse(list);
             for (int i=0; i < list.size();i++) {
                 System.out.println("setInt() i: "+i + " bit: "+(list.get(i)?"1":"0"));
                 setBit(startInclusive+i, list.get(i));
