@@ -2,9 +2,15 @@ package org.gdprcmplib;
 
 import org.junit.Test;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -33,17 +39,70 @@ public class ConsentStringParserTest {
         return value;
     }
 
+    String encodeIntToBits(int number, int numBits) {
+        String bitString = "";
+        bitString = Integer.toString(Integer.parseInt(number+"", 10),2);
+        int padding = numBits - bitString.length();
+        bitString = padLeft(bitString, padding);
+        if (bitString.length() > numBits) {
+            bitString = bitString.substring(0, numBits);
+        }
+        return bitString;
+    }
+
+    String repeat(int count) {
+        String padString = "";
+        for (int i=0;i < count;i++) {
+            padString += "0";
+        }
+        return padString;
+    }
+
+    String  padLeft(String string, int padding) {
+        if (padding <= 0)
+            return string;
+        return repeat(Math.max(0, padding)) + string;
+    }
+
+    String padRight(String string, int padding) {
+        if (padding <= 0)
+            return string;
+      return string + repeat(Math.max(0, padding));
+    }
+
     @Test
     public void testSTuff() throws Exception {
-        byte[] bytes = new byte[30];
-        int value = 1;
-        int size = 6, startInclusive = 0;
-        ConsentStringParser parser = new ConsentStringParser(bytes, false);
-        parser.setInt(startInclusive, size, value);
-        System.out.println("Does this match?: " + parser.getInt(startInclusive, size) + " == " + value);
 
-        for (int i=0; i < parser.bits.length();i++) {
-            System.out.println("my test i: "+i+ "  bit: "+(parser.bits.getBit(i)?"1":"0"));
+        String s = encodeIntToBits(22, 12);
+        System.out.println("["+s+"]");
+        s = padLeft(s, 78);
+        s = padRight(s, 200);
+
+        String paddedBinaryValue = padRight(s, 7 - ((s.length() + 7) % 8));
+
+        for (int i=0; i < s.length();i++) {
+            System.out.println("paddedBinaryValue i: "+i + "   "+s.charAt(i));
+        }
+
+        List<Byte> list = new ArrayList<>();
+
+        for (int i=0; i < paddedBinaryValue.length(); i += 8) {
+            byte b = (byte)Character.toChars(Integer.parseInt(paddedBinaryValue.substring(i, i+8), 2))[0];
+            list.add(b);
+        }
+        byte bytes[] = new byte[list.size()];
+        for (int i=0;i < list.size();i++) {
+            bytes[i] = list.get(i);
+        }
+
+        String finalString = Base64.encodeWebSafe(bytes, true);
+
+        System.out.println(finalString);
+
+        ConsentStringParser parser = new ConsentStringParser(finalString);
+        System.out.println(parser.getCmpId());
+        for (int i=0;i< parser.bits.length();i++) {
+            System.out.println("asdf i: "+i + "   " + (parser.bits.getBit(i) ? "1" : "0"));
         }
     }
 
@@ -52,7 +111,10 @@ public class ConsentStringParserTest {
         String consentString = "BN5lERiOMYEdiAOAWeFRAAYAAaAAptQ";
 
         ConsentStringParser consent = new ConsentStringParser(consentString);
-
+        System.out.println(consent.getCmpVersion());
+        for (int i=0; i < consent.bits.length();i++) {
+            //System.out.println("test i: "+i+ "  bit: "+(consent.bits.getBit(i)?"1":"0"));
+        }
         assertEquals(14, consent.getCmpId());
         assertEquals(22, consent.getCmpVersion());
         assertEquals("FR", consent.getConsentLanguage());
@@ -76,10 +138,6 @@ public class ConsentStringParserTest {
         String consentString = "BN5lERiOMYEdiAKAWXEND1HoSBE6CAFAApAMgBkIDIgM0AgOJxAnQA==";
 
         ConsentStringParser consent = new ConsentStringParser(consentString);
-        System.out.println(consent.getCmpVersion());
-        for (int i=0; i < consent.bits.length();i++) {
-            System.out.println("test i: "+i+ "  bit: "+(consent.bits.getBit(i)?"1":"0"));
-        }
         System.out.println("version: "+consent.getVersion());
         assertEquals(10, consent.getCmpId());
         assertEquals(22, consent.getCmpVersion());

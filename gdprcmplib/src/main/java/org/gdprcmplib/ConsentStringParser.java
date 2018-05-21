@@ -394,6 +394,8 @@ class ConsentStringParser {
             for (int i=0; i < diff;i++) {
                 list.add(false);
             }
+
+            int padding = 8 % list.size();
             //Collections.reverse(list);
             for (int i=0; i < list.size();i++) {
                 System.out.println("setInt() i: "+i + " bit: "+(list.get(i)?"1":"0"));
