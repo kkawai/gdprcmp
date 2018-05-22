@@ -315,7 +315,7 @@ class ConsentStringParser {
 
     // since java.util.BitSet is inappropriate to use here--as it reversed the bit order of the consent string--we
     // implement our own bitwise operations here.
-    static class Bits {
+    private static class Bits {
         // big endian
         private static final byte[] bytePows = { -128, 64, 32, 16, 8, 4, 2, 1 };
         private final byte[] bytes;
