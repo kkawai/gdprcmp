@@ -1,5 +1,7 @@
 package org.gdprcmplib;
 
+import android.support.annotation.NonNull;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class GdprVendor implements Serializable {
+public class GdprVendor implements Serializable, Comparable<GdprVendor> {
     private static final String TAG = "GdprVendor";
     private int id;
     private String name;
@@ -138,5 +140,15 @@ public class GdprVendor implements Serializable {
     @Override
     public String toString() {
         return "GDPR Vendor.  id: " + id + " name: "+name;
+    }
+
+    @Override
+    public int compareTo(@NonNull GdprVendor other) {
+        if (this.id > other.id)
+            return 1;
+        else if (this.id < other.id)
+            return -1;
+        else
+            return 0;
     }
 }

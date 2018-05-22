@@ -1,10 +1,12 @@
 package org.gdprcmplib;
 
+import android.support.annotation.NonNull;
+
 import org.json.JSONObject;
 
 import java.io.Serializable;
 
-public class GdprPurpose implements Serializable {
+public class GdprPurpose implements Serializable, Comparable<GdprPurpose> {
     private static final String TAG = "GdprPurpose";
     private int id;
     private String name;
@@ -77,5 +79,15 @@ public class GdprPurpose implements Serializable {
 
     public void setAllowed(boolean allowed) {
         isAllowed = allowed;
+    }
+
+    @Override
+    public int compareTo(@NonNull GdprPurpose other) {
+        if (this.id > other.id)
+            return 1;
+        else if (this.id < other.id)
+            return -1;
+        else
+            return 0;
     }
 }

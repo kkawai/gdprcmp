@@ -3,9 +3,11 @@ package org.gdprcmplib;
 import java.text.ParseException;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class implements a parser for the IAB consent string as specified in
@@ -52,7 +54,7 @@ class ConsentStringParser {
     private static final int VENDOR_ID_SIZE = 16;
 
     private String consentString;
-    final Bits bits;
+    Bits bits;
     // fields contained in the consent string
     private int version;
     private long consentRecordCreated;
@@ -62,14 +64,18 @@ class ConsentStringParser {
     private int consentScreenID;
     private String consentLanguage;
     private  int vendorListVersion;
-    private int maxVendorSize;
+    private int maxVendorId;
     private int vendorEncodingType;
-    private final List<Boolean> allowedPurposes = new ArrayList<Boolean>();
+    private final List<Boolean> allowedPurposes = new ArrayList<>();
     // only used when range entry is enabled
     private List<RangeEntry> rangeEntries;
     private boolean defaultConsent;
 
     private List<Integer> integerPurposes = null;
+
+    private Map<Integer, GdprVendor> vendorsMap;
+    private List<GdprVendor> vendors;
+    private List<GdprPurpose> purposes;
 
     /**
      * Constructor.
@@ -83,10 +89,6 @@ class ConsentStringParser {
     public ConsentStringParser(String consentString) throws ParseException, Base64DecoderException {
         this(Base64.decodeWebSafe(consentString.getBytes()));
         this.consentString = consentString;
-    }
-
-    public ConsentStringParser(byte bytes[], boolean dummy) {
-        this.bits = new Bits(bytes);
     }
 
     /**
@@ -109,7 +111,7 @@ class ConsentStringParser {
         this.consentScreenID = bits.getInt(CONSENT_SCREEN_SIZE_OFFSET, CONSENT_SCREEN_SIZE);
         this.consentLanguage = bits.getSixBitString(CONSENT_LANGUAGE_OFFSET, CONSENT_LANGUAGE_SIZE);
         this.vendorListVersion = bits.getInt(VENDOR_LIST_VERSION_OFFSET, VENDOR_LIST_VERSION_SIZE);
-        this.maxVendorSize = bits.getInt(MAX_VENDOR_ID_OFFSET, MAX_VENDOR_ID_SIZE);
+        this.maxVendorId = bits.getInt(MAX_VENDOR_ID_OFFSET, MAX_VENDOR_ID_SIZE);
         this.vendorEncodingType = bits.getInt(ENCODING_TYPE_OFFSET, ENCODING_TYPE_SIZE);
         for (int i = PURPOSES_OFFSET, ii = PURPOSES_OFFSET + PURPOSES_SIZE; i < ii; i++) {
             allowedPurposes.add(bits.getBit(i));
@@ -135,7 +137,6 @@ class ConsentStringParser {
                 }
             }
         }
-
     }
 
     /**
@@ -199,6 +200,10 @@ class ConsentStringParser {
         return consentLanguage;
     }
 
+    public int getMaxVendorId() {
+        return maxVendorId;
+    }
+
     /**
      *
      * @return a list of purpose id's which are permitted according to this consent string
@@ -215,7 +220,6 @@ class ConsentStringParser {
         }
         integerPurposes = purposes;
         return purposes;
-
     }
 
     /**
@@ -275,7 +279,7 @@ class ConsentStringParser {
     }
 
     // static classes
-    private static class RangeEntry {
+    public static class RangeEntry {
         /**
          * This class corresponds to the RangeEntry field given in the consent string specification.
          */
@@ -333,28 +337,6 @@ class ConsentStringParser {
             return (b & bytePows[bitExact]) != 0;
         }
 
-        private void setBit(int index, boolean value) {
-            int byteIndex = index / 8;
-            int bitExact = index % 8;
-
-            //BitSet bs = new BitSet();
-            if (value) {
-                bytes[byteIndex] |= 1 << bitExact;
-                //bs.set(bitExact);
-                //bytes[byteIndex] = bs.toByteArray()[0];
-            }
-
-
-            /*if (value) {
-                bytes[byteIndex] |= 1 << bytePows[bitExact];
-            } else {
-                bytes[byteIndex] &= ~(1 << bytePows[bitExact]);
-            }*/
-
-           System.out.println("setBit bytes[byteIndex]: "+bytes[byteIndex] + " byteIndex: "+byteIndex
-                   + " index: "+index + " bitExact: "+bitExact + " value: "+value + " getBit(index):" +getBit(index));
-        }
-
         /**
          * interprets n number of bits as a big endian int
          *
@@ -381,51 +363,6 @@ class ConsentStringParser {
                 sigIndex--;
             }
             return val;
-        }
-
-        public void setInt(int startInclusive, int size, int value) {
-
-            BitSet bitSet = convert(value);
-            List<Boolean> list = new ArrayList<>(size);
-            int diff = size - bitSet.length();
-            for (int i=0; i < bitSet.length();i++) {
-                list.add(bitSet.get(i));
-            }
-            for (int i=0; i < diff;i++) {
-                list.add(false);
-            }
-
-            int padding = 8 % list.size();
-            //Collections.reverse(list);
-            for (int i=0; i < list.size();i++) {
-                System.out.println("setInt() i: "+i + " bit: "+(list.get(i)?"1":"0"));
-                setBit(startInclusive+i, list.get(i));
-            }
-        }
-
-
-        /*public void setInt(int startInclusive, int size, int value) {
-            int padding = size < 8 ? (8-size) : 0;
-            BitSet bitSet = convert(value);
-            int f = bitSet.length() > size ? size : bitSet.length();
-            System.out.println(" setInt() bitSet.length: "+bitSet.length() + "  SIZE: "+size + " padding: "+padding);
-            for (int i=0;i < f;i++) {
-                System.out.println("i: "+i+" " + (bitSet.get(i) ? " 1 " : " 0 "));
-                setBit(startInclusive+i+padding, bitSet.get(i));
-            }
-        }*/
-
-        private BitSet convert(int value) {
-            BitSet bits = new BitSet();
-            int index = 0;
-            while (value != 0L) {
-                if (value % 2L != 0) {
-                    bits.set(index);
-                }
-                ++index;
-                value = value >>> 1;
-            }
-            return bits;
         }
 
         /**
@@ -528,12 +465,200 @@ class ConsentStringParser {
         }
     }
 
-    public void setInt(int startInclusive, int size, int value) {
-        bits.setInt(startInclusive,size,value);
+    /**
+     *
+     * BEGIN WRITING TO CONSENT STRING
+     */
+    String encodeIntToBits(long number, int numBits) {
+
+        String bitString = "";
+        bitString = Long.toString(Long.parseLong(number+"", 10),2);
+
+        // Pad the string if not filling all bits
+        if (numBits >= bitString.length()) {
+            bitString = padLeft(bitString, numBits - bitString.length());
+        }
+
+        // Truncate the string if longer than the number of bits
+        if (bitString.length() > numBits) {
+            bitString = bitString.substring(0, numBits);
+        }
+
+        return bitString;
     }
 
-    public int getInt(int startInclusive, int size) throws ParseException {
-        return bits.getInt(startInclusive, size);
+    String repeat(int count) {
+        String padString = "";
+        for (int i=0;i < count;i++) {
+            padString += "0";
+        }
+        return padString;
     }
 
+    String padLeft(String string, int padding) {
+        if (padding <= 0)
+            return string;
+        return repeat(Math.max(0, padding)) + string;
+    }
+
+    String padRight(String string, int padding) {
+        if (padding <= 0)
+            return string;
+        return string + repeat(Math.max(0, padding));
+    }
+
+    String encodeLetterToBits(Character letter, int numBits) {
+        return encodeIntToBits(Character.toUpperCase(letter) - 65, numBits);
+    }
+
+    String encodeLanguageToBits(String language, int numBits) {
+        return encodeLetterToBits(Character.valueOf(language.charAt(0)), numBits/2)
+                + encodeLetterToBits(Character.valueOf(language.charAt(1)), numBits / 2);
+    }
+
+    String encodePurposesToBits() {
+        StringBuilder purposesBits = new StringBuilder("000000000000000000000000"); //24
+        if (purposes != null) {
+            for (int i=0; i < purposes.size();i++) {
+                if (purposes.get(i).isAllowed()) {
+                    purposesBits.setCharAt(i, '1');
+                }
+            }
+        }
+        return purposesBits.toString();
+    }
+
+    public ConsentStringParser(int version, long createdDate, long updatedDate, int cmpId,
+                               int cmpVersion, int cmpScreenNumber, String language2DigitCode,
+                               int vendorListVersion) {
+        this.version = version;
+        this.consentRecordCreated = createdDate/100;
+        this.consentRecordLastUpdated = updatedDate/100;
+        this.cmpID = cmpId;
+        this.cmpVersion = cmpVersion;
+        this.consentScreenID = cmpScreenNumber;
+        this.consentLanguage = language2DigitCode;
+        this.vendorListVersion = vendorListVersion;
+    }
+
+    /*
+     * https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Consent%20string%20and%20vendor%20list%20formats%20v1.1%20Final.md
+     */
+    public String getEncodedConsentString() throws Exception {
+
+        consentRecordLastUpdated = new Date().getTime() / 100;
+        String bitString = encodeIntToBits(version, 6); //Incremented when consent string format changes
+        bitString += encodeIntToBits(consentRecordCreated, 36); //created
+        bitString += encodeIntToBits(consentRecordLastUpdated, 36); //last updated
+        bitString += encodeIntToBits(cmpID, 12); //cmpID
+        bitString += encodeIntToBits(cmpVersion, 12); //cmpVersion
+        bitString += encodeIntToBits(consentScreenID, 6); //screen number in CMP where consent given
+        bitString += encodeLanguageToBits(consentLanguage, 12); //2-digit language code CMP asked for content in
+        bitString += encodeIntToBits(vendorListVersion, 12); //vendor list version used in most recent consent string update
+        bitString += encodePurposesToBits();  //24 purposes
+        bitString += encodeIntToBits(maxVendorId, 16); //max vendor id
+        bitString += encodeIntToBits(vendorEncodingType, 1);
+        if (vendorEncodingType == VENDOR_ENCODING_RANGE) {
+            bitString += defaultConsent ? "1" : "0";
+            bitString += encodeIntToBits(rangeEntries.size(), 12);
+            for (int i=0;i < rangeEntries.size();i++) {
+                RangeEntry rangeEntry = rangeEntries.get(i);
+                if (rangeEntry.vendorIds.size() == 1) {
+                    bitString += "0"; //single vendor id
+                    bitString += encodeIntToBits(rangeEntry.vendorIds.get(0), 16); //single vendor id
+                    bitString += encodeIntToBits(0, 16);
+                    bitString += encodeIntToBits(0, 16);
+                } else {
+                    bitString += "1";  //vendor id range
+                    bitString += encodeIntToBits(0, 16);
+                    bitString += encodeIntToBits(rangeEntry.minVendorId, 16);  //start vendor id
+                    bitString += encodeIntToBits(rangeEntry.maxVendorId, 16);  //end vendor id
+                }
+            }
+        } else {
+            for (int i=1;i <= maxVendorId;i++) {
+                if (vendorsMap.containsKey(i)) {
+                    bitString += (vendorsMap.get(i).isAllowed() ? "1" : "0");
+                } else {
+                    bitString += "0";
+                }
+            }
+        }
+
+        System.out.println("bitString: " + bitString);
+
+        String paddedBinaryValue = padRight(bitString, 7 - ((bitString.length() + 7) % 8));
+        for (int i=0; i < bitString.length();i++) {
+            //System.out.println("paddedBinaryValue i: "+i + "   "+bitString.charAt(i));
+        }
+        List<Byte> list = new ArrayList<>();
+        for (int i=0; i < paddedBinaryValue.length(); i += 8) {
+            byte b = (byte)Character.toChars(Integer.parseInt(paddedBinaryValue.substring(i, i+8), 2))[0];
+            list.add(b);
+        }
+        byte bytes[] = new byte[list.size()];
+        for (int i=0;i < list.size();i++) {
+            bytes[i] = list.get(i);
+        }
+        String finalString = Base64.encodeWebSafe(bytes, true);
+//        System.out.println(finalString);
+//        ConsentStringParser parser = new ConsentStringParser(finalString);
+//        System.out.println("create date: "+new Date(parser.getConsentRecordCreated()));
+//        System.out.println("update date: "+new Date(parser.getConsentRecordLastUpdated()));
+//        System.out.println("getVersion: "+parser.getVersion());
+//        System.out.println("getCmpVersion: "+parser.getCmpVersion());
+//        System.out.println("getCmpId: "+parser.getCmpId());
+//        System.out.println("getConsentScreen: "+parser.getConsentScreen());
+//        System.out.println("language: "+parser.getConsentLanguage());
+//        System.out.println("vendor list version: "+parser.getVendorListVersion());
+//        for (int i=0;i < 24;i++) {
+//            System.out.println("is purpose allowed... "+(i+1) + ": "+parser.isPurposeAllowed(i+1));
+//        }
+//        System.out.println("max vendor size: "+parser.getMaxVendorId());
+        return finalString;
+    }
+
+    /**
+     *
+     * @param vendorEncodingType 1 = range, 0: bitfield
+     */
+    public void setVendorEncodingType(int vendorEncodingType) {
+        this.vendorEncodingType = vendorEncodingType;
+    }
+
+    public void addRangeEntry(RangeEntry rangeEntry) {
+        if (rangeEntries == null) {
+            rangeEntries = new ArrayList<>();
+        }
+        rangeEntries.add(rangeEntry);
+    }
+
+    public List<RangeEntry> getRangeEntries() {
+        return rangeEntries;
+    }
+
+    public void setVendors(List<GdprVendor> vendors) {
+        this.vendors = vendors;
+        this.vendorsMap = new HashMap<>(this.vendors.size());
+        Collections.sort(this.vendors);
+        maxVendorId = this.vendors.get(this.vendors.size()-1).getId();
+        for (int i=0;i<this.vendors.size();i++) {
+            GdprVendor vendor = this.vendors.get(i);
+            this.vendorsMap.put(vendor.getId(),vendor);
+        }
+    }
+
+    public void setPurposes(List<GdprPurpose> purposes) {
+        allowedPurposes.clear();
+        this.purposes = purposes;
+        Collections.sort(purposes);
+        for (int i=0;i < purposes.size();i++) {
+            GdprPurpose purpose = purposes.get(i);
+            allowedPurposes.add(purpose.isAllowed());
+        }
+    }
+
+    public void setDefaultConsent(boolean defaultConsent) {
+        this.defaultConsent = defaultConsent;
+    }
 }

@@ -18,92 +18,42 @@ import static org.junit.Assert.assertTrue;
 
 public class ConsentStringParserTest {
 
-    public static BitSet convert(int value) {
-        BitSet bits = new BitSet();
-        int index = 0;
-        while (value != 0L) {
-            if (value % 2L != 0) {
-                bits.set(index);
-            }
-            ++index;
-            value = value >>> 1;
-        }
-        return bits;
-    }
-
-    public static int convert(BitSet bits) {
-        int value = 0;
-        for (int i = 0; i < bits.length(); ++i) {
-            value += bits.get(i) ? (1 << i) : 0;
-        }
-        return value;
-    }
-
-    String encodeIntToBits(int number, int numBits) {
-        String bitString = "";
-        bitString = Integer.toString(Integer.parseInt(number+"", 10),2);
-        int padding = numBits - bitString.length();
-        bitString = padLeft(bitString, padding);
-        if (bitString.length() > numBits) {
-            bitString = bitString.substring(0, numBits);
-        }
-        return bitString;
-    }
-
-    String repeat(int count) {
-        String padString = "";
-        for (int i=0;i < count;i++) {
-            padString += "0";
-        }
-        return padString;
-    }
-
-    String  padLeft(String string, int padding) {
-        if (padding <= 0)
-            return string;
-        return repeat(Math.max(0, padding)) + string;
-    }
-
-    String padRight(String string, int padding) {
-        if (padding <= 0)
-            return string;
-      return string + repeat(Math.max(0, padding));
-    }
 
     @Test
     public void testSTuff() throws Exception {
-
-        String s = encodeIntToBits(22, 12);
-        System.out.println("["+s+"]");
-        s = padLeft(s, 78);
-        s = padRight(s, 200);
-
-        String paddedBinaryValue = padRight(s, 7 - ((s.length() + 7) % 8));
-
-        for (int i=0; i < s.length();i++) {
-            System.out.println("paddedBinaryValue i: "+i + "   "+s.charAt(i));
+        ConsentStringParser parser = new  ConsentStringParser(1, new Date().getTime(),
+                new Date().getTime(), 20, 13, 4,
+                "EN", 5);
+        List<GdprPurpose> purposes = new ArrayList<>(5);
+        for (int i=0;i < 5;i++) {
+            GdprPurpose p = new GdprPurpose(i+1, "test purpose "+(i+1), "some description "+(i+1));
+            p.setAllowed(true);
+            purposes.add(p);
         }
-
-        List<Byte> list = new ArrayList<>();
-
-        for (int i=0; i < paddedBinaryValue.length(); i += 8) {
-            byte b = (byte)Character.toChars(Integer.parseInt(paddedBinaryValue.substring(i, i+8), 2))[0];
-            list.add(b);
+        List<GdprVendor> vendors = new ArrayList<>(5);
+        for (int i=0;i < 5;i++) {
+            GdprVendor v = new GdprVendor(i+1, "test vendor "+(i+1), "http://privacy.com/html"+(i+1));
+            v.setAllowed(true);
+            vendors.add(v);
         }
-        byte bytes[] = new byte[list.size()];
-        for (int i=0;i < list.size();i++) {
-            bytes[i] = list.get(i);
+        parser.setVendorEncodingType(0);
+        parser.setPurposes(purposes);
+        parser.setVendors(vendors);
+        String consent = parser.getEncodedConsentString();
+        System.out.println("fabulous consent string: "+consent);
+        ConsentStringParser newParser = new ConsentStringParser(consent);
+        System.out.println("create date: "+new Date(newParser.getConsentRecordCreated()));
+        System.out.println("update date: "+new Date(newParser.getConsentRecordLastUpdated()));
+        System.out.println("getVersion: "+newParser.getVersion());
+        System.out.println("getCmpVersion: "+newParser.getCmpVersion());
+        System.out.println("getCmpId: "+newParser.getCmpId());
+        System.out.println("getConsentScreen: "+newParser.getConsentScreen());
+        System.out.println("language: "+newParser.getConsentLanguage());
+        System.out.println("vendor list version: "+newParser.getVendorListVersion());
+        for (int i=0;i < 24;i++) {
+            System.out.println("is purpose allowed... "+(i+1) + ": "+newParser.isPurposeAllowed(i+1));
         }
-
-        String finalString = Base64.encodeWebSafe(bytes, true);
-
-        System.out.println(finalString);
-
-        ConsentStringParser parser = new ConsentStringParser(finalString);
-        System.out.println(parser.getCmpId());
-        for (int i=0;i< parser.bits.length();i++) {
-            System.out.println("asdf i: "+i + "   " + (parser.bits.getBit(i) ? "1" : "0"));
-        }
+        System.out.println("max vendor size: "+newParser.getMaxVendorId());
     }
 
     @Test
@@ -111,7 +61,6 @@ public class ConsentStringParserTest {
         String consentString = "BN5lERiOMYEdiAOAWeFRAAYAAaAAptQ";
 
         ConsentStringParser consent = new ConsentStringParser(consentString);
-        System.out.println(consent.getCmpVersion());
         for (int i=0; i < consent.bits.length();i++) {
             //System.out.println("test i: "+i+ "  bit: "+(consent.bits.getBit(i)?"1":"0"));
         }
@@ -138,7 +87,6 @@ public class ConsentStringParserTest {
         String consentString = "BN5lERiOMYEdiAKAWXEND1HoSBE6CAFAApAMgBkIDIgM0AgOJxAnQA==";
 
         ConsentStringParser consent = new ConsentStringParser(consentString);
-        System.out.println("version: "+consent.getVersion());
         assertEquals(10, consent.getCmpId());
         assertEquals(22, consent.getCmpVersion());
         assertEquals("EN", consent.getConsentLanguage());
