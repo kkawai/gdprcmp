@@ -61,9 +61,6 @@ public class ConsentStringParserTest {
         String consentString = "BN5lERiOMYEdiAOAWeFRAAYAAaAAptQ";
 
         ConsentStringParser consent = new ConsentStringParser(consentString);
-        for (int i=0; i < consent.bits.length();i++) {
-            //System.out.println("test i: "+i+ "  bit: "+(consent.bits.getBit(i)?"1":"0"));
-        }
         assertEquals(14, consent.getCmpId());
         assertEquals(22, consent.getCmpVersion());
         assertEquals("FR", consent.getConsentLanguage());
