@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,15 +66,12 @@ class ConsentStringParser {
     private int maxVendorId;
     private int vendorEncodingType;
     private final List<Boolean> allowedPurposes = new ArrayList<>();
+    private final List<Boolean> allowedVendors = new ArrayList<>();
     // only used when range entry is enabled
     private List<RangeEntry> rangeEntries;
     private boolean defaultConsent;
 
     private List<Integer> integerPurposes = null;
-
-    private Map<Integer, GdprVendor> vendorsMap;
-    private List<GdprVendor> vendors;
-    private List<GdprPurpose> purposes;
 
     /**
      * Constructor.
@@ -135,6 +131,10 @@ class ConsentStringParser {
                     currentOffset += VENDOR_ID_SIZE;
                     rangeEntries.add(new RangeEntry(vendorId));
                 }
+            }
+        } else {
+            for (int i = VENDOR_BITFIELD_OFFSET, ii = VENDOR_BITFIELD_OFFSET + maxVendorId; i < ii; i++) {
+                allowedVendors.add(bits.getBit(i));
             }
         }
     }
@@ -517,13 +517,9 @@ class ConsentStringParser {
     }
 
     String encodePurposesToBits() {
-        StringBuilder purposesBits = new StringBuilder("000000000000000000000000"); //24
-        if (purposes != null) {
-            for (int i=0; i < purposes.size();i++) {
-                if (purposes.get(i).isAllowed()) {
-                    purposesBits.setCharAt(i, '1');
-                }
-            }
+        StringBuilder purposesBits = new StringBuilder(PURPOSES_SIZE); //24
+        for (int i=0; i < PURPOSES_SIZE;i++) {
+            purposesBits.append(isPurposeAllowed(i+1) ? '1' : '0');
         }
         return purposesBits.toString();
     }
@@ -532,8 +528,8 @@ class ConsentStringParser {
                                int cmpVersion, int cmpScreenNumber, String language2DigitCode,
                                int vendorListVersion) {
         this.version = version;
-        this.consentRecordCreated = createdDate/100;
-        this.consentRecordLastUpdated = updatedDate/100;
+        this.consentRecordCreated = createdDate;
+        this.consentRecordLastUpdated = updatedDate;
         this.cmpID = cmpId;
         this.cmpVersion = cmpVersion;
         this.consentScreenID = cmpScreenNumber;
@@ -546,10 +542,9 @@ class ConsentStringParser {
      */
     public String getEncodedConsentString() throws Exception {
 
-        consentRecordLastUpdated = new Date().getTime() / 100;
         String bitString = encodeIntToBits(version, 6); //Incremented when consent string format changes
-        bitString += encodeIntToBits(consentRecordCreated, 36); //created
-        bitString += encodeIntToBits(consentRecordLastUpdated, 36); //last updated
+        bitString += encodeIntToBits(this.consentRecordCreated / 100, 36); //created
+        bitString += encodeIntToBits(this.consentRecordLastUpdated / 100, 36); //last updated
         bitString += encodeIntToBits(cmpID, 12); //cmpID
         bitString += encodeIntToBits(cmpVersion, 12); //cmpVersion
         bitString += encodeIntToBits(consentScreenID, 6); //screen number in CMP where consent given
@@ -566,31 +561,19 @@ class ConsentStringParser {
                 if (rangeEntry.vendorIds.size() == 1) {
                     bitString += "0"; //single vendor id
                     bitString += encodeIntToBits(rangeEntry.vendorIds.get(0), 16); //single vendor id
-                    bitString += encodeIntToBits(0, 16);
-                    bitString += encodeIntToBits(0, 16);
                 } else {
                     bitString += "1";  //vendor id range
-                    bitString += encodeIntToBits(0, 16);
                     bitString += encodeIntToBits(rangeEntry.minVendorId, 16);  //start vendor id
                     bitString += encodeIntToBits(rangeEntry.maxVendorId, 16);  //end vendor id
                 }
             }
         } else {
-            for (int i=1;i <= maxVendorId;i++) {
-                if (vendorsMap.containsKey(i)) {
-                    bitString += (vendorsMap.get(i).isAllowed() ? "1" : "0");
-                } else {
-                    bitString += "0";
-                }
+            for (int i=0; i < allowedVendors.size();i++) {
+                bitString += allowedVendors.get(i) ? "1" : "0";
             }
         }
 
-        System.out.println("bitString: " + bitString);
-
         String paddedBinaryValue = padRight(bitString, 7 - ((bitString.length() + 7) % 8));
-        for (int i=0; i < bitString.length();i++) {
-            //System.out.println("paddedBinaryValue i: "+i + "   "+bitString.charAt(i));
-        }
         List<Byte> list = new ArrayList<>();
         for (int i=0; i < paddedBinaryValue.length(); i += 8) {
             byte b = (byte)Character.toChars(Integer.parseInt(paddedBinaryValue.substring(i, i+8), 2))[0];
@@ -600,22 +583,11 @@ class ConsentStringParser {
         for (int i=0;i < list.size();i++) {
             bytes[i] = list.get(i);
         }
-        String finalString = Base64.encodeWebSafe(bytes, true);
-//        System.out.println(finalString);
-//        ConsentStringParser parser = new ConsentStringParser(finalString);
-//        System.out.println("create date: "+new Date(parser.getConsentRecordCreated()));
-//        System.out.println("update date: "+new Date(parser.getConsentRecordLastUpdated()));
-//        System.out.println("getVersion: "+parser.getVersion());
-//        System.out.println("getCmpVersion: "+parser.getCmpVersion());
-//        System.out.println("getCmpId: "+parser.getCmpId());
-//        System.out.println("getConsentScreen: "+parser.getConsentScreen());
-//        System.out.println("language: "+parser.getConsentLanguage());
-//        System.out.println("vendor list version: "+parser.getVendorListVersion());
-//        for (int i=0;i < 24;i++) {
-//            System.out.println("is purpose allowed... "+(i+1) + ": "+parser.isPurposeAllowed(i+1));
-//        }
-//        System.out.println("max vendor size: "+parser.getMaxVendorId());
-        return finalString;
+        return Base64.encodeWebSafe(bytes, true);
+    }
+
+    public int getVendorEncodingType() {
+        return vendorEncodingType;
     }
 
     /**
@@ -638,23 +610,21 @@ class ConsentStringParser {
     }
 
     public void setVendors(List<GdprVendor> vendors) {
-        this.vendors = vendors;
-        this.vendorsMap = new HashMap<>(this.vendors.size());
-        Collections.sort(this.vendors);
-        maxVendorId = this.vendors.get(this.vendors.size()-1).getId();
-        for (int i=0;i<this.vendors.size();i++) {
-            GdprVendor vendor = this.vendors.get(i);
-            this.vendorsMap.put(vendor.getId(),vendor);
+        Collections.sort(vendors);
+        Map<Integer, Boolean> map = new HashMap<>();
+        for (GdprVendor vendor : vendors) {
+            map.put(vendor.getId(), vendor.isAllowed());
+        }
+        maxVendorId = vendors.get(vendors.size()-1).getId();
+        for (int i=0;i<maxVendorId;i++) {
+            allowedVendors.add( map.containsKey(i+1) ? map.get(i+1) : false);
         }
     }
 
     public void setPurposes(List<GdprPurpose> purposes) {
-        allowedPurposes.clear();
-        this.purposes = purposes;
         Collections.sort(purposes);
         for (int i=0;i < purposes.size();i++) {
-            GdprPurpose purpose = purposes.get(i);
-            allowedPurposes.add(purpose.isAllowed());
+            allowedPurposes.add(purposes.get(i).isAllowed());
         }
     }
 
