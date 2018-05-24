@@ -1,5 +1,7 @@
 package org.gdprcmplib;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -104,11 +106,28 @@ public class CmpDetailsActivity extends AppCompatActivity {
                     updateCheckbox();
                 }
             };
+            View.OnClickListener urlClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    Pair<GdprPurpose, GdprVendor> pair = getListItem(position);
+                    if (pair.second != null) {
+                        try {
+                            view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(pair.second.getPolicyUrl())));
+                        }catch (Exception e) {
+                            MLog.e(TAG,"Could not view privacy policy url",e);
+                        }
+                    } else {
+                        updateCheckbox();
+                    }
+                }
+            };
+            //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+            //startActivity(browserIntent);
             itemView.setOnClickListener(clickListener);
             checkbox.setOnClickListener(clickListener);
+            descr.setOnClickListener(urlClickListener);
         }
-
-
 
         private void updateCheckbox() {
             int position = getAdapterPosition();
@@ -134,7 +153,7 @@ public class CmpDetailsActivity extends AppCompatActivity {
                 GdprVendor vendor = pair.second;
                 name.setText(vendor.getName());
                 descr.setText(vendor.getPolicyUrl());
-                if (vendor.getLegIntPurposes().size() > 0) {
+                /*if (vendor.getLegIntPurposes().size() > 0) {
                     featuresAndPurposes.setVisibility(View.VISIBLE);
                     StringBuilder sb = new StringBuilder(128);
                     for (int i = 0; i < vendor.getLegIntPurposes().size(); i++) {
@@ -145,7 +164,8 @@ public class CmpDetailsActivity extends AppCompatActivity {
                     featuresAndPurposes.setText(sb.toString());
                 } else {
                     featuresAndPurposes.setVisibility(View.GONE);
-                }
+                }*/
+                featuresAndPurposes.setVisibility(View.GONE);
                 checkbox.setChecked(vendor.isAllowed());
             }
 
