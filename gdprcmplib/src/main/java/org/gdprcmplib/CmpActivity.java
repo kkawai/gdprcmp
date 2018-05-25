@@ -12,6 +12,9 @@ import android.view.View;
 
 import org.json.JSONObject;
 
+import java.util.Collections;
+import java.util.Date;
+
 public class CmpActivity extends AppCompatActivity {
 
     public static final String TAG = "CmpActivity";
@@ -22,8 +25,9 @@ public class CmpActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DataBindingUtil.setContentView(this, R.layout.gdpr_layout);
-        BindingUtils.setViewWidth(findViewById(R.id.i_consent),.50f);
-        BindingUtils.setViewWidth(findViewById(R.id.i_do_not_consent),.50f);
+        BindingUtils.setViewWidth(findViewById(R.id.i_consent), .50f);
+        BindingUtils.setViewWidth(findViewById(R.id.i_do_not_consent), .50f);
+
         new AsyncTask<Void, Void, GdprData>() {
             @Override
             protected GdprData doInBackground(Void... voids) {
@@ -59,11 +63,50 @@ public class CmpActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(consentString)) {
             try {
                 ConsentStringParser parser = new ConsentStringParser(consentString);
-                parser.getAllowedVe
-            }catch (Exception e) {
+                parser.setVersion(1+parser.getVersion());
+                parser.setConsentRecordLastUpdated(new Date().getTime());
+                parser.setVendorListVersion(getVendorListVersion());
+                parser.setCmpVersion(Config.CMP_VERSION);
+                parser.setConsentScreen(Config.CMP_SCREEN_ID_1);
+                parser.consentAll(getMaxConsentId());
+                if (GDPRUtil.isSubjectToGDPR(this)) {
+                    GDPRUtil.setGDPRInfo(this, true, parser.getEncodedConsentString());
+                    finish();
+                }
+            } catch (Exception e) {
 
+                try {
+                    long date = new Date().getTime();
+                    ConsentStringParser parser =
+                          new ConsentStringParser(1, date, date,
+                                Config.CMP_ID, Config.CMP_VERSION, Config.CMP_SCREEN_ID_1,
+                                Config.DEFAULT_CMP_LANGUAGE,
+                                getVendorListVersion());
+                    parser.consentAll(getMaxConsentId());
+                    if (GDPRUtil.isSubjectToGDPR(this)) {
+                        GDPRUtil.setGDPRInfo(this, true, parser.getEncodedConsentString());
+                        finish();
+                    }
+                } catch (Exception e1) {
+                    MLog.e(TAG,"onConsent() failed",e);
+                }
             }
+        } else {
+
         }
+    }
+
+    private int getMaxConsentId() {
+        if (data != null && data.getVendors() != null && !data.getVendors().isEmpty()) {
+            Collections.sort(data.getVendors());
+            return data.getVendors().get(data.getVendors().size()-1).getId();
+        } else {
+            return Config.DEFAULT_MAX_VENDOR_ID;
+        }
+    }
+
+    private int getVendorListVersion() {
+        return data != null ? data.getVendorListVersion() : 1;
     }
 
     public void onDoNotConsent(View view) {
@@ -76,4 +119,5 @@ public class CmpActivity extends AppCompatActivity {
         }
         startActivityForResult(intent, REQUEST_CODE);
     }
+
 }

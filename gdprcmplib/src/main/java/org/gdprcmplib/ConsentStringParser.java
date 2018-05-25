@@ -59,7 +59,7 @@ class ConsentStringParser {
     private long consentRecordCreated;
     private long consentRecordLastUpdated;
     private int cmpID;
-    private int cmpVersion = 1;
+    private int cmpVersion = Config.CMP_VERSION;
     private int consentScreenID;
     private String consentLanguage;
     private  int vendorListVersion;
@@ -162,6 +162,10 @@ class ConsentStringParser {
         return consentRecordLastUpdated;
     }
 
+    public void setConsentRecordLastUpdated(long updated) {
+        this.consentRecordLastUpdated = updated;
+    }
+
     /**
      *
      * @return the version of the cookie format used in this consent string
@@ -185,12 +189,20 @@ class ConsentStringParser {
         return cmpVersion;
     }
 
+    public void setCmpVersion(int cmpVersion) {
+        this.cmpVersion = cmpVersion;
+    }
+
     /**
      *
      * @return the id of the string through which the user gave consent in the CMP UI
      */
     public int getConsentScreen() {
         return consentScreenID;
+    }
+
+    public void setConsentScreen(int consentScreenID) {
+        this.consentScreenID = consentScreenID;
     }
 
     /**
@@ -228,6 +240,10 @@ class ConsentStringParser {
      */
     public int getVendorListVersion() {
         return vendorListVersion;
+    }
+
+    public void setVendorListVersion(int vendorListVersion) {
+        this.vendorListVersion = vendorListVersion;
     }
 
     /**
@@ -636,7 +652,7 @@ class ConsentStringParser {
         allowedVendors.clear();
     }
 
-    public void consentAll() {
+    public void consentAll(int maxVendorId) {
         allowedPurposes.clear();
         allowedVendors.clear();
         for (int i=0;i<PURPOSES_SIZE;i++) {
@@ -646,15 +662,8 @@ class ConsentStringParser {
             rangeEntries.clear();
         }
         setDefaultConsent(true);
-        addRangeEntry(new RangeEntry(1,250));
-        setVendorEncodingType(1);
-        if (cmpID == 0) {
-            cmpID = 1; //TODO get this from lloyd
-        }
-        if (cmpVersion == 0) {
-            cmpVersion = 1;
-        }
-        consentScreenID = consentScreenID;//todo
+        addRangeEntry(new RangeEntry(1,maxVendorId));
+        setVendorEncodingType(1); //Range, not bits
     }
 
     public void noConsentAll() {
@@ -667,5 +676,9 @@ class ConsentStringParser {
 
     public void setConsentScreenSizeOffset(int consentScreenID) {
         this.consentScreenID = consentScreenID;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 }

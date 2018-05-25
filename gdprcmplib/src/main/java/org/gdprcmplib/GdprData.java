@@ -24,7 +24,7 @@ public class GdprData implements Serializable {
     private SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
 
     private long lastUpdated;
-    private int vendorListVersion;
+    private int vendorListVersion=1;
     public GdprData(JSONObject jsonObject) {
         try {
             String s = jsonObject.optString("lastUpdated");

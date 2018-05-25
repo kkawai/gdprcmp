@@ -71,7 +71,7 @@ final class GDPRUtil {
 
     static void setGDPRInfo(final Context context, final boolean isSubjectToGDPR, final String iabConsentString) {
         try {
-            PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(OFFICIAL_APPLICABLE, isSubjectToGDPR).apply();
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putString(OFFICIAL_APPLICABLE, isSubjectToGDPR?"1":"0").apply();
             if (isSubjectToGDPR) {
                 PreferenceManager.getDefaultSharedPreferences(context).edit().putString(OFFICIAL_STRING, iabConsentString).apply();
             }
