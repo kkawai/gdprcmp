@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.ToggleButton
 import org.gdprcmplib.CmpActivityResult
 import org.gdprcmplib.GdprCmp
 
@@ -29,6 +30,11 @@ class MainActivity : AppCompatActivity() {
 
     fun onPrivacySettings(view: View?) {
         GdprCmp.startCmpActivityForResult(this, REQ_CODE, true)
+    }
+
+    fun onToggleGDPR(view: View?) {
+        GdprCmp.setIsSubjectToGDPR(this,findViewById<ToggleButton>(R.id.toggle_gdpr).isChecked())
+        updateUI()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
