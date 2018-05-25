@@ -1,5 +1,6 @@
 package org.gdprcmplib;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -7,16 +8,24 @@ public class GdprCmp {
 
     private void GdprCmp() {}
 
-    public static void startCmpActivity(Context context) {
-        context.startActivity(new Intent(context, CmpActivity.class));
+    public static void startCmpActivityForResult(Activity activity, int requestCode, boolean allowBackButton) {
+        Intent intent = new Intent(activity, CmpActivity.class);
+        intent.putExtra(Config.CMP_ALLOW_BACK_BUTTON, allowBackButton);
+        activity.startActivityForResult(intent, requestCode);
     }
 
-    public static void startCmpDetailsActivity(Context context) {
-        context.startActivity(new Intent(context, CmpDetailsActivity.class));
+    public static void startCmpDetailsActivityForResult(Activity activity, int requestCode, boolean allowBackButton) {
+        Intent intent = new Intent(activity, CmpDetailsActivity.class);
+        intent.putExtra(Config.CMP_ALLOW_BACK_BUTTON, allowBackButton);
+        activity.startActivityForResult(intent, requestCode);
     }
 
-    public static void setGDPRInfo(final Context context, final boolean isSubjectToGDPR, final String iabConsentString) {
-        GDPRUtil.setGDPRInfo(context, isSubjectToGDPR, iabConsentString);
+    public static void setGDPRConsentString(final Context context, final String iabConsentString) {
+        GDPRUtil.setGDPRConsentString(context, iabConsentString);
+    }
+
+    public static void setIsSubjectToGDPR(final Context context, final boolean isSubjectToGDPR) {
+        GDPRUtil.setIsSubjectToGDPR(context, isSubjectToGDPR);
     }
 
     public static boolean isSubjectToGDPR(Context context) {

@@ -57,7 +57,7 @@ public class CmpActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(GdprData data) {
                 if (data == null) {
-                    finish(Config.RESULT_COULD_NOT_FETCH_VENDOR_LIST);
+                    finish(CmpActivityResult.RESULT_COULD_NOT_FETCH_VENDOR_LIST);
                     return;
                 }
             }
@@ -85,7 +85,7 @@ public class CmpActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            finish(Config.RESULT_CONSENT_CUSTOM_PARTIAL);
+            finish(CmpActivityResult.RESULT_CONSENT_CUSTOM_PARTIAL);
         }
     }
 
@@ -129,10 +129,8 @@ public class CmpActivity extends AppCompatActivity {
     }
 
     private void persist(ConsentStringParser consentString, boolean isConsent) throws Exception {
-        if (GDPRUtil.isSubjectToGDPR(this)) {
-            GDPRUtil.setGDPRInfo(this, true, consentString.getEncodedConsentString());
-        }
-        finish(isConsent ? Config.RESULT_CONSENT_ALL : Config.RESULT_CONSENT_NONE);
+        GDPRUtil.setGDPRConsentString(this, consentString.getEncodedConsentString());
+        finish(isConsent ? CmpActivityResult.RESULT_CONSENT_ALL : CmpActivityResult.RESULT_CONSENT_NONE);
     }
 
     private void create(boolean isConsent) throws Exception {
@@ -143,7 +141,7 @@ public class CmpActivity extends AppCompatActivity {
                         Config.DEFAULT_CMP_LANGUAGE,
                         getVendorListVersion());
         parser.consent(getMaxConsentId(), isConsent);
-        persist(consentString, isConsent);
+        persist(parser, isConsent);
     }
 
     private int getMaxConsentId() {

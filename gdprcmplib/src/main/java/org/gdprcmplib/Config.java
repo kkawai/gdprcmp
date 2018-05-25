@@ -10,10 +10,5 @@ final class Config {
     static final String DEFAULT_CMP_LANGUAGE = "EN";
     static final int DEFAULT_MAX_VENDOR_ID = 121;
 
-    public static final int RESULT_COULD_NOT_FETCH_VENDOR_LIST = 38;
-    public static final int RESULT_CONSENT_CUSTOM_PARTIAL = 39;
-    public static final int RESULT_CONSENT_ALL = 40;
-    public static final int RESULT_CONSENT_NONE = 41;
-    public static final int RESULT_CANCELED_CONSENT = 42;
     public static final String CMP_ALLOW_BACK_BUTTON = "bundle_key_cmp_allow_back_button";
 }

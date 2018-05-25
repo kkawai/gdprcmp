@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">GdprCmp</string>
+    <string name="show_privacy_settings">Privacy Settings</string>
+    <string name="current_consent_string">Current Consent String</string>
+    <string name="is_subject_to_gdpr">This app is subject to GDPR</string>
+    <string name="is_not_subject_to_gdpr">This app is not subject to GDPR</string>
+    <string name="hello_world">Hello GDPR World!</string>
 </resources>

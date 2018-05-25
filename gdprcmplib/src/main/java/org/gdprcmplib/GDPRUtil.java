@@ -16,7 +16,7 @@ import java.util.Set;
 /**
  * Basic utility to support all GDPR related functionality.
  */
-public class GDPRUtil {
+class GDPRUtil {
 
     private static final String TAG = "GDPRUtil";
     private static final String OFFICIAL_APPLICABLE = "IABConsent_SubjectToGDPR";
@@ -74,14 +74,19 @@ public class GDPRUtil {
         return false;
     }
 
-    public static void setGDPRInfo(final Context context, final boolean isSubjectToGDPR, final String iabConsentString) {
+    public static void setIsSubjectToGDPR(final Context context, final boolean isSubjectToGDPR) {
         try {
-            PreferenceManager.getDefaultSharedPreferences(context).edit().putString(OFFICIAL_APPLICABLE, isSubjectToGDPR?"1":"0").apply();
-            if (isSubjectToGDPR) {
-                PreferenceManager.getDefaultSharedPreferences(context).edit().putString(OFFICIAL_STRING, iabConsentString).apply();
-            }
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putString(OFFICIAL_APPLICABLE, isSubjectToGDPR ? "1" : "0").commit();
         } catch (Exception e) {
-            MLog.e(TAG, "setGDPR failed.  context: " + context + " iabConstentString: " + iabConsentString, e);
+            MLog.e(TAG, "setIsSubjectToGDPR() failed", e);
+        }
+    }
+
+    public static void setGDPRConsentString(final Context context, String iabConsentString) {
+        try {
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putString(OFFICIAL_STRING, iabConsentString).apply();
+        } catch (Exception e) {
+            MLog.e(TAG, "setGDPRConsentString failed.", e);
         }
     }
 
@@ -96,32 +101,17 @@ public class GDPRUtil {
      * null - developer has not determined this is a GDPR applicable region
      * so we must deploy our own determination.
      */
-    private static Boolean isSubjectToGDPR;
     public static boolean isSubjectToGDPR(Context context) {
-
-        if (isSubjectToGDPR != null) {
-            return isSubjectToGDPR;
-        }
-
         //First, check the iab spec
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         if (prefs.contains(OFFICIAL_APPLICABLE)) {
             try {
-                isSubjectToGDPR =  prefs.getInt(OFFICIAL_APPLICABLE, -1) == 1;
-                return isSubjectToGDPR;
+                return prefs.getString(OFFICIAL_APPLICABLE, "0").equals("1");
             } catch (Exception e) {
-                //continue
+                MLog.e(TAG, "isSubjectToGDPR failed", e);
             }
         }
-
-        //lastly, use our own determination if this region is subject to GDPR
-        /*
-         * first check if the developer has saved the GDPR applicability determination
-         * which has yet to be determined.
-         */
-        //let's cache this value when we figure out the implementation details
-        isSubjectToGDPR = isGDPRRegion(context); //for now, deploy our own GDPR determination
-        return isSubjectToGDPR;
+        return isGDPRRegion(context);
     }
 
     /**
@@ -131,35 +121,27 @@ public class GDPRUtil {
      * @return - String saved by the developer.  If null, then developer has simply
      * not set it.
      */
-    private static String consentString = "cannot_be_this";
     public static String getGDPRConsentString(Context context) {
-
-        if (consentString == null || !consentString.equals("cannot_be_this")) {
-            return consentString;
-        }
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         //first try the official iab spec string
         if (prefs.contains(OFFICIAL_STRING)) {
             try {
-                consentString = prefs.getString(OFFICIAL_STRING, null);
-                return consentString;
+                return prefs.getString(OFFICIAL_STRING, null);
             } catch (Exception e) {
                 //continue;
             }
         }
 
-        //let's cache this value when we figure out the implementation details
-        consentString = null;
-        return consentString;
+        return null;
     }
 
     static boolean isValidSdkKey(Activity activity) {
         try {
             String sb = "";
-            for (int i=0;i<ConsentStringParser.arr.length;i++) {
-                sb += (char)(ConsentStringParser.arr[i]+50);
+            for (int i = 0; i < ConsentStringParser.arr.length; i++) {
+                sb += (char) (ConsentStringParser.arr[i] + 50);
             }
             ApplicationInfo ai = activity.getPackageManager().getApplicationInfo(activity.getPackageName(), PackageManager.GET_META_DATA);
             Bundle bundle = ai.metaData;
