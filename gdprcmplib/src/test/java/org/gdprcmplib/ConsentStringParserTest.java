@@ -34,6 +34,41 @@ public class ConsentStringParserTest {
         return vendors;
     }
 
+    String decode(String enc) throws Exception {
+        StringBuilder dec = new StringBuilder();
+        byte[] out = Base64.decodeWebSafe(enc);
+        for (int j=0,i=out.length-1;i >= 0;i--,j++) {
+            dec.append((char)(out[i]+65));
+        }
+        System.out.println("out "+dec.toString());
+        return dec.toString();
+    }
+
+    String encode(String string) throws Exception {
+        byte bytes[] = new byte[string.length()];
+        for (int j=0,i=string.length()-1;i >= 0;i--,j++) {
+            bytes[j] = (byte)(string.charAt(i) - 65);
+        }
+        String enc = Base64.encodeWebSafe(bytes,false);
+        System.out.println("key "+enc);
+        return enc;
+    }
+
+    @Test
+    public void testCool() throws Exception {
+
+        String packageName = "org.gdprcmp";
+        int arr[] = {53,50,62,64,45,65,50,57,45,57,51,71};
+        StringBuilder sb = new StringBuilder();
+        for (int i=0;i<arr.length;i++) {
+            sb.append((char)(arr[i]+50));
+        }
+        System.out.println(sb.toString());
+        String enc = encode(packageName);
+        System.out.println("enc "+enc);
+        System.out.println("decoded: "+decode(enc));
+    }
+
     @Test
     public void testMyStuff() throws Exception {
         final long created = 14924661858L * 100;

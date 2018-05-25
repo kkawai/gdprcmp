@@ -59,7 +59,7 @@ public class CmpDetailsActivity extends AppCompatActivity {
                 renderUI();
             }
         }.execute();
-
+        findViewById(R.id.mainView).setVisibility(GDPRUtil.isValidSdkKey(this) ? View.GONE : View.VISIBLE);
     }
 
     private void renderUI() {
@@ -199,5 +199,13 @@ public class CmpDetailsActivity extends AppCompatActivity {
             vendor.setAllowed(toggleButton.isChecked());
         }
         myAdapter.notifyDataSetChanged();
+    }
+
+    public void onBuy(View view) {
+        try {
+            view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://gdpr-sdk.com/")));
+        }catch (Exception e) {
+            MLog.e(TAG,"Could not view privacy policy url",e);
+        }
     }
 }

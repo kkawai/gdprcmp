@@ -8,8 +8,17 @@
     tools:context=".CmpDetailsActivity"
     >
 
-    <TextView
+    <Button
+        android:onClick="onBuy"
         android:layout_alignParentTop="true"
+        android:id="@+id/mainView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/buy"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_below="@+id/buy"
         android:id="@+id/details_description"
         style="@android:style/TextAppearance.Medium"
         android:layout_width="match_parent"

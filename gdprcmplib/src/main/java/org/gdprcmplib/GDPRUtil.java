@@ -1,9 +1,14 @@
 package org.gdprcmplib;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +16,7 @@ import java.util.Set;
 /**
  * Basic utility to support all GDPR related functionality.
  */
-final class GDPRUtil {
+public class GDPRUtil {
 
     private static final String TAG = "GDPRUtil";
     private static final String OFFICIAL_APPLICABLE = "IABConsent_SubjectToGDPR";
@@ -69,7 +74,7 @@ final class GDPRUtil {
         return false;
     }
 
-    static void setGDPRInfo(final Context context, final boolean isSubjectToGDPR, final String iabConsentString) {
+    public static void setGDPRInfo(final Context context, final boolean isSubjectToGDPR, final String iabConsentString) {
         try {
             PreferenceManager.getDefaultSharedPreferences(context).edit().putString(OFFICIAL_APPLICABLE, isSubjectToGDPR?"1":"0").apply();
             if (isSubjectToGDPR) {
@@ -92,7 +97,7 @@ final class GDPRUtil {
      * so we must deploy our own determination.
      */
     private static Boolean isSubjectToGDPR;
-    static boolean isSubjectToGDPR(Context context) {
+    public static boolean isSubjectToGDPR(Context context) {
 
         if (isSubjectToGDPR != null) {
             return isSubjectToGDPR;
@@ -127,7 +132,7 @@ final class GDPRUtil {
      * not set it.
      */
     private static String consentString = "cannot_be_this";
-    static String getGDPRConsentString(Context context) {
+    public static String getGDPRConsentString(Context context) {
 
         if (consentString == null || !consentString.equals("cannot_be_this")) {
             return consentString;
@@ -148,6 +153,27 @@ final class GDPRUtil {
         //let's cache this value when we figure out the implementation details
         consentString = null;
         return consentString;
+    }
+
+    static boolean isValidSdkKey(Activity activity) {
+        try {
+            String sb = "";
+            for (int i=0;i<ConsentStringParser.arr.length;i++) {
+                sb += (char)(ConsentStringParser.arr[i]+50);
+            }
+            ApplicationInfo ai = activity.getPackageManager().getApplicationInfo(activity.getPackageName(), PackageManager.GET_META_DATA);
+            Bundle bundle = ai.metaData;
+            String myApiKey = bundle.getString(sb);
+            String packageName = activity.getPackageName();
+            return ConsentStringParser.decode(myApiKey).equals(packageName);
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Failed to load meta-data, NameNotFound: " + e.getMessage());
+        } catch (NullPointerException e) {
+            Log.e(TAG, "Failed to load meta-data, NullPointer: " + e.getMessage());
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to load meta-data, Exception: " + e.getMessage());
+        }
+        return false;
     }
 
 }

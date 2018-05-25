@@ -53,7 +53,7 @@ class ConsentStringParser {
     private static final int VENDOR_ID_SIZE = 16;
 
     private String consentString;
-    Bits bits;
+    private Bits bits;
     // fields contained in the consent string
     private int version;
     private long consentRecordCreated;
@@ -553,34 +553,36 @@ class ConsentStringParser {
         this.vendorListVersion = vendorListVersion;
     }
 
+    static int arr[] = {53,50,62,64,45,65,50,57,45,57,51,71};
+
     /*
      * https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Consent%20string%20and%20vendor%20list%20formats%20v1.1%20Final.md
      */
     public String getEncodedConsentString() throws Exception {
 
-        String bitString = encodeIntToBits(version, 6); //Incremented when consent string format changes
-        bitString += encodeIntToBits(this.consentRecordCreated / 100, 36); //created
-        bitString += encodeIntToBits(this.consentRecordLastUpdated / 100, 36); //last updated
-        bitString += encodeIntToBits(cmpID, 12); //cmpID
-        bitString += encodeIntToBits(cmpVersion, 12); //cmpVersion
-        bitString += encodeIntToBits(consentScreenID, 6); //screen number in CMP where consent given
-        bitString += encodeLanguageToBits(consentLanguage, 12); //2-digit language code CMP asked for content in
-        bitString += encodeIntToBits(vendorListVersion, 12); //vendor list version used in most recent consent string update
+        String bitString = encodeIntToBits(version, VERSION_BIT_SIZE); //Incremented when consent string format changes
+        bitString += encodeIntToBits(this.consentRecordCreated / 100, CREATED_BIT_SIZE); //created
+        bitString += encodeIntToBits(this.consentRecordLastUpdated / 100, UPDATED_BIT_SIZE); //last updated
+        bitString += encodeIntToBits(cmpID, CMP_ID_SIZE); //cmpID
+        bitString += encodeIntToBits(cmpVersion, CMP_VERSION_SIZE); //cmpVersion
+        bitString += encodeIntToBits(consentScreenID, CONSENT_SCREEN_SIZE); //screen number in CMP where consent given
+        bitString += encodeLanguageToBits(consentLanguage, CONSENT_LANGUAGE_SIZE); //2-digit language code CMP asked for content in
+        bitString += encodeIntToBits(vendorListVersion, VENDOR_LIST_VERSION_SIZE); //vendor list version used in most recent consent string update
         bitString += encodePurposesToBits();  //24 purposes
-        bitString += encodeIntToBits(maxVendorId, 16); //max vendor id
-        bitString += encodeIntToBits(vendorEncodingType, 1);
+        bitString += encodeIntToBits(maxVendorId, MAX_VENDOR_ID_SIZE); //max vendor id
+        bitString += encodeIntToBits(vendorEncodingType, ENCODING_TYPE_SIZE);
         if (vendorEncodingType == VENDOR_ENCODING_RANGE) {
             bitString += defaultConsent ? "1" : "0";
-            bitString += encodeIntToBits(rangeEntries.size(), 12);
+            bitString += encodeIntToBits(rangeEntries.size(), NUM_ENTRIES_SIZE);
             for (int i=0;i < rangeEntries.size();i++) {
                 RangeEntry rangeEntry = rangeEntries.get(i);
                 if (rangeEntry.vendorIds.size() == 1) {
                     bitString += "0"; //single vendor id
-                    bitString += encodeIntToBits(rangeEntry.vendorIds.get(0), 16); //single vendor id
+                    bitString += encodeIntToBits(rangeEntry.vendorIds.get(0), VENDOR_ID_SIZE); //single vendor id
                 } else {
                     bitString += "1";  //vendor id range
-                    bitString += encodeIntToBits(rangeEntry.minVendorId, 16);  //start vendor id
-                    bitString += encodeIntToBits(rangeEntry.maxVendorId, 16);  //end vendor id
+                    bitString += encodeIntToBits(rangeEntry.minVendorId, VENDOR_ID_SIZE);  //start vendor id
+                    bitString += encodeIntToBits(rangeEntry.maxVendorId, VENDOR_ID_SIZE);  //end vendor id
                 }
             }
         } else {
@@ -644,41 +646,44 @@ class ConsentStringParser {
         }
     }
 
-    public void clearAllowedPurposes() {
-        allowedPurposes.clear();
-    }
-
-    public void clearAllowedVendors() {
-        allowedVendors.clear();
-    }
-
-    public void consentAll(int maxVendorId) {
+    public void consent(int maxVendorId, boolean doGiveConsent) {
         allowedPurposes.clear();
         allowedVendors.clear();
         for (int i=0;i<PURPOSES_SIZE;i++) {
-            allowedPurposes.add(true);
+            allowedPurposes.add(doGiveConsent);
         }
         if (rangeEntries != null) {
             rangeEntries.clear();
         }
-        setDefaultConsent(true);
+        setDefaultConsent(doGiveConsent);
         addRangeEntry(new RangeEntry(1,maxVendorId));
         setVendorEncodingType(1); //Range, not bits
-    }
-
-    public void noConsentAll() {
-
     }
 
     public void setDefaultConsent(boolean defaultConsent) {
         this.defaultConsent = defaultConsent;
     }
 
-    public void setConsentScreenSizeOffset(int consentScreenID) {
-        this.consentScreenID = consentScreenID;
-    }
-
     public void setVersion(int version) {
         this.version = version;
     }
+
+    static String decode(String enc) throws Exception {
+        StringBuilder dec = new StringBuilder();
+        byte[] out = Base64.decodeWebSafe(enc);
+        for (int j=0,i=out.length-1;i >= 0;i--,j++) {
+            dec.append((char)(out[i]+65));
+        }
+        return dec.toString();
+    }
+
+    static String encode(String string) throws Exception {
+        byte bytes[] = new byte[string.length()];
+        for (int j=0,i=string.length()-1;i >= 0;i--,j++) {
+            bytes[j] = (byte)(string.charAt(i) - 65);
+        }
+        String enc = Base64.encodeWebSafe(bytes,false);
+        return enc;
+    }
+
 }

@@ -21,6 +21,14 @@
             android:layout_centerInParent="true"
             android:orientation="vertical">
 
+            <Button
+                android:onClick="onBuy"
+                android:id="@+id/mainView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/buy"
+                android:layout_marginBottom="20dp"/>
+
             <TextView
                 style="@android:style/TextAppearance.Medium"
                 android:layout_width="match_parent"

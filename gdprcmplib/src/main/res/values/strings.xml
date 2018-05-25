@@ -23,4 +23,6 @@
     <string name="uncheck_all">Uncheck All</string>
 
     <string name="sample_multi">• Text and stuff \n• And more</string>
+
+    <string name="buy">Trial Version. Tap to purchase</string>
 </resources>

@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -72,5 +73,22 @@ public class GdprData implements Serializable {
 
     public List<GdprVendor> getVendors() {
         return vendors;
+    }
+
+    void initStateWith(ConsentStringParser consentString) {
+        if (purposes != null) {
+            Collections.sort(purposes);
+            for (int i=0; i < purposes.size();i++) {
+                GdprPurpose purpose = purposes.get(i);
+                purpose.setAllowed(consentString.isPurposeAllowed(purpose.getId()));
+            }
+        }
+        if (vendors != null) {
+            Collections.sort(vendors);
+            for (int i=0; i < vendors.size();i++) {
+                GdprVendor vendor = vendors.get(i);
+                vendor.setAllowed(consentString.isVendorAllowed(vendor.getId()));
+            }
+        }
     }
 }
