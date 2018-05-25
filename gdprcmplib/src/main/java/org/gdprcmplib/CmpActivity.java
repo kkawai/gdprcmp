@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 
 import org.json.JSONObject;
@@ -54,6 +55,15 @@ public class CmpActivity extends AppCompatActivity {
     }
 
     public void onConsent(View view) {
+        String consentString = GDPRUtil.getGDPRConsentString(this);
+        if (!TextUtils.isEmpty(consentString)) {
+            try {
+                ConsentStringParser parser = new ConsentStringParser(consentString);
+                parser.getAllowedVe
+            }catch (Exception e) {
+
+            }
+        }
     }
 
     public void onDoNotConsent(View view) {

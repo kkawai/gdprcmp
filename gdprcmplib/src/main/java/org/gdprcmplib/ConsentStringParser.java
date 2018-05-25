@@ -59,7 +59,7 @@ class ConsentStringParser {
     private long consentRecordCreated;
     private long consentRecordLastUpdated;
     private int cmpID;
-    private int cmpVersion;
+    private int cmpVersion = 1;
     private int consentScreenID;
     private String consentLanguage;
     private  int vendorListVersion;
@@ -628,7 +628,44 @@ class ConsentStringParser {
         }
     }
 
+    public void clearAllowedPurposes() {
+        allowedPurposes.clear();
+    }
+
+    public void clearAllowedVendors() {
+        allowedVendors.clear();
+    }
+
+    public void consentAll() {
+        allowedPurposes.clear();
+        allowedVendors.clear();
+        for (int i=0;i<PURPOSES_SIZE;i++) {
+            allowedPurposes.add(true);
+        }
+        if (rangeEntries != null) {
+            rangeEntries.clear();
+        }
+        setDefaultConsent(true);
+        addRangeEntry(new RangeEntry(1,250));
+        setVendorEncodingType(1);
+        if (cmpID == 0) {
+            cmpID = 1; //TODO get this from lloyd
+        }
+        if (cmpVersion == 0) {
+            cmpVersion = 1;
+        }
+        consentScreenID = consentScreenID;//todo
+    }
+
+    public void noConsentAll() {
+
+    }
+
     public void setDefaultConsent(boolean defaultConsent) {
         this.defaultConsent = defaultConsent;
+    }
+
+    public void setConsentScreenSizeOffset(int consentScreenID) {
+        this.consentScreenID = consentScreenID;
     }
 }
