@@ -1,6 +1,24 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+ext {
+    bintrayRepo = 'android' // repo name
+    bintrayName = 'gdprsdk' // CHANGE PER SDK TYPE
+    publishedGroupId = 'org.gdprcmplib' // maven group id
+    libraryName = "$bintrayRepo"  // same as repo name
+    artifact = "$bintrayName" // maven artifact name; same as bintrayName
+    libraryDescription = 'GDPR IAB Compliant SDK for Android'
+    siteUrl = 'http://gdpr-sdk.com'
+    gitUrl = 'https://github.com/kkawai'
+    libraryVersion = '1.0.0'  //CHANGE
+    developerId = 'kkawai'
+    developerName = 'The GDPR Guy'
+    developerEmail = 'kkawai2@gmail.com'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 27
 
@@ -20,11 +38,25 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        google()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.2'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+    }
 }
 
 dependencies {
@@ -39,3 +71,6 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+apply from: 'installv.gradle'
+apply from: 'bintrayv.gradle'

@@ -19,3 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-ignorewarnings
+-keepnames class org.gdprcmplib.GdprCmp
+-keepnames class org.gdprcmplib.CmpActivity
+-keepnames class org.gdprcmplib.CmpDetailsActivity
+-keep class org.gdprcmplib.CmpActivityResult
