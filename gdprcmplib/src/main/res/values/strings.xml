@@ -25,4 +25,8 @@
     <string name="sample_multi">• Text and stuff \n• And more</string>
 
     <string name="buy">Trial Version. Tap to purchase</string>
+    <string name="buy_msg">Saved GDPR consent string! And thank you for trying the product!
+        This GDPR stuff was not easy.  Please support us buy buying our sdk with
+        a one-time fee @ http://gdpr-sdk.com  Once you purchase we will send you a key.
+        In the meantime, feel free to continue evaluating!</string>
 </resources>

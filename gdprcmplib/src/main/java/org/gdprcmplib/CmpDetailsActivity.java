@@ -25,10 +25,10 @@ import java.util.Date;
 public class CmpDetailsActivity extends AppCompatActivity {
 
     public static final String TAG = "CmpDetailsActivity";
-    private GdprData data;
-    private ConsentStringParser consentString;
+    private GdprData d;
+    private ConsentStringParser c;
     private RecyclerView recyclerView;
-    private MyAdapter myAdapter;
+    private MyAdapter a;
     private boolean isAllowBackButton=true;
     private boolean defaultConsentAll;
 
@@ -50,30 +50,30 @@ public class CmpDetailsActivity extends AppCompatActivity {
             protected GdprData doInBackground(Void... voids) {
                 try {
                     loadConsentString();
-                    if (getIntent().hasExtra("data")) {
-                        MLog.d(TAG,"got serialized data from intent");
-                        data = (GdprData) getIntent().getSerializableExtra("data");
-                        //if we got data from intent, then it was already initialized
+                    if (getIntent().hasExtra("d")) {
+                        MLog.d(TAG,"got serialized d from intent");
+                        d = (GdprData) getIntent().getSerializableExtra("d");
+                        //if we got d from intent, then it was already initialized
                         //with the rangeConsent string
                     } else {
-                        MLog.d(TAG,"fetch remote gdpr data");
+                        MLog.d(TAG,"fetch remote gdpr d");
                         JSONObject jsonObject = new HttpMessage(Config.VENDOR_LIST_URL).getJSONObject();
-                        data = new GdprData(jsonObject);
-                        if (data != null && consentString != null) {
-                            data.initStateWith(consentString);
+                        d = new GdprData(jsonObject);
+                        if (d != null && c != null) {
+                            d.initStateWith(c);
                         }
-                        if (data != null && consentString == null) {
-                            data.setDefaultConsent(defaultConsentAll);
+                        if (d != null && c == null) {
+                            d.setDefaultConsent(defaultConsentAll);
                         }
                     }
-                    if (data != null) {
-                        if (data.isAll(true)) {
+                    if (d != null) {
+                        if (d.isAll(true)) {
                             updateToggleButtonState(true);
-                        } else if (data.isAll(false)) {
+                        } else if (d.isAll(false)) {
                             updateToggleButtonState(false);
                         }
                     }
-                    return data;
+                    return d;
                 } catch (Exception e) {
                     MLog.e(TAG, "doInBackground() failed", e);
                 }
@@ -82,21 +82,21 @@ public class CmpDetailsActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(GdprData gdprData) {
-                if (data == null) {
+                if (d == null) {
                     finish(CmpActivityResult.RESULT_COULD_NOT_FETCH_VENDOR_LIST);
                     return;
                 }
                 renderUI();
             }
         }.execute();
-        findViewById(R.id.mainView).setVisibility(GDPRUtil.isValidSdkKey(this) ? View.GONE : View.VISIBLE);
+        UiUtils.setBuyButton(findViewById(R.id.mainView));
     }
 
     private void renderUI() {
-        myAdapter = new MyAdapter();
+        a = new MyAdapter();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CmpDetailsActivity.this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setAdapter(myAdapter);
+        recyclerView.setAdapter(a);
         recyclerView.setLayoutManager(linearLayoutManager);
     }
 
@@ -116,7 +116,7 @@ public class CmpDetailsActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return data.getPurposes().size() + data.getVendors().size();
+            return d.getPurposes().size() + d.getVendors().size();
         }
     }
 
@@ -164,12 +164,12 @@ public class CmpDetailsActivity extends AppCompatActivity {
             Pair<GdprPurpose, GdprVendor> pair = getListItem(position);
             if (pair.first != null) {
                 pair.first.setAllowed(!pair.first.isAllowed());
-                data.updateAllowedVendorsByPurpose(pair.first);
-                //myAdapter.notifyDataSetChanged(); causes crash!!
+                d.updateAllowedVendorsByPurpose(pair.first);
+                //a.notifyDataSetChanged(); causes crash!!
             } else {
                 pair.second.setAllowed(!pair.second.isAllowed());
             }
-            myAdapter.notifyItemChanged(position);
+            a.notifyItemChanged(position);
         }
 
         void bind(int position) {
@@ -205,19 +205,19 @@ public class CmpDetailsActivity extends AppCompatActivity {
     }
 
     private Pair<GdprPurpose, GdprVendor> getListItem(int position) {
-        if (position < data.getPurposes().size()) {
-            GdprPurpose purpose = data.getPurposes().get(position);
+        if (position < d.getPurposes().size()) {
+            GdprPurpose purpose = d.getPurposes().get(position);
             return new Pair<>(purpose, null);
         } else {
-            GdprVendor vendor = data.getVendors().get(position - data.getPurposes().size());
+            GdprVendor vendor = d.getVendors().get(position - d.getPurposes().size());
             return new Pair<>(null, vendor);
         }
     }
 
     public void onSave(View view) {
-        if (consentString != null) {
+        if (c != null) {
             try {
-                update(consentString);
+                update(c);
                 return;
             } catch (Exception e) {
                 MLog.e(TAG, "onSave failed to update.", e);
@@ -237,7 +237,7 @@ public class CmpDetailsActivity extends AppCompatActivity {
         consentString.setVendorListVersion(getVendorListVersion());
         consentString.setCmpVersion(Config.CMP_VERSION);
         consentString.setConsentScreen(Config.CMP_SCREEN_ID_2);
-        consentString.bitwiseConsent(data);
+        consentString.bitwiseConsent(d);
         persist(consentString);
     }
 
@@ -248,27 +248,27 @@ public class CmpDetailsActivity extends AppCompatActivity {
                         Config.CMP_ID, Config.CMP_VERSION, Config.CMP_SCREEN_ID_1,
                         Config.DEFAULT_CMP_LANGUAGE,
                         getVendorListVersion());
-        parser.bitwiseConsent(data);
+        parser.bitwiseConsent(d);
         persist(parser);
     }
 
     private void persist(ConsentStringParser consentString) throws Exception {
         GDPRUtil.setGDPRConsentString(this, consentString.getEncodedConsentString());
-        finish(CmpActivityResult.RESULT_CONSENT_CUSTOM_PARTIAL);
+        UiUtils.showSuccessDialog(this, CmpActivityResult.RESULT_CONSENT_CUSTOM_PARTIAL);
     }
 
     public void onToggle(View view) {
         ToggleButton toggleButton = (ToggleButton) view;
         MLog.d(TAG, "toggleButton state: " + toggleButton.isChecked());
-        for (int i = 0; i < data.getPurposes().size(); i++) {
-            GdprPurpose purpose = data.getPurposes().get(i);
+        for (int i = 0; i < d.getPurposes().size(); i++) {
+            GdprPurpose purpose = d.getPurposes().get(i);
             purpose.setAllowed(toggleButton.isChecked());
         }
-        for (int i = 0; i < data.getVendors().size(); i++) {
-            GdprVendor vendor = data.getVendors().get(i);
+        for (int i = 0; i < d.getVendors().size(); i++) {
+            GdprVendor vendor = d.getVendors().get(i);
             vendor.setAllowed(toggleButton.isChecked());
         }
-        myAdapter.notifyDataSetChanged();
+        a.notifyDataSetChanged();
     }
 
     private void updateToggleButtonState(final boolean isOn) {
@@ -292,7 +292,7 @@ public class CmpDetailsActivity extends AppCompatActivity {
         try {
             String consentString = GDPRUtil.getGDPRConsentString(this);
             if (!TextUtils.isEmpty(consentString)) {
-                this.consentString = new ConsentStringParser(consentString);
+                this.c = new ConsentStringParser(consentString);
             }
         } catch (Exception e) {
             MLog.e(TAG, "loadConsentString() failed", e);
@@ -311,6 +311,6 @@ public class CmpDetailsActivity extends AppCompatActivity {
     }
 
     private int getVendorListVersion() {
-        return data != null ? data.getVendorListVersion() : 1;
+        return d != null ? d.getVendorListVersion() : 1;
     }
 }

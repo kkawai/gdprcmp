@@ -16,8 +16,8 @@ import java.util.Date;
 public class CmpActivity extends AppCompatActivity {
 
     public static final String TAG = "CmpActivity";
-    private GdprData data;
-    private ConsentStringParser consentString;
+    private GdprData d; //since we can't fully obfuscate an activity, do our own
+    private ConsentStringParser c; //since we can't fully obfuscate an activity, do our own
     private static final int REQUEST_CODE = 8;
     private boolean isAllowBackButton;
     private boolean defaultConsentAll;
@@ -26,8 +26,8 @@ public class CmpActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gdpr_layout);
-        BindingUtils.setViewWidth(findViewById(R.id.i_consent), .50f);
-        BindingUtils.setViewWidth(findViewById(R.id.i_do_not_consent), .50f);
+        UiUtils.setViewWidth(findViewById(R.id.i_consent), .50f);
+        UiUtils.setViewWidth(findViewById(R.id.i_do_not_consent), .50f);
 
         try {
             isAllowBackButton = getIntent().getBooleanExtra(Config.CMP_ALLOW_BACK_BUTTON, false);
@@ -42,14 +42,14 @@ public class CmpActivity extends AppCompatActivity {
                 try {
                     loadConsentString();
                     JSONObject jsonObject = new HttpMessage(Config.VENDOR_LIST_URL).getJSONObject();
-                    data = new GdprData(jsonObject);
-                    if (data != null && consentString != null) {
-                        data.initStateWith(consentString);
+                    d = new GdprData(jsonObject);
+                    if (d != null && c != null) {
+                        d.initStateWith(c);
                     }
-                    if (data != null && consentString == null) {
-                        data.setDefaultConsent(defaultConsentAll);
+                    if (d != null && c == null) {
+                        d.setDefaultConsent(defaultConsentAll);
                     }
-                    return data;
+                    return d;
                 } catch (Exception e) {
                     MLog.e(TAG, "doInBackground() failed", e);
                 }
@@ -64,7 +64,7 @@ public class CmpActivity extends AppCompatActivity {
                 }
             }
         }.execute();
-        findViewById(R.id.mainView).setVisibility(GDPRUtil.isValidSdkKey(this) ? View.GONE : View.VISIBLE);
+        UiUtils.setBuyButton(findViewById(R.id.mainView));
     }
 
     private void finish(int resultCode) {
@@ -76,7 +76,7 @@ public class CmpActivity extends AppCompatActivity {
         try {
             String consentString = GDPRUtil.getGDPRConsentString(this);
             if (!TextUtils.isEmpty(consentString)) {
-                this.consentString = new ConsentStringParser(consentString);
+                this.c = new ConsentStringParser(consentString);
             }
         } catch (Exception e) {
             MLog.e(TAG, "loadConsentString() failed", e);
@@ -100,9 +100,9 @@ public class CmpActivity extends AppCompatActivity {
     }
 
     private void consent(boolean isConsent) {
-        if (consentString != null) {
+        if (c != null) {
             try {
-                update(consentString, isConsent);
+                update(c, isConsent);
                 return;
             } catch (Exception e) {
                 MLog.e(TAG, "rangeConsent failed to update. isConsent: " + isConsent + " failed", e);
@@ -128,7 +128,7 @@ public class CmpActivity extends AppCompatActivity {
 
     private void persist(ConsentStringParser consentString, boolean isConsent) throws Exception {
         GDPRUtil.setGDPRConsentString(this, consentString.getEncodedConsentString());
-        finish(isConsent ? CmpActivityResult.RESULT_CONSENT_ALL : CmpActivityResult.RESULT_CONSENT_NONE);
+        UiUtils.showSuccessDialog(this, isConsent ? CmpActivityResult.RESULT_CONSENT_ALL : CmpActivityResult.RESULT_CONSENT_NONE);
     }
 
     private void create(boolean isConsent) throws Exception {
@@ -143,15 +143,15 @@ public class CmpActivity extends AppCompatActivity {
     }
 
     private int getMaxConsentId() {
-        if (data != null && data.getVendors() != null && !data.getVendors().isEmpty()) {
-            return data.getVendors().get(data.getVendors().size() - 1).getId();
+        if (d != null && d.getVendors() != null && !d.getVendors().isEmpty()) {
+            return d.getVendors().get(d.getVendors().size() - 1).getId();
         } else {
             return Config.DEFAULT_MAX_VENDOR_ID;
         }
     }
 
     private int getVendorListVersion() {
-        return data != null ? data.getVendorListVersion() : 1;
+        return d != null ? d.getVendorListVersion() : 1;
     }
 
     public void onDoNotConsent(View view) {
@@ -160,8 +160,8 @@ public class CmpActivity extends AppCompatActivity {
 
     public void onMoreDetailsClicked(View view) {
         Intent intent = new Intent(this, CmpDetailsActivity.class);
-        if (data != null) {
-            intent.putExtra("data", data);
+        if (d != null) {
+            intent.putExtra("d", d);
         }
         intent.putExtra(Config.CMP_ALLOW_BACK_BUTTON, isAllowBackButton);
         intent.putExtra(Config.CMP_DEFAULT_CONSENT_ALL, defaultConsentAll);
