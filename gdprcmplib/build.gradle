@@ -1,16 +1,16 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-android'
 
 ext {
     bintrayRepo = 'android' // repo name
-    bintrayName = 'gdprsdk' // CHANGE PER SDK TYPE
+    bintrayName = 'gdprcmplib' // CHANGE PER SDK TYPE
     publishedGroupId = 'org.gdprcmplib' // maven group id
     libraryName = "$bintrayRepo"  // same as repo name
     artifact = "$bintrayName" // maven artifact name; same as bintrayName
     libraryDescription = 'GDPR IAB Compliant SDK for Android'
     siteUrl = 'http://gdpr-sdk.com'
     gitUrl = 'https://github.com/kkawai'
-    libraryVersion = '1.0.0'  //CHANGE
+    libraryVersion = '1.0.3'  //CHANGE
     developerId = 'kkawai'
     developerName = 'The GDPR Guy'
     developerEmail = 'kkawai2@gmail.com'
@@ -22,15 +22,11 @@ ext {
 android {
     compileSdkVersion 27
 
-    dataBinding {
-        enabled = true
-    }
-
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.3"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -66,7 +62,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
     mavenCentral()

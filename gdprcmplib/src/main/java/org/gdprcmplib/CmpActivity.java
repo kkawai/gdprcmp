@@ -1,8 +1,6 @@
 package org.gdprcmplib;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,7 +11,6 @@ import android.view.View;
 
 import org.json.JSONObject;
 
-import java.util.Collections;
 import java.util.Date;
 
 public class CmpActivity extends AppCompatActivity {
@@ -28,7 +25,7 @@ public class CmpActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DataBindingUtil.setContentView(this, R.layout.gdpr_layout);
+        setContentView(R.layout.gdpr_layout);
         BindingUtils.setViewWidth(findViewById(R.id.i_consent), .50f);
         BindingUtils.setViewWidth(findViewById(R.id.i_do_not_consent), .50f);
 

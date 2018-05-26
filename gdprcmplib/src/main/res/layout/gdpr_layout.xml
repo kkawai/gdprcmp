@@ -1,70 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CmpActivity">
 
-    <data>
-
-        <import type="android.view.View"/>
-
-    </data>
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".CmpActivity">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/mainView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:onClick="onBuy"
+            android:text="@string/buy"/>
+
+        <TextView
+            style="@android:style/TextAppearance.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/gdpr_cmp_consent_description"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <Button
-                android:onClick="onBuy"
-                android:id="@+id/mainView"
-                android:layout_width="match_parent"
+                android:id="@+id/i_consent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/buy"
-                android:layout_marginBottom="20dp"/>
-
-            <TextView
-                style="@android:style/TextAppearance.Medium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="@string/gdpr_cmp_consent_description"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/i_consent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onConsent"
-                    android:text="@string/i_consent"/>
-
-                <Button
-                    android:id="@+id/i_do_not_consent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onDoNotConsent"
-                    android:text="@string/i_do_not_consent"/>
-
-            </LinearLayout>
+                android:onClick="onConsent"
+                android:text="@string/i_consent"/>
 
             <Button
-                android:layout_width="match_parent"
+                android:id="@+id/i_do_not_consent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onMoreDetailsClicked"
-                android:text="@string/details"/>
+                android:onClick="onDoNotConsent"
+                android:text="@string/i_do_not_consent"/>
 
         </LinearLayout>
 
-    </RelativeLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onMoreDetailsClicked"
+            android:text="@string/details"/>
 
-</layout>
+    </LinearLayout>
+
+</RelativeLayout>

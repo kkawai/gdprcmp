@@ -20,7 +20,7 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -ignorewarnings
--keepnames class org.gdprcmplib.GdprCmp
--keepnames class org.gdprcmplib.CmpActivity
--keepnames class org.gdprcmplib.CmpDetailsActivity
--keep class org.gdprcmplib.CmpActivityResult
+-keep class org.gdprcmplib.GdprCmp { *; }
+-keep class org.gdprcmplib.CmpActivity { *; }
+-keep class org.gdprcmplib.CmpDetailsActivity { *; }
+-keep class org.gdprcmplib.CmpActivityResult { *; }
