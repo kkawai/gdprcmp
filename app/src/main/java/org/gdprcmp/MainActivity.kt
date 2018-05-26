@@ -1,5 +1,6 @@
 package org.gdprcmp
 
+import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
@@ -7,42 +8,34 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
-import android.widget.TextView
-import android.widget.ToggleButton
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
 import org.gdprcmplib.CmpActivityResult
 import org.gdprcmplib.GdprCmp
-import android.content.Context.CLIPBOARD_SERVICE
-import android.content.ClipData
-import android.widget.Button
-import android.widget.Toast
-
 
 class MainActivity : AppCompatActivity() {
-
-    //val subjectToGdpr = findViewById(R.id.subject_to_gdpr) as TextView
 
     val REQ_CODE = 10;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         updateUI()
-
     }
 
     fun updateUI() {
         if (GdprCmp.isSubjectToGDPR(this)) {
-            findViewById<TextView>(R.id.subject_to_gdpr).setText(R.string.is_subject_to_gdpr);
-            findViewById<ToggleButton>(R.id.toggle_gdpr).setChecked(true)
+            subject_to_gdpr.setText(R.string.is_subject_to_gdpr);
+            toggle_gdpr.setChecked(true)
         } else {
-            findViewById<TextView>(R.id.subject_to_gdpr).setText(R.string.is_not_subject_to_gdpr);
-            findViewById<ToggleButton>(R.id.toggle_gdpr).setChecked(false)
+            subject_to_gdpr.setText(R.string.is_not_subject_to_gdpr);
+            toggle_gdpr.setChecked(false)
         }
         if (GdprCmp.hasGDPRConsentString(this)) {
-            findViewById<Button>(R.id.copy_to_clipboard).visibility = View.VISIBLE
-            findViewById<TextView>(R.id.consent_string).setText(""+GdprCmp.getGDPRConsentString(this))
+            copy_to_clipboard.visibility = View.VISIBLE
+            consent_string.setText(GdprCmp.getGDPRConsentString(this))
         } else {
-            findViewById<Button>(R.id.copy_to_clipboard).visibility = View.GONE
-            findViewById<TextView>(R.id.consent_string).setText(R.string.consent_string_not_set)
+            copy_to_clipboard.visibility = View.GONE
+            consent_string.setText(R.string.consent_string_not_set)
         }
     }
 
@@ -51,16 +44,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onToggleGDPR(view: View?) {
-        GdprCmp.setIsSubjectToGDPR(this,findViewById<ToggleButton>(R.id.toggle_gdpr).isChecked())
+        GdprCmp.setIsSubjectToGDPR(this,toggle_gdpr.isChecked)
         updateUI()
     }
 
     fun onCopyToClipboard(view: View?) {
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         // Creates a new text clip to put on the clipboard
-        val clip = ClipData.newPlainText("simple text", ""+findViewById<TextView>(R.id.consent_string).getText())
+        val clip = ClipData.newPlainText("simple text", ""+consent_string.getText())
         clipboard.setPrimaryClip(clip)
         Toast.makeText(this, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
+    }
+
+    fun onClearSettings(view: View?) {
+        GdprCmp.clearGDPRSettings(this)
+        Toast.makeText(this, R.string.settings_cleared, Toast.LENGTH_SHORT).show()
+        updateUI()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

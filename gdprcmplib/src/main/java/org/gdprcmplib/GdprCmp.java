@@ -40,4 +40,8 @@ public class GdprCmp {
     public static boolean hasGDPRConsentString(Context context) {
         return !TextUtils.isEmpty(GDPRUtil.getGDPRConsentString(context));
     }
+
+    public static void clearGDPRSettings(Context context) {
+        GDPRUtil.clearGDPRSettings(context);
+    }
 }

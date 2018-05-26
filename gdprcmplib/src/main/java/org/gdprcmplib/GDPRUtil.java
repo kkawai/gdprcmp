@@ -74,7 +74,16 @@ class GDPRUtil {
         return false;
     }
 
-    public static void setIsSubjectToGDPR(final Context context, final boolean isSubjectToGDPR) {
+    static void clearGDPRSettings(final Context context) {
+        try {
+            PreferenceManager.getDefaultSharedPreferences(context).edit().remove(OFFICIAL_APPLICABLE).commit();
+            PreferenceManager.getDefaultSharedPreferences(context).edit().remove(OFFICIAL_STRING).commit();
+        } catch (Exception e) {
+            MLog.e(TAG, "setIsSubjectToGDPR() failed", e);
+        }
+    }
+
+    static void setIsSubjectToGDPR(final Context context, final boolean isSubjectToGDPR) {
         try {
             PreferenceManager.getDefaultSharedPreferences(context).edit().putString(OFFICIAL_APPLICABLE, isSubjectToGDPR ? "1" : "0").commit();
         } catch (Exception e) {
@@ -82,7 +91,7 @@ class GDPRUtil {
         }
     }
 
-    public static void setGDPRConsentString(final Context context, String iabConsentString) {
+    static void setGDPRConsentString(final Context context, String iabConsentString) {
         try {
             PreferenceManager.getDefaultSharedPreferences(context).edit().putString(OFFICIAL_STRING, iabConsentString).apply();
         } catch (Exception e) {
@@ -101,7 +110,7 @@ class GDPRUtil {
      * null - developer has not determined this is a GDPR applicable region
      * so we must deploy our own determination.
      */
-    public static boolean isSubjectToGDPR(Context context) {
+    static boolean isSubjectToGDPR(Context context) {
         //First, check the iab spec
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         if (prefs.contains(OFFICIAL_APPLICABLE)) {
