@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +20,16 @@ import android.widget.ToggleButton;
 
 import org.json.JSONObject;
 
+import java.util.Date;
+
 public class CmpDetailsActivity extends AppCompatActivity {
 
     public static final String TAG = "CmpDetailsActivity";
     private GdprData data;
+    private ConsentStringParser consentString;
     private RecyclerView recyclerView;
     private MyAdapter myAdapter;
+    private boolean isAllowBackButton=true;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,17 +37,38 @@ public class CmpDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.gdpr_detailed_layout);
         recyclerView = findViewById(R.id.recyclerView);
 
+        try {
+            isAllowBackButton = getIntent().getBooleanExtra(Config.CMP_ALLOW_BACK_BUTTON, true);
+        } catch (Exception e) {
+            MLog.e(TAG, "onCreate() trapped exception while getting CMP_ALLOW_BACK_BUTTON from intent", e);
+        }
+
         new AsyncTask<Void, Void, GdprData>() {
             @Override
             protected GdprData doInBackground(Void... voids) {
                 try {
+                    loadConsentString();
                     if (getIntent().hasExtra("data")) {
                         MLog.d(TAG,"got serialized data from intent");
-                        return (GdprData) getIntent().getSerializableExtra("data");
+                        data = (GdprData) getIntent().getSerializableExtra("data");
+                        //if we got data from intent, then it was already initialized
+                        //with the rangeConsent string
+                    } else {
+                        MLog.d(TAG,"fetch remote gdpr data");
+                        JSONObject jsonObject = new HttpMessage(Config.VENDOR_LIST_URL).getJSONObject();
+                        data = new GdprData(jsonObject);
+                        if (data != null && consentString != null) {
+                            data.initStateWith(consentString);
+                        }
                     }
-                    MLog.d(TAG,"fetch gdpr data");
-                    JSONObject jsonObject = new HttpMessage(Config.VENDOR_LIST_URL).getJSONObject();
-                    return new GdprData(jsonObject);
+                    if (data != null) {
+                        if (data.isAll(true)) {
+                            updateToggleButtonState(true);
+                        } else if (data.isAll(false)) {
+                            updateToggleButtonState(false);
+                        }
+                    }
+                    return data;
                 } catch (Exception e) {
                     MLog.e(TAG, "doInBackground() failed", e);
                 }
@@ -51,11 +77,10 @@ public class CmpDetailsActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(GdprData gdprData) {
-                if (gdprData == null) {
-                    finish();
+                if (data == null) {
+                    finish(CmpActivityResult.RESULT_COULD_NOT_FETCH_VENDOR_LIST);
                     return;
                 }
-                CmpDetailsActivity.this.data = gdprData;
                 renderUI();
             }
         }.execute();
@@ -130,10 +155,12 @@ public class CmpDetailsActivity extends AppCompatActivity {
         }
 
         private void updateCheckbox() {
-            int position = getAdapterPosition();
+            final int position = getAdapterPosition();
             Pair<GdprPurpose, GdprVendor> pair = getListItem(position);
             if (pair.first != null) {
                 pair.first.setAllowed(!pair.first.isAllowed());
+                data.updateAllowedVendorsByPurpose(pair.first);
+                //myAdapter.notifyDataSetChanged(); causes crash!!
             } else {
                 pair.second.setAllowed(!pair.second.isAllowed());
             }
@@ -175,16 +202,54 @@ public class CmpDetailsActivity extends AppCompatActivity {
     private Pair<GdprPurpose, GdprVendor> getListItem(int position) {
         if (position < data.getPurposes().size()) {
             GdprPurpose purpose = data.getPurposes().get(position);
-            Pair<GdprPurpose, GdprVendor> pair = new Pair<>(purpose, null);
-            return pair;
+            return new Pair<>(purpose, null);
         } else {
             GdprVendor vendor = data.getVendors().get(position - data.getPurposes().size());
-            Pair<GdprPurpose, GdprVendor> pair = new Pair<>(null, vendor);
-            return pair;
+            return new Pair<>(null, vendor);
         }
     }
 
     public void onSave(View view) {
+        if (consentString != null) {
+            try {
+                update(consentString);
+                return;
+            } catch (Exception e) {
+                MLog.e(TAG, "bitwiseConsent failed to update.", e);
+            }
+        }
+        try {
+            create();
+        } catch (Exception e) {
+            MLog.e(TAG, "rangeConsent failed to create.", e);
+            finish(CmpActivityResult.RESULT_FAILED_TO_WRITE_CONSENT_STRING);
+        }
+    }
+
+    private void update(ConsentStringParser consentString) throws Exception {
+        consentString.setVersion(1 + consentString.getVersion());
+        consentString.setConsentRecordLastUpdated(new Date().getTime());
+        consentString.setVendorListVersion(getVendorListVersion());
+        consentString.setCmpVersion(Config.CMP_VERSION);
+        consentString.setConsentScreen(Config.CMP_SCREEN_ID_2);
+        consentString.bitwiseConsent(data);
+        persist(consentString);
+    }
+
+    private void create() throws Exception {
+        long date = new Date().getTime();
+        ConsentStringParser parser =
+                new ConsentStringParser(1, date, date,
+                        Config.CMP_ID, Config.CMP_VERSION, Config.CMP_SCREEN_ID_1,
+                        Config.DEFAULT_CMP_LANGUAGE,
+                        getVendorListVersion());
+        parser.bitwiseConsent(data);
+        persist(parser);
+    }
+
+    private void persist(ConsentStringParser consentString) throws Exception {
+        GDPRUtil.setGDPRConsentString(this, consentString.getEncodedConsentString());
+        finish(CmpActivityResult.RESULT_CONSENT_CUSTOM_PARTIAL);
     }
 
     public void onToggle(View view) {
@@ -201,11 +266,46 @@ public class CmpDetailsActivity extends AppCompatActivity {
         myAdapter.notifyDataSetChanged();
     }
 
+    private void updateToggleButtonState(final boolean isOn) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ((ToggleButton)findViewById(R.id.toggle)).setChecked(isOn);
+            }
+        });
+    }
+
     public void onBuy(View view) {
         try {
             view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://gdpr-sdk.com/")));
         }catch (Exception e) {
             MLog.e(TAG,"Could not view privacy policy url",e);
         }
+    }
+
+    private void loadConsentString() {
+        try {
+            String consentString = GDPRUtil.getGDPRConsentString(this);
+            if (!TextUtils.isEmpty(consentString)) {
+                this.consentString = new ConsentStringParser(consentString);
+            }
+        } catch (Exception e) {
+            MLog.e(TAG, "loadConsentString() failed", e);
+        }
+    }
+
+    private void finish(int resultCode) {
+        setResult(resultCode);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isAllowBackButton)
+            super.onBackPressed();
+    }
+
+    private int getVendorListVersion() {
+        return data != null ? data.getVendorListVersion() : 1;
     }
 }

@@ -74,6 +74,8 @@ class MainActivity : AppCompatActivity() {
                 Log.i("MainActivity","CmpActivityResult.RESULT_CANCELED_CONSENT")
             } else if (resultCode == CmpActivityResult.RESULT_COULD_NOT_FETCH_VENDOR_LIST) {
                 Log.i("MainActivity","CmpActivityResult.RESULT_COULD_NOT_FETCH_VENDOR_LIST")
+            } else if (resultCode == CmpActivityResult.RESULT_FAILED_TO_WRITE_CONSENT_STRING) {
+                Log.i("MainActivity","CmpActivityResult.RESULT_FAILED_TO_WRITE_CONSENT_STRING")
             }
             updateUI()
         }

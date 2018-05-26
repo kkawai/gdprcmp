@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * This class implements a parser for the IAB consent string as specified in
+ * This class implements a parser for the IAB rangeConsent string as specified in
  * https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/
  * Draft_for_Public_Comment_Transparency%20%26%20Consent%20Framework%20-%20cookie%20and%20vendor%20list%20format%
  * 20specification%20v1.0a.pdf
@@ -54,7 +54,7 @@ class ConsentStringParser {
 
     private String consentString;
     private Bits bits;
-    // fields contained in the consent string
+    // fields contained in the rangeConsent string
     private int version;
     private long consentRecordCreated;
     private long consentRecordLastUpdated;
@@ -77,10 +77,10 @@ class ConsentStringParser {
      * Constructor.
      *
      * @param consentString
-     *            (required). The binary user consent data encoded as url and filename safe base64 string
+     *            (required). The binary user rangeConsent data encoded as url and filename safe base64 string
      *
      * @throws ParseException
-     *             if the consent string cannot be parsed
+     *             if the rangeConsent string cannot be parsed
      */
     public ConsentStringParser(String consentString) throws ParseException, Base64DecoderException {
         this(Base64.decodeWebSafe(consentString.getBytes()));
@@ -91,9 +91,9 @@ class ConsentStringParser {
      * Constructor
      *
      * @param bytes:
-     *            the byte string encoding the user consent data
+     *            the byte string encoding the user rangeConsent data
      * @throws ParseException
-     *             when the consent string cannot be parsed
+     *             when the rangeConsent string cannot be parsed
      */
     public ConsentStringParser(byte[] bytes) throws ParseException {
         this.bits = new Bits(bytes);
@@ -148,7 +148,7 @@ class ConsentStringParser {
     }
 
     /**
-     * @return the time at which the consent record was created
+     * @return the time at which the rangeConsent record was created
      */
     public long getConsentRecordCreated() {
         return consentRecordCreated;
@@ -168,7 +168,7 @@ class ConsentStringParser {
 
     /**
      *
-     * @return the version of the cookie format used in this consent string
+     * @return the version of the cookie format used in this rangeConsent string
      */
     public int getVersion() {
         return version;
@@ -176,7 +176,7 @@ class ConsentStringParser {
 
     /**
      *
-     * @return the id of the consent management partner that created this consent string
+     * @return the id of the rangeConsent management partner that created this rangeConsent string
      */
     public int getCmpId() {
         return cmpID;
@@ -195,7 +195,7 @@ class ConsentStringParser {
 
     /**
      *
-     * @return the id of the string through which the user gave consent in the CMP UI
+     * @return the id of the string through which the user gave rangeConsent in the CMP UI
      */
     public int getConsentScreen() {
         return consentScreenID;
@@ -206,7 +206,7 @@ class ConsentStringParser {
     }
 
     /**
-     * @return The two letter ISO639-1 language code in which the CMP asked for consent
+     * @return The two letter ISO639-1 language code in which the CMP asked for rangeConsent
      */
     public String getConsentLanguage() {
         return consentLanguage;
@@ -218,7 +218,7 @@ class ConsentStringParser {
 
     /**
      *
-     * @return a list of purpose id's which are permitted according to this consent string
+     * @return a list of purpose id's which are permitted according to this rangeConsent string
      */
     public List<Integer> getAllowedPurposes() {
         if (integerPurposes != null) {
@@ -236,7 +236,7 @@ class ConsentStringParser {
 
     /**
      *
-     * @return the vendor list version which was used in creating this consent string
+     * @return the vendor list version which was used in creating this rangeConsent string
      */
     public int getVendorListVersion() {
         return vendorListVersion;
@@ -247,7 +247,7 @@ class ConsentStringParser {
     }
 
     /**
-     * @return a boolean describing the user consent status for a particular purpose. The lowest purpose ID is 1.
+     * @return a boolean describing the user rangeConsent status for a particular purpose. The lowest purpose ID is 1.
      */
     public boolean isPurposeAllowed(int purposeId) {
         if (purposeId < 1 || purposeId > allowedPurposes.size()) {
@@ -282,7 +282,7 @@ class ConsentStringParser {
     /**
      * @return a boolean describing if end-user has consented to a particular vendor. The lowest vendor ID is 1.
      *
-     *         This method, along with {isPurposeAllowed} fully describes the user consent for a particular action
+     *         This method, along with {isPurposeAllowed} fully describes the user rangeConsent for a particular action
      *         by a given vendor.
      */
     public boolean isVendorAllowed(int vendorId) {
@@ -297,7 +297,7 @@ class ConsentStringParser {
     // static classes
     public static class RangeEntry {
         /**
-         * This class corresponds to the RangeEntry field given in the consent string specification.
+         * This class corresponds to the RangeEntry field given in the rangeConsent string specification.
          */
         private final List<Integer> vendorIds = new ArrayList<Integer>();
         private final int maxVendorId;
@@ -337,7 +337,7 @@ class ConsentStringParser {
         }
     }
 
-    // since java.util.BitSet is inappropriate to use here--as it reversed the bit order of the consent string--we
+    // since java.util.BitSet is inappropriate to use here--as it reversed the bit order of the rangeConsent string--we
     // implement our own bitwise operations here.
     private static class Bits {
         // big endian
@@ -568,14 +568,14 @@ class ConsentStringParser {
      */
     public String getEncodedConsentString() throws Exception {
 
-        String bitString = encodeIntToBits(version, VERSION_BIT_SIZE); //Incremented when consent string format changes
+        String bitString = encodeIntToBits(version, VERSION_BIT_SIZE); //Incremented when rangeConsent string format changes
         bitString += encodeIntToBits(this.consentRecordCreated / 100, CREATED_BIT_SIZE); //created
         bitString += encodeIntToBits(this.consentRecordLastUpdated / 100, UPDATED_BIT_SIZE); //last updated
         bitString += encodeIntToBits(cmpID, CMP_ID_SIZE); //cmpID
         bitString += encodeIntToBits(cmpVersion, CMP_VERSION_SIZE); //cmpVersion
-        bitString += encodeIntToBits(consentScreenID, CONSENT_SCREEN_SIZE); //screen number in CMP where consent given
+        bitString += encodeIntToBits(consentScreenID, CONSENT_SCREEN_SIZE); //screen number in CMP where rangeConsent given
         bitString += encodeLanguageToBits(consentLanguage, CONSENT_LANGUAGE_SIZE); //2-digit language code CMP asked for content in
-        bitString += encodeIntToBits(vendorListVersion, VENDOR_LIST_VERSION_SIZE); //vendor list version used in most recent consent string update
+        bitString += encodeIntToBits(vendorListVersion, VENDOR_LIST_VERSION_SIZE); //vendor list version used in most recent rangeConsent string update
         bitString += encodePurposesToBits();  //24 purposes
         bitString += encodeIntToBits(maxVendorId, MAX_VENDOR_ID_SIZE); //max vendor id
         bitString += encodeIntToBits(vendorEncodingType, ENCODING_TYPE_SIZE);
@@ -636,7 +636,6 @@ class ConsentStringParser {
     }
 
     public void setVendors(List<GdprVendor> vendors) {
-        Collections.sort(vendors);
         Map<Integer, Boolean> map = new HashMap<>();
         for (GdprVendor vendor : vendors) {
             map.put(vendor.getId(), vendor.isAllowed());
@@ -648,13 +647,28 @@ class ConsentStringParser {
     }
 
     public void setPurposes(List<GdprPurpose> purposes) {
-        Collections.sort(purposes);
         for (int i=0;i < purposes.size();i++) {
             allowedPurposes.add(purposes.get(i).isAllowed());
         }
     }
 
-    public void consent(int maxVendorId, boolean isConsent, boolean defaultConsent) {
+    public void bitwiseConsent(GdprData data) {
+        setVendorEncodingType(0);
+        allowedPurposes.clear();
+        allowedVendors.clear();
+        setVendors(data.getVendors());
+        setPurposes(data.getPurposes());
+
+    }
+
+//    private boolean isAll(boolean isAll) {
+//        for (int i=0;i<0;i++) {
+//
+//        }
+//    }
+
+    public void rangeConsent(int maxVendorId, boolean isConsent, boolean defaultConsent) {
+        setVendorEncodingType(1); //Range, not bits
         setDefaultConsent(defaultConsent);
         allowedPurposes.clear();
         allowedVendors.clear();
@@ -665,7 +679,6 @@ class ConsentStringParser {
             rangeEntries.clear();
         }
         addRangeEntry(new RangeEntry(1,maxVendorId));
-        setVendorEncodingType(1); //Range, not bits
     }
 
     public void setDefaultConsent(boolean defaultConsent) {

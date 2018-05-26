@@ -11,4 +11,5 @@ final class Config {
     static final int DEFAULT_MAX_VENDOR_ID = 121;
 
     public static final String CMP_ALLOW_BACK_BUTTON = "bundle_key_cmp_allow_back_button";
+    public static final String CMP_DEFAULT_CONSENT_ALL = "bundle_key_cmp_default_consent_all";
 }

@@ -34,17 +34,17 @@ public class GdprVendor implements Serializable, Comparable<GdprVendor> {
             JSONArray legIntPurposeIds = jsonObject.optJSONArray("legIntPurposeIds");
             JSONArray featureIds = jsonObject.optJSONArray("featureIds");
 
-            for (int i=0;purposeIds != null && i < purposeIds.length();i++) {
+            for (int i = 0; purposeIds != null && i < purposeIds.length(); i++) {
                 purposes.add(purposesMap.get(purposeIds.getInt(i)));
             }
-            for (int i=0;legIntPurposeIds != null && i < legIntPurposeIds.length();i++) {
+            for (int i = 0; legIntPurposeIds != null && i < legIntPurposeIds.length(); i++) {
                 legIntPurposes.add(purposesMap.get(legIntPurposeIds.getInt(i)));
             }
-            for (int i=0;featureIds != null && i < featureIds.length();i++) {
+            for (int i = 0; featureIds != null && i < featureIds.length(); i++) {
                 features.add(featuresMap.get(featureIds.getInt(i)));
             }
-        }catch (Exception e) {
-            MLog.e(TAG,"GdprPurpose(jsonObject) failed",e);
+        } catch (Exception e) {
+            MLog.e(TAG, "GdprPurpose(jsonObject) failed", e);
         }
     }
 
@@ -125,7 +125,7 @@ public class GdprVendor implements Serializable, Comparable<GdprVendor> {
     @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
-        GdprVendor other = (GdprVendor)obj;
+        GdprVendor other = (GdprVendor) obj;
         return id == other.id;
     }
 
@@ -139,7 +139,7 @@ public class GdprVendor implements Serializable, Comparable<GdprVendor> {
 
     @Override
     public String toString() {
-        return "GDPR Vendor.  id: " + id + " name: "+name;
+        return "GDPR Vendor.  id: " + id + " name: " + name;
     }
 
     @Override
@@ -150,5 +150,15 @@ public class GdprVendor implements Serializable, Comparable<GdprVendor> {
             return -1;
         else
             return 0;
+    }
+
+    public void setAllowed(GdprPurpose purpose) {
+        if (legIntPurposes != null && legIntPurposes.contains(purpose.getId())) {
+            setAllowed(purpose.isAllowed());
+            return;
+        }
+        if (purposes != null && purposes.contains(purpose)) {
+            setAllowed(purpose.isAllowed());
+        }
     }
 }

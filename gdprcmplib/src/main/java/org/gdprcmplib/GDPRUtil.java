@@ -124,7 +124,7 @@ class GDPRUtil {
     }
 
     /**
-     * Implemenation yet to be determined.  We check if GDPR consent string has been
+     * Implemenation yet to be determined.  We check if GDPR rangeConsent string has been
      * set by the developer.
      *
      * @return - String saved by the developer.  If null, then developer has simply
@@ -157,12 +157,8 @@ class GDPRUtil {
             String myApiKey = bundle.getString(sb);
             String packageName = activity.getPackageName();
             return ConsentStringParser.decode(myApiKey).equals(packageName);
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, "Failed to load meta-data, NameNotFound: " + e.getMessage());
-        } catch (NullPointerException e) {
-            Log.e(TAG, "Failed to load meta-data, NullPointer: " + e.getMessage());
         } catch (Exception e) {
-            Log.e(TAG, "Failed to load meta-data, Exception: " + e.getMessage());
+            Log.e(TAG, "Failed, Exception: " + e.getMessage());
         }
         return false;
     }

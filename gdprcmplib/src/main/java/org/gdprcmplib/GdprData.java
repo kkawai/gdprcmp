@@ -20,7 +20,7 @@ public class GdprData implements Serializable {
     private Map<Integer, GdprPurpose> purposesMap = new HashMap<>(NUM_PURPOSES);
     private List<GdprPurpose> purposes = new ArrayList<>(NUM_PURPOSES);
     private Map<Integer, GdprFeature> featuresMap = new HashMap<>(NUM_FEATURES);
-    private List<GdprVendor> vendors = new ArrayList<>(200);
+    private List<GdprVendor> vendors = new ArrayList<>(500);
 
     private SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -54,6 +54,8 @@ public class GdprData implements Serializable {
                 GdprVendor vendor = new GdprVendor(vendorsArr.getJSONObject(i), purposesMap, featuresMap);
                 this.vendors.add(vendor);
             }
+            Collections.sort(vendors);
+            Collections.sort(purposes);
         }catch (Exception e) {
             MLog.e(TAG, "GdprData(jsonObject) failed",e);
         }
@@ -77,18 +79,37 @@ public class GdprData implements Serializable {
 
     void initStateWith(ConsentStringParser consentString) {
         if (purposes != null) {
-            Collections.sort(purposes);
             for (int i=0; i < purposes.size();i++) {
                 GdprPurpose purpose = purposes.get(i);
                 purpose.setAllowed(consentString.isPurposeAllowed(purpose.getId()));
             }
         }
         if (vendors != null) {
-            Collections.sort(vendors);
             for (int i=0; i < vendors.size();i++) {
                 GdprVendor vendor = vendors.get(i);
                 vendor.setAllowed(consentString.isVendorAllowed(vendor.getId()));
             }
         }
+    }
+
+    public void updateAllowedVendorsByPurpose(GdprPurpose purpose) {
+        for (int i=0;i<vendors.size();i++) {
+            GdprVendor vendor = vendors.get(i);
+            vendor.setAllowed(purpose);
+        }
+    }
+
+    public boolean isAll(boolean isConsent) {
+        for (int i=0;i<purposes.size();i++) {
+            if (purposes.get(i).isAllowed() != isConsent) {
+                return false;
+            }
+        }
+        for (int i=0;i<vendors.size();i++) {
+            if (vendors.get(i).isAllowed() != isConsent) {
+                return false;
+            }
+        }
+        return true;
     }
 }

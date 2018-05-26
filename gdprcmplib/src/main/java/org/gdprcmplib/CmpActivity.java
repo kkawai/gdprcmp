@@ -84,7 +84,7 @@ public class CmpActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_CODE && resultCode == CmpActivityResult.RESULT_CONSENT_CUSTOM_PARTIAL) {
             finish(CmpActivityResult.RESULT_CONSENT_CUSTOM_PARTIAL);
         }
     }
@@ -104,13 +104,13 @@ public class CmpActivity extends AppCompatActivity {
                 update(consentString, isConsent);
                 return;
             } catch (Exception e) {
-                MLog.e(TAG, "consent failed to update. isConsent: " + isConsent + " failed", e);
+                MLog.e(TAG, "rangeConsent failed to update. isConsent: " + isConsent + " failed", e);
             }
         }
         try {
             create(isConsent);
         } catch (Exception e) {
-            MLog.e(TAG, "consent failed to create.  isConsent: "+ isConsent + " failed", e);
+            MLog.e(TAG, "rangeConsent failed to create.  isConsent: "+ isConsent + " failed", e);
             finish(CmpActivityResult.RESULT_FAILED_TO_WRITE_CONSENT_STRING);
         }
     }
@@ -121,7 +121,7 @@ public class CmpActivity extends AppCompatActivity {
         consentString.setVendorListVersion(getVendorListVersion());
         consentString.setCmpVersion(Config.CMP_VERSION);
         consentString.setConsentScreen(Config.CMP_SCREEN_ID_1);
-        consentString.consent(getMaxConsentId(), isConsent, !isConsent);
+        consentString.rangeConsent(getMaxConsentId(), isConsent, !isConsent);
         persist(consentString, isConsent);
     }
 
@@ -137,13 +137,12 @@ public class CmpActivity extends AppCompatActivity {
                         Config.CMP_ID, Config.CMP_VERSION, Config.CMP_SCREEN_ID_1,
                         Config.DEFAULT_CMP_LANGUAGE,
                         getVendorListVersion());
-        parser.consent(getMaxConsentId(), isConsent, !isConsent);
+        parser.rangeConsent(getMaxConsentId(), isConsent, !isConsent);
         persist(parser, isConsent);
     }
 
     private int getMaxConsentId() {
         if (data != null && data.getVendors() != null && !data.getVendors().isEmpty()) {
-            Collections.sort(data.getVendors());
             return data.getVendors().get(data.getVendors().size() - 1).getId();
         } else {
             return Config.DEFAULT_MAX_VENDOR_ID;

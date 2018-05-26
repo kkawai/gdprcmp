@@ -103,7 +103,7 @@ public class ConsentStringParserTest {
         parser.setPurposes(purposes);
         parser.setVendors(vendors);
         String consent = parser.getEncodedConsentString();
-        System.out.println("fabulous consent string: "+consent);
+        System.out.println("fabulous rangeConsent string: "+consent);
         ConsentStringParser newParser = new ConsentStringParser(consent);
         assertEquals(created, newParser.getConsentRecordCreated());
         assertEquals(updated, newParser.getConsentRecordLastUpdated());
