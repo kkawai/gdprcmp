@@ -3,6 +3,7 @@ package org.gdprcmplib;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 
 public class GdprCmp {
 
@@ -34,5 +35,9 @@ public class GdprCmp {
 
     public static String getGDPRConsentString(Context context) {
         return GDPRUtil.getGDPRConsentString(context);
+    }
+
+    public static boolean hasGDPRConsentString(Context context) {
+        return !TextUtils.isEmpty(GDPRUtil.getGDPRConsentString(context));
     }
 }
