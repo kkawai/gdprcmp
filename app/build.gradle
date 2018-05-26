@@ -28,7 +28,7 @@ android {
 }
 
 repositories {
-    maven { url "https://dl.bintray.com/kkawai/android" }
+    maven { url "https://dl.bintray.com/gdprsdk/android" }
 }
 
 dependencies {
@@ -42,6 +42,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation project(':gdprcmplib')
-    //implementation 'org.gdprcmplib:gdprcmplib:1.0.3'
+    //implementation project(':gdprcmplib')
+    implementation 'org.gdprcmplib:gdprcmplib:1.0.4'
 }

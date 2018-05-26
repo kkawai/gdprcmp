@@ -158,7 +158,7 @@ class GDPRUtil {
             String packageName = activity.getPackageName();
             return ConsentStringParser.decode(myApiKey).equals(packageName);
         } catch (Exception e) {
-            Log.e(TAG, "Failed, Exception: " + e.getMessage());
+            //Log.e(TAG, "Failed, Exception: " + e.getMessage());
         }
         return false;
     }

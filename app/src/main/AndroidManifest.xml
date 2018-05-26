@@ -20,6 +20,9 @@
         </activity>
 
         <!-- gdpr sdk key -->
+        <meta-data
+            android:name="gdpr_sdk_key"
+            android:value="YOUR_GDPR_SDK_KEY"/>
         <!--<meta-data-->
             <!--android:name="gdpr_sdk_key"-->
             <!--android:value="LywiMS8jJu0mMS4"/>-->
