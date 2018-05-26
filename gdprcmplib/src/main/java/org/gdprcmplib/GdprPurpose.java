@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 
-public class GdprPurpose implements Serializable, Comparable<GdprPurpose> {
+class GdprPurpose implements Serializable, Comparable<GdprPurpose> {
     private static final String TAG = "GdprPurpose";
     private int id;
     private String name;

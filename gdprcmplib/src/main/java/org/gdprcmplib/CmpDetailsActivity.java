@@ -30,6 +30,7 @@ public class CmpDetailsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MyAdapter myAdapter;
     private boolean isAllowBackButton=true;
+    private boolean defaultConsentAll;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class CmpDetailsActivity extends AppCompatActivity {
 
         try {
             isAllowBackButton = getIntent().getBooleanExtra(Config.CMP_ALLOW_BACK_BUTTON, true);
+            defaultConsentAll = getIntent().getBooleanExtra(Config.CMP_DEFAULT_CONSENT_ALL, true);
         } catch (Exception e) {
             MLog.e(TAG, "onCreate() trapped exception while getting CMP_ALLOW_BACK_BUTTON from intent", e);
         }
@@ -59,6 +61,9 @@ public class CmpDetailsActivity extends AppCompatActivity {
                         data = new GdprData(jsonObject);
                         if (data != null && consentString != null) {
                             data.initStateWith(consentString);
+                        }
+                        if (data != null && consentString == null) {
+                            data.setDefaultConsent(defaultConsentAll);
                         }
                     }
                     if (data != null) {
@@ -215,13 +220,13 @@ public class CmpDetailsActivity extends AppCompatActivity {
                 update(consentString);
                 return;
             } catch (Exception e) {
-                MLog.e(TAG, "bitwiseConsent failed to update.", e);
+                MLog.e(TAG, "onSave failed to update.", e);
             }
         }
         try {
             create();
         } catch (Exception e) {
-            MLog.e(TAG, "rangeConsent failed to create.", e);
+            MLog.e(TAG, "onSave failed to create.", e);
             finish(CmpActivityResult.RESULT_FAILED_TO_WRITE_CONSENT_STRING);
         }
     }

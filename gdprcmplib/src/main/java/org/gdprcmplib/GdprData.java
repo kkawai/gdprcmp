@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GdprData implements Serializable {
+class GdprData implements Serializable {
     private static final String TAG = "GdprData";
 
     static final int NUM_PURPOSES = 5;
@@ -111,5 +111,14 @@ public class GdprData implements Serializable {
             }
         }
         return true;
+    }
+
+    public void setDefaultConsent(boolean isConsent) {
+        for (int i=0;i<purposes.size();i++) {
+            purposes.get(i).setAllowed(isConsent);
+        }
+        for (int i=0;i<vendors.size();i++) {
+            vendors.get(i).setAllowed(isConsent);
+        }
     }
 }

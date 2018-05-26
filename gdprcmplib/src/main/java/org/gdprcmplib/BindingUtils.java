@@ -3,7 +3,7 @@ package org.gdprcmplib;
 import android.databinding.BindingAdapter;
 import android.view.View;
 
-final class BindingUtils {
+class BindingUtils {
 
     private BindingUtils() {
     }

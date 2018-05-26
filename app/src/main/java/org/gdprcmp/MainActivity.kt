@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onPrivacySettings(view: View?) {
-        GdprCmp.startCmpActivityForResult(this, REQ_CODE, true)
+        GdprCmp.startCmpActivityForResult(this, REQ_CODE, true, true)
     }
 
     fun onToggleGDPR(view: View?) {

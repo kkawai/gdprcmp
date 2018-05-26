@@ -23,6 +23,7 @@ public class CmpActivity extends AppCompatActivity {
     private ConsentStringParser consentString;
     private static final int REQUEST_CODE = 8;
     private boolean isAllowBackButton;
+    private boolean defaultConsentAll;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class CmpActivity extends AppCompatActivity {
 
         try {
             isAllowBackButton = getIntent().getBooleanExtra(Config.CMP_ALLOW_BACK_BUTTON, false);
+            defaultConsentAll = getIntent().getBooleanExtra(Config.CMP_DEFAULT_CONSENT_ALL, true);
         } catch (Exception e) {
             MLog.e(TAG, "onCreate() trapped exception while getting CMP_ALLOW_BACK_BUTTON from intent", e);
         }
@@ -46,6 +48,9 @@ public class CmpActivity extends AppCompatActivity {
                     data = new GdprData(jsonObject);
                     if (data != null && consentString != null) {
                         data.initStateWith(consentString);
+                    }
+                    if (data != null && consentString == null) {
+                        data.setDefaultConsent(defaultConsentAll);
                     }
                     return data;
                 } catch (Exception e) {
@@ -62,7 +67,6 @@ public class CmpActivity extends AppCompatActivity {
                 }
             }
         }.execute();
-
         findViewById(R.id.mainView).setVisibility(GDPRUtil.isValidSdkKey(this) ? View.GONE : View.VISIBLE);
     }
 
@@ -162,6 +166,8 @@ public class CmpActivity extends AppCompatActivity {
         if (data != null) {
             intent.putExtra("data", data);
         }
+        intent.putExtra(Config.CMP_ALLOW_BACK_BUTTON, isAllowBackButton);
+        intent.putExtra(Config.CMP_DEFAULT_CONSENT_ALL, defaultConsentAll);
         startActivityForResult(intent, REQUEST_CODE);
     }
 

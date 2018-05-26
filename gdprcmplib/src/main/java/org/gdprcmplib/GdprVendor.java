@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class GdprVendor implements Serializable, Comparable<GdprVendor> {
+class GdprVendor implements Serializable, Comparable<GdprVendor> {
     private static final String TAG = "GdprVendor";
     private int id;
     private String name;

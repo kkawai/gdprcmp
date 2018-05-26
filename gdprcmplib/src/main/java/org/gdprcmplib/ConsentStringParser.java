@@ -659,13 +659,23 @@ class ConsentStringParser {
         setVendors(data.getVendors());
         setPurposes(data.getPurposes());
 
+        //HOWEVER, if all the vendors are all consent or all no consent
+        //we should do the more optimized ranged approach
+        if (vendorsAreAll(data.getVendors(),true)) {
+            rangeConsent(maxVendorId, true, false);
+        } else if (vendorsAreAll(data.getVendors(),false)) {
+            rangeConsent(maxVendorId, false, true);
+        }
     }
 
-//    private boolean isAll(boolean isAll) {
-//        for (int i=0;i<0;i++) {
-//
-//        }
-//    }
+    private boolean vendorsAreAll(List<GdprVendor> vendors, boolean isAllowed) {
+        for (int i=0;i<vendors.size();i++) {
+            if (vendors.get(i).isAllowed() != isAllowed) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public void rangeConsent(int maxVendorId, boolean isConsent, boolean defaultConsent) {
         setVendorEncodingType(1); //Range, not bits

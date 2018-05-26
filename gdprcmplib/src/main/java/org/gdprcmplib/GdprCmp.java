@@ -9,15 +9,17 @@ public class GdprCmp {
 
     private void GdprCmp() {}
 
-    public static void startCmpActivityForResult(Activity activity, int requestCode, boolean allowBackButton) {
+    public static void startCmpActivityForResult(Activity activity, int requestCode, boolean allowBackButton, boolean defaultConsentAll) {
         Intent intent = new Intent(activity, CmpActivity.class);
         intent.putExtra(Config.CMP_ALLOW_BACK_BUTTON, allowBackButton);
+        intent.putExtra(Config.CMP_DEFAULT_CONSENT_ALL, defaultConsentAll);
         activity.startActivityForResult(intent, requestCode);
     }
 
-    public static void startCmpDetailsActivityForResult(Activity activity, int requestCode, boolean allowBackButton) {
+    public static void startCmpDetailsActivityForResult(Activity activity, int requestCode, boolean allowBackButton, boolean defaultConsentAll) {
         Intent intent = new Intent(activity, CmpDetailsActivity.class);
         intent.putExtra(Config.CMP_ALLOW_BACK_BUTTON, allowBackButton);
+        intent.putExtra(Config.CMP_DEFAULT_CONSENT_ALL, defaultConsentAll);
         activity.startActivityForResult(intent, requestCode);
     }
 

@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 
-public class GdprFeature implements Serializable {
+class GdprFeature implements Serializable {
     private static final String TAG = "GdprFeature";
     private int id;
     private String name;
