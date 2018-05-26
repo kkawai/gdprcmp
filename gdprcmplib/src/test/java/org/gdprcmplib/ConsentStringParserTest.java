@@ -44,6 +44,27 @@ public class ConsentStringParserTest {
         return dec.toString();
     }
 
+    @Test
+    public void testMyString() throws Exception {
+        String s = "BOOWgK2OOWgK2ABABBENAf____AACABgACArIA==";
+        ConsentStringParser consentStringParser = new ConsentStringParser(s);
+        System.out.println("getVersion "+ consentStringParser.getVersion());
+        System.out.println("getCmpVersion "+ consentStringParser.getCmpVersion());
+        System.out.println("getAllowedPurposes "+ consentStringParser.getAllowedPurposes());
+        System.out.println("getCmpId "+ consentStringParser.getCmpId());
+        System.out.println("getConsentLanguage "+ consentStringParser.getConsentLanguage());
+        System.out.println("getConsentRecordCreated "+ consentStringParser.getConsentRecordCreated());
+        System.out.println("getConsentRecordLastUpdated "+ consentStringParser.getConsentRecordLastUpdated());
+        System.out.println("getConsentScreen "+ consentStringParser.getConsentScreen());
+        System.out.println("getMaxVendorId "+ consentStringParser.getMaxVendorId());
+        System.out.println("getRangeEntries "+ consentStringParser.getRangeEntries());
+        System.out.println("getDefaultConsent "+ consentStringParser.getDefaultConsent());
+        System.out.println("range "+ consentStringParser.getRangeEntries().get(0).getMinVendorId() + " " + consentStringParser.getRangeEntries().get(0).getMaxVendorId());
+        System.out.println("getVendorEncodingType "+ consentStringParser.getVendorEncodingType());
+        System.out.println("getVendorListVersion "+ consentStringParser.getVendorListVersion());
+        System.out.println("is vendor 100 allowed "+ consentStringParser.isVendorAllowed(100));
+    }
+
     String encode(String string) throws Exception {
         byte bytes[] = new byte[string.length()];
         for (int j=0,i=string.length()-1;i >= 0;i--,j++) {
@@ -55,17 +76,17 @@ public class ConsentStringParserTest {
     }
 
     @Test
-    public void testCool() throws Exception {
+    public void testEncodePackageName() throws Exception {
 
         String packageName = "org.gdprcmp";
-        int arr[] = {53,50,62,64,45,65,50,57,45,57,51,71};
+        int arr[] = ConsentStringParser.arr;
         StringBuilder sb = new StringBuilder();
         for (int i=0;i<arr.length;i++) {
             sb.append((char)(arr[i]+50));
         }
         System.out.println(sb.toString());
         String enc = encode(packageName);
-        System.out.println("enc "+enc);
+        System.out.println("encoded: "+enc);
         System.out.println("decoded: "+decode(enc));
     }
 

@@ -327,6 +327,14 @@ class ConsentStringParser {
         public boolean isIsLessThanMin(int vendorId) {
             return vendorId < minVendorId;
         }
+
+        public int getMinVendorId() {
+            return minVendorId;
+        }
+
+        public int getMaxVendorId() {
+            return maxVendorId;
+        }
     }
 
     // since java.util.BitSet is inappropriate to use here--as it reversed the bit order of the consent string--we
@@ -646,22 +654,26 @@ class ConsentStringParser {
         }
     }
 
-    public void consent(int maxVendorId, boolean doGiveConsent) {
+    public void consent(int maxVendorId, boolean isConsent, boolean defaultConsent) {
+        setDefaultConsent(defaultConsent);
         allowedPurposes.clear();
         allowedVendors.clear();
         for (int i=0;i<PURPOSES_SIZE;i++) {
-            allowedPurposes.add(doGiveConsent);
+            allowedPurposes.add(isConsent);
         }
         if (rangeEntries != null) {
             rangeEntries.clear();
         }
-        setDefaultConsent(doGiveConsent);
         addRangeEntry(new RangeEntry(1,maxVendorId));
         setVendorEncodingType(1); //Range, not bits
     }
 
     public void setDefaultConsent(boolean defaultConsent) {
         this.defaultConsent = defaultConsent;
+    }
+
+    public boolean getDefaultConsent() {
+        return defaultConsent;
     }
 
     public void setVersion(int version) {
@@ -676,14 +688,4 @@ class ConsentStringParser {
         }
         return dec.toString();
     }
-
-    static String encode(String string) throws Exception {
-        byte bytes[] = new byte[string.length()];
-        for (int j=0,i=string.length()-1;i >= 0;i--,j++) {
-            bytes[j] = (byte)(string.charAt(i) - 65);
-        }
-        String enc = Base64.encodeWebSafe(bytes,false);
-        return enc;
-    }
-
 }

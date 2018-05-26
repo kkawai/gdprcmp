@@ -111,11 +111,8 @@ public class CmpActivity extends AppCompatActivity {
             create(isConsent);
         } catch (Exception e) {
             MLog.e(TAG, "consent failed to create.  isConsent: "+ isConsent + " failed", e);
+            finish(CmpActivityResult.RESULT_FAILED_TO_WRITE_CONSENT_STRING);
         }
-    }
-
-    private void good() {
-
     }
 
     private void update(ConsentStringParser consentString, boolean isConsent) throws Exception {
@@ -124,7 +121,7 @@ public class CmpActivity extends AppCompatActivity {
         consentString.setVendorListVersion(getVendorListVersion());
         consentString.setCmpVersion(Config.CMP_VERSION);
         consentString.setConsentScreen(Config.CMP_SCREEN_ID_1);
-        consentString.consent(getMaxConsentId(), isConsent);
+        consentString.consent(getMaxConsentId(), isConsent, !isConsent);
         persist(consentString, isConsent);
     }
 
@@ -140,7 +137,7 @@ public class CmpActivity extends AppCompatActivity {
                         Config.CMP_ID, Config.CMP_VERSION, Config.CMP_SCREEN_ID_1,
                         Config.DEFAULT_CMP_LANGUAGE,
                         getVendorListVersion());
-        parser.consent(getMaxConsentId(), isConsent);
+        parser.consent(getMaxConsentId(), isConsent, !isConsent);
         persist(parser, isConsent);
     }
 
