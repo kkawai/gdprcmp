@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="XX_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label" translatable="false">Upravljanje soglasja</string>
+	<string name="gdpr_cmp_consent_description" translatable="false">Od 25. maja 2018 začne veljati BDP, znan tudi kot Uredba o splošnih podatkih o varstvu podatkov. Ta zakon je namenjen splošni zaščiti podatkov in zasebnosti za vse posameznike v EU. Z \ &#39;Soglasje \&#39; dovolite tej aplikaciji, da uporablja vaše osebne podatke, če je to primerno, za namene, kot so, vendar ne izključno za prilagojene oglase. S \ &#39;Ne privolite \&#39; prodajalcem ne dovolite, da bi svoje osebne podatke uporabljali za te namene.</string>
+	<string name="i_consent" translatable="false">Soglasje</string>
+	<string name="i_do_not_consent" translatable="false">Ne strinjam se</string>
+	<string name="details" translatable="false">Več podrobnosti...</string>
+	<string name="details_description" translatable="false">Soglasje lahko daste ali zavrnete tako, da preverite ali ne preverite polj. V nadaljevanju je seznam podatkov o uporabi podatkov, ki mu sledi seznam uradnih oglaševalskih partnerjev.</string>
+	<string name="go_back" translatable="false">Pojdi nazaj</string>
+	<string name="save" translatable="false">SAVE</string>
+	<string name="check_all" translatable="false">Preveri vse</string>
+	<string name="uncheck_all" translatable="false">Preveri vse</string>
+	<string name="XX_sample_multi">Besedilo in stvari \ n In še več</string>
+	<string name="buy" translatable="false">Preizkusna različica. Tapnite za nakup</string>
+	<string name="buy_msg" translatable="false">Shranjeni niz strinjanja GDPR! In hvala, ker ste poskušali izdelek! To stanje BDP ni bilo enostavno. Prosimo, podkrepite nam, da kupite našo SDK z enkratno pristojbino @ http://gdpr-sdk.com Ko kupite, vam bomo poslali ključ. V tem času lahko še naprej vrednotite!</string>
+
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="XX_app_name">ГдпрЦмпЛиб</string>
+	<string name="gdpr_cmp_activity_label" translatable="false">Управљање сагласности</string>
+	<string name="gdpr_cmp_consent_description" translatable="false">Од 25. маја 2018. године, ГДПР, познат и као Уредба о заштити података о општинама, ступа на снагу. Овај закон је за општу заштиту података и приватности за све појединце унутар ЕУ. Под \ Цонсентинг \ дозвољавате овој апликацији да користи ваше личне податке, уколико је применљиво, за сврхе као што су, али не и искључиво за персонализоване рекламе. Под \ &#39;Не сагласност \&#39; не дозвољавате продавцима да користе ваше личне податке у ове сврхе.</string>
+	<string name="i_consent" translatable="false">Пристајем</string>
+	<string name="i_do_not_consent" translatable="false">Не слажем се</string>
+	<string name="details" translatable="false">Детаљније...</string>
+	<string name="details_description" translatable="false">Можете дати или одбити сагласност провјером или неисправним оквирима. Следећи је попис употребе података који прати списак званичних оглашивачких партнера.</string>
+	<string name="go_back" translatable="false">Вратити се</string>
+	<string name="save" translatable="false">САЧУВАТИ</string>
+	<string name="check_all" translatable="false">Штиклирати све</string>
+	<string name="uncheck_all" translatable="false">Поништите све</string>
+	<string name="XX_sample_multi">Текст и ствари \ н И више</string>
+	<string name="buy" translatable="false">Пробна верзија. Куцните на куповину</string>
+	<string name="buy_msg" translatable="false">Сачувани низ ГДПР сагласности! И хвала вам што сте покушали производ! Ово стање БДП-а није било лако. Молимо вас да нас подржите купите куповину нашег СДК са једнократном накнадом @ хттп://гдпр-сдк.цом Када купите, послат ћемо вам кључ. У међувремену, слободно наставите са вредновањем!</string>
+
+</resources>

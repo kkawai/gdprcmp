@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GdprCmpLib</string>
+    <string name="XX_app_name">GdprCmpLib</string>
     <string name="gdpr_cmp_activity_label">Consent Management</string>
     <string name="gdpr_cmp_consent_description">As of May 25th, 2018, GDPR,
         also known as the General Data Protection Regulation, takes effect.
@@ -22,7 +22,7 @@
     <string name="check_all">Check All</string>
     <string name="uncheck_all">Uncheck All</string>
 
-    <string name="sample_multi">• Text and stuff \n• And more</string>
+    <string name="XX_sample_multi">• Text and stuff \n• And more</string>
 
     <string name="buy">Trial Version. Tap to purchase</string>
     <string name="buy_msg">Saved GDPR consent string! And thank you for trying the product!

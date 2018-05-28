@@ -28,7 +28,7 @@
         android:id="@+id/features_and_purposes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sample_multi"/>
+        android:text="@string/XX_sample_multi"/>
 
     <CheckBox
         android:paddingTop="8dp"

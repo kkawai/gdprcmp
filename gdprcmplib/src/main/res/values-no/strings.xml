@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="XX_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label" translatable="false">Samtykkeforvaltning</string>
+	<string name="gdpr_cmp_consent_description" translatable="false">Per 25. mai 2018 trer GDPR, også kjent som General Data Protection Regulation, i kraft. Denne loven gjelder generelt beskyttelse av data og personvern for alle enkeltpersoner innen EU. Ved \ &#39;Samtykke \&#39; tillater du dette programmet å benytte dine personlige data, hvis det er aktuelt, for formål som, men ikke eksklusivt for personlige annonser. Ved \ &#39;Ikke samtykke \&#39; tillater du ikke leverandører å benytte dine personlige data til disse formålene.</string>
+	<string name="i_consent" translatable="false">Jeg Samtykke</string>
+	<string name="i_do_not_consent" translatable="false">Jeg samtykker ikke</string>
+	<string name="details" translatable="false">Mer informasjon...</string>
+	<string name="details_description" translatable="false">Du kan gi eller avslå samtykke ved å merke av eller fjerne merkene i boksene. Følgende er en liste over data bruksformål etterfulgt av en liste over de offisielle annonseringspartnerne.</string>
+	<string name="go_back" translatable="false">Gå tilbake</string>
+	<string name="save" translatable="false">LAGRE</string>
+	<string name="check_all" translatable="false">Sjekk alt</string>
+	<string name="uncheck_all" translatable="false">Uncheck alle</string>
+	<string name="XX_sample_multi">Tekst og ting \ n Og mer</string>
+	<string name="buy" translatable="false">Prøve versjon. Trykk for å kjøpe</string>
+	<string name="buy_msg" translatable="false">Lagret GDPR samtykke streng! Og takk for at du prøvde produktet! Dette GDPR-materialet var ikke lett. Vennligst støtte oss, kjøp å kjøpe vår sdk med engangsavgift @ http://gdpr-sdk.com Når du kjøper, sender vi deg en nøkkel. I mellomtiden, vær så snill å fortsette å evaluere!</string>
+
+</resources>

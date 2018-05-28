@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="XX_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label" translatable="false">Consent Management</string>
+	<string name="gdpr_cmp_consent_description" translatable="false">Vanaf 25 mei 2018 treedt GDPR, ook bekend als de Algemene Verordening Gegevensbescherming, in werking. Deze wet is bedoeld voor de algemene bescherming van gegevens en privacy voor alle personen in de EU. Door &#39;Toestemming&#39; toe te staan, staat u toe dat deze toepassing uw persoonlijke gegevens gebruikt, indien van toepassing, voor doeleinden zoals, maar niet exclusief voor gepersonaliseerde advertenties. Door &#39;Niet toestemmen&#39; staan ​​u niet toe dat leveranciers uw persoonlijke gegevens gebruiken voor deze doeleinden.</string>
+	<string name="i_consent" translatable="false">Ik stem ermee in</string>
+	<string name="i_do_not_consent" translatable="false">Ik stem niet toe</string>
+	<string name="details" translatable="false">Meer details...</string>
+	<string name="details_description" translatable="false">U kunt toestemming geven of weigeren door de selectievakjes in of uit te schakelen. Hieronder volgt een lijst met gegevensgebruiksdoeleinden gevolgd door een lijst met officiële advertentiepartners.</string>
+	<string name="go_back" translatable="false">Ga terug</string>
+	<string name="save" translatable="false">OPSLAAN</string>
+	<string name="check_all" translatable="false">Controleer alles</string>
+	<string name="uncheck_all" translatable="false">Verwijder alles</string>
+	<string name="XX_sample_multi">Tekst en dingen \ n En meer</string>
+	<string name="buy" translatable="false">Probeerversie. Tik om te kopen</string>
+	<string name="buy_msg" translatable="false">Opgeslagen GDPR-toestemmingsreeks! En bedankt voor het proberen van het product! Deze GDPR-dingen waren niet eenvoudig. Steun ons alsjeblieft en koop onze sdk met een eenmalige vergoeding @ http://gdpr-sdk.com Na aankoop zullen we je een sleutel sturen. In de tussentijd, voel je vrij om door te gaan met evalueren!</string>
+
+</resources>

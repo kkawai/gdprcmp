@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="XX_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label" translatable="false">Ġestjoni tal-Kunsens</string>
+	<string name="gdpr_cmp_consent_description" translatable="false">Mill-25 ta &#39;Mejju, 2018, jidħol fis-seħħ GDPR, magħruf ukoll bħala r-Regolament Ġenerali għall-Protezzjoni tad-Dejta. Din il-liġi hija għall-protezzjoni ġenerali tad-data u l-privatezza għall-individwi kollha fi ħdan l-UE. Permezz ta &#39;&quot;Kunsens&quot; int qed tħalli din l-applikazzjoni tuża d-dejta personali tiegħek, jekk applikabbli, għal skopijiet bħal, iżda mhux esklussivi għal reklami personalizzati. Permezz ta &#39;&quot;Not Consenting&quot; int ma tħallix lill-bejjiegħa jużaw id-dejta personali tiegħek għal dawn l-iskopijiet.</string>
+	<string name="i_consent" translatable="false">I Kunsens</string>
+	<string name="i_do_not_consent" translatable="false">I M&#39;għandekx Kunsens</string>
+	<string name="details" translatable="false">Iktar dettalji...</string>
+	<string name="details_description" translatable="false">Tista &#39;tagħti jew tirrifjuta l-kunsens billi tikkontrolla jew tivverifika l-kaxxi. Din li ġejja hija lista ta &#39;skopijiet ta&#39; użu tad-dejta segwita minn lista tal-imsieħba uffiċjali tar-reklamar.</string>
+	<string name="go_back" translatable="false">Mur lura</string>
+	<string name="save" translatable="false">SAVE</string>
+	<string name="check_all" translatable="false">Iċċekkja kollha</string>
+	<string name="uncheck_all" translatable="false">Un-check All</string>
+	<string name="XX_sample_multi">Test u għalf \ n U aktar</string>
+	<string name="buy" translatable="false">Verżjoni bi prova. Tektek biex tixtri</string>
+	<string name="buy_msg" translatable="false">Sigriet tal-kunsens tal-GDPR ssejvjat! U nirringrazzjak talli ppruvajt il-prodott! Dan l-għalf GDPR ma kienx faċli. Jekk jogħġbok appoġġna biex tixtri sdk tagħna b&#39;tariffa ta &#39;darba @ http://gdpr-sdk.com Ladarba tixtri aħna nibgħatulek ċavetta. Sadattant, tħossok liberu li tkompli tevalwa!</string>
+
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="XX_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label" translatable="false">Upravljanje pristankom</string>
+	<string name="gdpr_cmp_consent_description" translatable="false">Od 25. svibnja 2018., GDPR, poznat i kao Opća uredba o zaštiti podataka, stupit će na snagu. Ovaj zakon odnosi se na opću zaštitu podataka i privatnosti za sve pojedince unutar EU. Dopuštajući ovom zahtjevu dopuštate da ova aplikacija iskoristi vaše osobne podatke, ako je primjenjivo, u svrhe kao što su, ali ne isključivo, prilagođene reklame. Ako ne dopustite \ &quot;ne dopuštaš&quot;, ne dopuštamo prodavačima da koriste ove osobne podatke.</string>
+	<string name="i_consent" translatable="false">Ja dopuštam</string>
+	<string name="i_do_not_consent" translatable="false">Ne dopuštam</string>
+	<string name="details" translatable="false">Više detalja...</string>
+	<string name="details_description" translatable="false">Možete dati ili odbiti pristanak tako što ćete potvrditi ili poništiti označavanje okvira. Slijedi popis svrhe korištenja podataka, nakon čega slijedi popis službenih partnera za oglašavanje.</string>
+	<string name="go_back" translatable="false">Vratite se</string>
+	<string name="save" translatable="false">UŠTEDJETI</string>
+	<string name="check_all" translatable="false">Provjeri sve</string>
+	<string name="uncheck_all" translatable="false">Odznači sve</string>
+	<string name="XX_sample_multi">Tekst i stvari \ nI više</string>
+	<string name="buy" translatable="false">Probna verzija. Dodirnite za kupnju</string>
+	<string name="buy_msg" translatable="false">Spremljeni niz pristanka na GDPR! I hvala vam što ste isprobali proizvod! Ovaj GDPR nije bio lagan. Podržite nas kupnjom našeg SDK-a jednokratnom naknadom @ http://gdpr-sdk.com Nakon što kupite, poslat ćemo vam ključ. U međuvremenu, slobodno nastavite procjenjivati!</string>
+
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="XX_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label" translatable="false">Згода на керування</string>
+	<string name="gdpr_cmp_consent_description" translatable="false">Станом на 25 травня 2018 року, GDPR, також відоме як Загальне Постанова про захист даних, набирає чинності. Цей закон призначений для загального захисту даних та конфіденційності для всіх осіб в межах ЄС. За допомогою \ &quot;Згоди \&quot; ви дозволяєте цій програмі використовувати ваші особисті дані, якщо це застосовується, для таких цілей, як, але не виключно персоналізована реклама. За допомогою \ &quot;Не погоджуюсь \&quot; ви не дозволяєте постачальникам використовувати ваші особисті дані для цих цілей.</string>
+	<string name="i_consent" translatable="false">Я згоден</string>
+	<string name="i_do_not_consent" translatable="false">Я не згоден</string>
+	<string name="details" translatable="false">Детальніше...</string>
+	<string name="details_description" translatable="false">Ви можете дати або відхилити згоду, перевіряючи або скасовуючи поля. Нижче наведено список цілей використання даних, а потім список офіційних рекламних партнерів.</string>
+	<string name="go_back" translatable="false">Повертайся</string>
+	<string name="save" translatable="false">Зберегти</string>
+	<string name="check_all" translatable="false">Перевірити все</string>
+	<string name="uncheck_all" translatable="false">Скасувати прапорець Усі</string>
+	<string name="XX_sample_multi">Текст і інше \ n І багато іншого</string>
+	<string name="buy" translatable="false">Пробна версія. Натисніть, щоб купити</string>
+	<string name="buy_msg" translatable="false">Збережена рядок згоди GDPR! І дякую за те, що спробували продукт! Цей матеріал GDPR був нелегким. Будь ласка, підтримайте нас, купуйте купуючи наш SDK за допомогою одноразової плати @ http://gdpr-sdk.com. Після покупки ми надішлемо вам ключ. Тим часом, не соромтеся продовжувати оцінювати!</string>
+
+</resources>

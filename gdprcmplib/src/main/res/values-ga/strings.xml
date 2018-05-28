@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="NAL_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label" translatable="false">Bainistíocht Toiliú</string>
+	<string name="gdpr_cmp_consent_description" translatable="false">Amhail an 25 Bealtaine, 2018, glacann GDPR, ar a dtugtar an Rialachán Ginearálta um Chosaint Sonraí, éifeacht. Is é an dlí seo maidir le cosaint ginearálta sonraí agus príobháideachta do gach duine aonair san AE. Trí \ &#39;Comhaontú \&#39; tá tú ag ligean don iarratas seo úsáid a bhaint as do chuid sonraí pearsanta, más infheidhme, chun críocha cosúil le fógraí pearsanta, ach gan a bheith eisiach. De réir \ &#39;Gan Glacadh \&#39; níl cead ag díoltóirí úsáid a bhaint as do shonraí pearsanta chun na gcríoch sin.</string>
+	<string name="i_consent" translatable="false">Aontaím</string>
+	<string name="i_do_not_consent" translatable="false">Ní Ceadaím</string>
+	<string name="details" translatable="false">Tuilleadh Sonraí ...</string>
+	<string name="details_description" translatable="false">Is féidir leat toiliú a thabhairt nó a laghdú trí na boscaí a sheiceáil nó a sheiceáil. Seo a leanas liosta de chuspóirí úsáide sonraí agus liosta de na comhpháirtithe fógraíochta oifigiúla ina dhiaidh sin.</string>
+	<string name="go_back" translatable="false">Dul ar ais</string>
+	<string name="save" translatable="false">SAVE</string>
+	<string name="check_all" translatable="false">Seiceáil Gach</string>
+	<string name="uncheck_all" translatable="false">Dí-sheiceáil Gach</string>
+	<string name="NAL_sample_multi">Téacs agus rudaí \ n Agus níos mó</string>
+	<string name="buy" translatable="false">Leagan trialach. Beartaíonn a cheannach</string>
+	<string name="buy_msg" translatable="false">Sreang toilithe GDPR sábháilte! Agus buíochas leat as an táirge a iarraidh! Ní raibh na rudaí GDPR seo éasca. Tabhair tacaíocht dúinn le ceannach ár sdk a cheannach le táille aonuaire @ http://gdpr-sdk.com Nuair a cheannaíonn tú, cuirfimid eochair duit. Idir an dá linn, bíodh leisce ort leanúint ar aghaidh ag meastóireacht!</string>
+
+</resources>

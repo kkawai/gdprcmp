@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="XX_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label" translatable="false">Gestão de Consentimento</string>
+	<string name="gdpr_cmp_consent_description" translatable="false">A partir de 25 de maio de 2018, o GDPR, também conhecido como o Regulamento Geral de Proteção de Dados, entra em vigor. Esta lei é para a proteção geral de dados e privacidade para todos os indivíduos dentro da UE. Ao &#39;&#39; Consentir &#39;&#39;, você está permitindo que este aplicativo utilize seus dados pessoais, se aplicável, para fins como, mas não exclusivos, para anúncios personalizados. Por &quot;Não Consentir&quot;, você não está permitindo que os fornecedores utilizem seus dados pessoais para essas finalidades.</string>
+	<string name="i_consent" translatable="false">Eu Consentimento</string>
+	<string name="i_do_not_consent" translatable="false">Eu não consinto</string>
+	<string name="details" translatable="false">Mais detalhes...</string>
+	<string name="details_description" translatable="false">Você pode dar ou recusar o consentimento marcando ou desmarcando as caixas. A seguir, uma lista de finalidades de uso de dados, seguida por uma lista dos parceiros de publicidade oficiais.</string>
+	<string name="go_back" translatable="false">Volte</string>
+	<string name="save" translatable="false">SALVE </string>
+	<string name="check_all" translatable="false">Verificar tudo</string>
+	<string name="uncheck_all" translatable="false">Desmarcar todos</string>
+	<string name="XX_sample_multi">Texto e outras coisas \ n e mais</string>
+	<string name="buy" translatable="false">Versão de teste. Toque para comprar</string>
+	<string name="buy_msg" translatable="false">Salve a sequência de consentimento do GDPR! E obrigado por experimentar o produto! Este material GDPR não foi fácil. Por favor, ajudem-nos a comprar o nosso SDK com uma taxa única @ http://gdpr-sdk.com Depois de comprar, enviaremos uma chave. Enquanto isso, sinta-se à vontade para continuar avaliando!</string>
+
+</resources>

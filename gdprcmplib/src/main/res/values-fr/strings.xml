@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="XX_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label" translatable="false">Gestion du consentement</string>
+	<string name="gdpr_cmp_consent_description" translatable="false">En date du 25 mai 2018, le GDPR, également connu sous le nom de Règlement général sur la protection des données, prend effet. Cette loi est pour la protection générale des données et de la vie privée pour tous les individus au sein de l&#39;UE. En \ Consentant \ &#39;vous autorisez cette application à utiliser vos données personnelles, le cas échéant, à des fins telles que, mais non exclusif à des publicités personnalisées. En n&#39;accordant pas de consentement, vous n&#39;autorisez pas les fournisseurs à utiliser vos données personnelles à ces fins.</string>
+	<string name="i_consent" translatable="false">J&#39;accepte</string>
+	<string name="i_do_not_consent" translatable="false">Je ne consens pas</string>
+	<string name="details" translatable="false">Plus de détails...</string>
+	<string name="details_description" translatable="false">Vous pouvez donner ou refuser votre consentement en cochant ou décochant les cases. Vous trouverez ci-dessous une liste des utilisations des données suivies d&#39;une liste des partenaires publicitaires officiels.</string>
+	<string name="go_back" translatable="false">Retourner</string>
+	<string name="save" translatable="false">ENREGISTRER</string>
+	<string name="check_all" translatable="false">Vérifie tout</string>
+	<string name="uncheck_all" translatable="false">Décocher tout</string>
+	<string name="XX_sample_multi">Texte et autres \ n Et plus</string>
+	<string name="buy" translatable="false">Version d&#39;essai. Appuyez pour acheter</string>
+	<string name="buy_msg" translatable="false">Chaîne de consentement GDPR enregistrée! Et merci d&#39;essayer le produit! Ce truc GDPR n&#39;était pas facile. S&#39;il vous plaît nous soutenir acheter acheter notre sdk avec une taxe unique @ http://gdpr-sdk.com Une fois que vous achetez, nous vous enverrons une clé. En attendant, n&#39;hésitez pas à continuer à évaluer!</string>
+
+</resources>

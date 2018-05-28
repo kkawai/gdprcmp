@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="XX_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label" translatable="false">Samtykkeforvaltning</string>
+	<string name="gdpr_cmp_consent_description" translatable="false">Pr. 25. maj 2018, GDPR, også kendt som den generelle databeskyttelsesforordning, træder i kraft. Denne lov er for den generelle beskyttelse af data og privatliv for alle personer inden for EU. Ved \ &#39;Samtykke \&#39; tillader du denne ansøgning at anvende dine personlige data, hvis det er relevant, til formål som, men ikke eksklusive til personlige annoncer. Ved \ &#39;Ikke godkendt \&#39; tillader du ikke leverandører at udnytte dine personlige data til disse formål.</string>
+	<string name="i_consent" translatable="false">Jeg Samtykke</string>
+	<string name="i_do_not_consent" translatable="false">Jeg accepterer ikke</string>
+	<string name="details" translatable="false">Flere detaljer...</string>
+	<string name="details_description" translatable="false">Du kan give eller afvise samtykke ved at tjekke eller fjerne markeringen af ​​afkrydsningsfelterne. Nedenstående er en liste over dataforbrug formål efterfulgt af en liste over de officielle reklame partnere.</string>
+	<string name="go_back" translatable="false">Gå tilbage</string>
+	<string name="save" translatable="false">GEMME</string>
+	<string name="check_all" translatable="false">Tjek alle</string>
+	<string name="uncheck_all" translatable="false">Fjern markeringen af ​​alle</string>
+	<string name="XX_sample_multi">Tekst og ting \ n Og mere</string>
+	<string name="buy" translatable="false">Prøveversion. Tryk for at købe</string>
+	<string name="buy_msg" translatable="false">Gemt GDPR samtykke streng! Og tak for at du prøvede produktet! Denne GDPR ting var ikke let. Vær venlig at støtte os, køb at købe vores sdk med et engangsgebyr @ http://gdpr-sdk.com Når du køber, sender vi dig en nøgle. I mellemtiden er du velkommen til at fortsætte med at evaluere!</string>
+
+</resources>
