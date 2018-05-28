@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="XX_app_name">GdprCmpLib</string>
-	<string name="gdpr_cmp_activity_label" translatable="false">Správa súhlasu</string>
-	<string name="gdpr_cmp_consent_description" translatable="false">Od 25. mája 2018 nadobúda účinnosť GDPR, známy tiež ako všeobecné nariadenie o ochrane údajov. Tento zákon sa týka všeobecnej ochrany údajov a súkromia pre všetkých jednotlivcov v rámci EÚ. Súhlasím s \ &quot;Súhlasím \&quot;, dovoľujete, aby táto aplikácia využívala Vaše osobné údaje, ak je to vhodné, na účely, ako napríklad, ale nie výlučne pre personalizované reklamy. Tým, že \ &quot;Nesúhlasíte \&quot;, nedovoľujete predajcom využívať vaše osobné údaje na tieto účely.</string>
-	<string name="i_consent" translatable="false">Súhlasím</string>
-	<string name="i_do_not_consent" translatable="false">Nesúhlasím</string>
-	<string name="details" translatable="false">Viac informácií...</string>
-	<string name="details_description" translatable="false">Môžete dať alebo odmietnuť súhlas kontrolou alebo zrušením kontroly políčok. Nasleduje zoznam účelov použitia údajov, po ktorom nasleduje zoznam oficiálnych reklamných partnerov.</string>
-	<string name="go_back" translatable="false">Vráť sa</string>
-	<string name="save" translatable="false">SAVE</string>
-	<string name="check_all" translatable="false">Skontrolujte všetko</string>
-	<string name="uncheck_all" translatable="false">Odznačiť všetky</string>
-	<string name="XX_sample_multi">Text a veci \ n A ešte viac</string>
-	<string name="buy" translatable="false">Skúšobná verzia. Ťuknite na nákup</string>
-	<string name="buy_msg" translatable="false">Uložený reťazec súhlasu GDPR! A ďakujem vám, že ste vyskúšali produkt! Tieto veci GDPR neboli jednoduché. Podporujte nás, prosím, kúpiť nákup nášho sdk jednorazovým poplatkom @ http://gdpr-sdk.com Po zakúpení Vám pošleme kľúč. Medzitým neváhajte pokračovať v hodnotení!</string>
+	<string name="NAL_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label">Správa súhlasu</string>
+	<string name="gdpr_cmp_consent_description">Od 25. mája 2018 nadobúda účinnosť GDPR, známy tiež ako všeobecné nariadenie o ochrane údajov. Tento zákon sa týka všeobecnej ochrany údajov a súkromia pre všetkých jednotlivcov v rámci EÚ. Súhlasím s tým, že dovolíte, aby táto aplikácia využívala vaše osobné údaje, ak je to možné, na účely, ako napríklad, ale nie výhradne pre personalizované reklamy. Nesúhlasím s tým, že nepovoľujete predajcom využívať vaše osobné údaje na tieto účely.</string>
+	<string name="i_consent">Súhlasím</string>
+	<string name="i_do_not_consent">Nesúhlasím</string>
+	<string name="details">Viac informácií...</string>
+	<string name="details_description">Môžete dať alebo odmietnuť súhlas výberom alebo zrušením výberu individuálnych účelov použitia údajov a dodávateľov.</string>
+	<string name="go_back">Vráť sa</string>
+	<string name="save">SAVE</string>
+	<string name="check_all">Vybrať všetko</string>
+	<string name="uncheck_all">Odznačiť všetko</string>
+	<string name="buy">Skúšobná verzia. Stlačte na nákup</string>
+	<string name="buy_msg">Uložený reťazec súhlasu GDPR! A ďakujem vám, že ste vyskúšali produkt! Tieto veci GDPR neboli jednoduché. Podporujte nás, prosím, kúpiť náš SDK jednorazovým poplatkom @ http://gdpr-sdk.com Po zakúpení vám zašleme kľúč. Medzitým neváhajte pokračovať v hodnotení!</string>
 
 </resources>

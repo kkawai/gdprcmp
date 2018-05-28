@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="XX_app_name">GdprCmpLib</string>
-	<string name="gdpr_cmp_activity_label" translatable="false">Managementul consimțământului</string>
-	<string name="gdpr_cmp_consent_description" translatable="false">Începând cu data de 25 mai 2018, GDPR, cunoscut și ca Regulamentul general privind protecția datelor, intră în vigoare. Această lege vizează protecția generală a datelor și a vieții private pentru toți indivizii din UE. Prin \ &#39;Consimțire \&#39; permiteți acestei aplicații să vă utilizeze datele personale, dacă este cazul, în scopuri precum, dar nu exclusiv, pentru anunțurile personalizate. Prin \ &#39;Nu aprobă \&#39; nu permiteți furnizorilor să utilizeze datele dvs. personale în aceste scopuri.</string>
-	<string name="i_consent" translatable="false">Imi dau acordul</string>
-	<string name="i_do_not_consent" translatable="false">Nu accept</string>
-	<string name="details" translatable="false">Mai multe detalii...</string>
-	<string name="details_description" translatable="false">Puteți da sau refuza consimțământul prin verificarea sau debifarea casetelor. Următoarea este o listă a scopurilor de utilizare a datelor urmată de o listă a partenerilor oficiali de publicitate.</string>
-	<string name="go_back" translatable="false">Întoarce-te</string>
-	<string name="save" translatable="false">SALVAȚI</string>
-	<string name="check_all" translatable="false">Selectați toate</string>
-	<string name="uncheck_all" translatable="false">Deselecteaza tot</string>
-	<string name="XX_sample_multi">Text și lucruri \ n Și mai mult</string>
-	<string name="buy" translatable="false">Versiune de proba. Atingeți pentru a achiziționa</string>
-	<string name="buy_msg" translatable="false">Șirul de consimțământ GDPR salvat! Și vă mulțumesc că ați încercat produsul! Acest lucru GDPR nu a fost ușor. Vă rugăm să ne sprijiniți să cumpărați cumpărarea sdk noastre cu o taxă o singură dată @ http://gdpr-sdk.com Odată ce ați cumpărat vă vom trimite o cheie. Între timp, nu ezitați să continuați să evaluați!</string>
+	<string name="NAL_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label">Managementul consimțământului</string>
+	<string name="gdpr_cmp_consent_description">Începând cu data de 25 mai 2018, GDPR, cunoscut și ca Regulamentul general privind protecția datelor, intră în vigoare. Această lege vizează protecția generală a datelor și a vieții private pentru toți indivizii din UE. Prin consimțământul dvs. permiteți acestei aplicații să vă utilizeze datele personale, dacă este cazul, în scopuri precum, dar nu exclusiv, pentru anunțurile personalizate. Dacă nu sunteți de acord, nu permiteți furnizorilor să vă utilizeze datele personale în aceste scopuri.</string>
+	<string name="i_consent">Imi dau acordul</string>
+	<string name="i_do_not_consent">Nu accept</string>
+	<string name="details">Mai multe detalii...</string>
+	<string name="details_description">Puteți acorda sau refuza acordul prin selectarea sau dezactivarea scopurilor individuale de utilizare a datelor și a furnizorilor.</string>
+	<string name="go_back">Întoarce-te</string>
+	<string name="save">SALVAȚI</string>
+	<string name="check_all">Selectează tot</string>
+	<string name="uncheck_all">Deselectează tot</string>
+	<string name="buy">Versiune de proba. Apăsați pentru a achiziționa</string>
+	<string name="buy_msg">Șirul de consimțământ GDPR salvat! Și vă mulțumesc că ați încercat produsul! Acest lucru GDPR nu a fost ușor. Vă rugăm să ne sprijiniți să cumpărați cumpărarea SDK-ului nostru cu o taxă unică @ http://gdpr-sdk.com Odată ce ați achiziționat vă vom trimite o cheie. Între timp, nu ezitați să continuați să evaluați!</string>
 
 </resources>

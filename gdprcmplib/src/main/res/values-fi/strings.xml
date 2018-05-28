@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="XX_app_name">GdprCmpLib</string>
-	<string name="gdpr_cmp_activity_label" translatable="false">Suostumuksen hallinta</string>
-	<string name="gdpr_cmp_consent_description" translatable="false">Vuodesta 25.5.2018 alkaen GDPR, joka tunnetaan myös yleisenä tietosuojadirektiivinä, tulee voimaan. Tämä laki koskee EU: n kaikkien henkilöiden yleistä tietosuojaa ja yksityisyyttä. \ &quot;Sallii \&quot; annat tämän sovelluksen hyödyntää henkilötietojasi, jos sellainen on, esimerkiksi sellaisiin tarkoituksiin kuin henkilökohtaisiin mainoksiin. \ &quot;Ei salli \&quot; et anna myyjien käyttää henkilötietojasi näihin tarkoituksiin.</string>
-	<string name="i_consent" translatable="false">Hyväksyn</string>
-	<string name="i_do_not_consent" translatable="false">En suostu</string>
-	<string name="details" translatable="false">Lisätietoja...</string>
-	<string name="details_description" translatable="false">Voit antaa tai hylätä suostumuksen tarkistamalla tai poistamalla ruudut. Seuraavassa on luettelo tietojen käyttötarkoituksesta, jota seuraa luettelo virallisista mainoskumppaneista.</string>
-	<string name="go_back" translatable="false">Mene takaisin</string>
-	<string name="save" translatable="false">TALLENTAA</string>
-	<string name="check_all" translatable="false">Tarkista kaikki</string>
-	<string name="uncheck_all" translatable="false">Tarkista kaikki</string>
-	<string name="XX_sample_multi">Teksti ja tavarat \ n Ja enemmän</string>
-	<string name="buy" translatable="false">Kokeiluversio. Napauta ostaaksesi</string>
-	<string name="buy_msg" translatable="false">Tallennettu GDPR suostumus merkkijono! Kiitos tuotteesta! Tämä GDPR-kama ei ollut helppoa. Pyydämme tukemaan meitä ostamaan sdk-ostomme kertamaksulla @ http://gdpr-sdk.com Kun ostat me lähetämme sinulle avaimen. Sillä välin voit vapaasti jatkaa arviointia!</string>
+	<string name="NAL_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label">Suostumuksen hallinta</string>
+	<string name="gdpr_cmp_consent_description">Vuodesta 25.5.2018 alkaen GDPR, joka tunnetaan myös yleisenä tietosuojadirektiivinä, tulee voimaan. Tämä laki koskee EU: n kaikkien henkilöiden yleistä tietosuojaa ja yksityisyyttä. Hyväksymällä annat tämän sovelluksen hyödyntää henkilötietojasi, jos sellainen on, esimerkiksi sellaisiin tarkoituksiin kuin henkilökohtaisiin mainoksiin. Jos et hyväksy, et anna myyjien käyttää henkilötietojasi näihin tarkoituksiin.</string>
+	<string name="i_consent">Hyväksyn</string>
+	<string name="i_do_not_consent">En suostu</string>
+	<string name="details">Lisätietoja...</string>
+	<string name="details_description">Voit antaa tai hylätä suostumuksen valitsemalla tai poistamalla yksittäisten tietojen käyttötarkoitukset ja myyjät.</string>
+	<string name="go_back">Mene takaisin</string>
+	<string name="save">TALLENTAA</string>
+	<string name="check_all">Valitse kaikki</string>
+	<string name="uncheck_all">Un-Valitse kaikki</string>
+	<string name="buy">Kokeiluversio. Osta painamalla</string>
+	<string name="buy_msg">Tallennettu GDPR suostumus merkkijono! Kiitos tuotteesta! Tämä GDPR-kama ei ollut helppoa. Pyydämme tukemaan meitä ostamaan SDKamme kertaluonteisella maksulla @ http://gdpr-sdk.com Kun ostat me lähetämme sinulle avaimen. Sillä välin voit vapaasti jatkaa arviointia!</string>
 
 </resources>

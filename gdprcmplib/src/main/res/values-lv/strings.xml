@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="XX_app_name">GdprCmpLib</string>
-	<string name="gdpr_cmp_activity_label" translatable="false">Piekrišanas vadīšana</string>
-	<string name="gdpr_cmp_consent_description" translatable="false">Sākot ar 2018. gada 25. maiju, GDPR, kas pazīstams arī kā Vispārējā datu aizsardzības regula, stājas spēkā. Šis likums attiecas uz vispārēju datu un privātās dzīves aizsardzību visiem ES iedzīvotājiem. Ar \ &quot;Piekrišanas \&quot; jūs atļaujat šim lietojumprogrammai izmantot jūsu personas datus, ja tādi ir, tādiem mērķiem kā, bet ne tikai, personalizētām reklāmām. Ar &quot;Nav piekrišanas&quot; jūs neļaujat pārdevējiem izmantot šos mērķus saviem personas datiem.</string>
-	<string name="i_consent" translatable="false">Es piekrītu</string>
-	<string name="i_do_not_consent" translatable="false">Es nesaku</string>
-	<string name="details" translatable="false">Skatīt vairāk...</string>
-	<string name="details_description" translatable="false">Jūs varat sniegt vai noraidīt piekrišanu, pārbaudot vai nekontrolē lodziņus. Turpmāk norādīts datu izmantošanas mērķu saraksts, kam seko oficiālo reklāmas partneru saraksts.</string>
-	<string name="go_back" translatable="false">Atgriezties</string>
-	<string name="save" translatable="false">SAVE</string>
-	<string name="check_all" translatable="false">Pārbaudi visu</string>
-	<string name="uncheck_all" translatable="false">Un-check All</string>
-	<string name="XX_sample_multi">Teksts un citi \ n Un vēl</string>
-	<string name="buy" translatable="false">Izmēģinājuma versija. Pieskarieties, lai iegādātos</string>
-	<string name="buy_msg" translatable="false">Saglabāta GDPR piekrišanas virkne! Un paldies par produkta izmēģināšanu! Šī GDPR stuff nebija viegli. Lūdzu, atbalstiet mūs, nopērkot mūsu SDK ar vienreizēju maksu @ http://gdpr-sdk.com Kad iegādājaties, mēs nosūtīsim jums atslēgu. Pa to laiku jūtieties brīvi turpināt novērtēt!</string>
+	<string name="NAL_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label">Piekrišanas vadīšana</string>
+	<string name="gdpr_cmp_consent_description">Sākot ar 2018. gada 25. maiju, GDPR, kas pazīstams arī kā Vispārējā datu aizsardzības regula, stājas spēkā. Šis likums attiecas uz vispārēju datu un privātās dzīves aizsardzību visiem ES iedzīvotājiem. Piekrītot, jūs atļaujat šim lietojumprogrammai izmantot jūsu personas datus, ja tādi ir, tādiem mērķiem kā, bet ne tikai, personalizētām reklāmām. Ja nepiekrītat, jūs neļaujat pārdevējiem izmantot šos mērķus saviem personas datiem.</string>
+	<string name="i_consent">Es piekrītu</string>
+	<string name="i_do_not_consent">Es nesaku</string>
+	<string name="details">Skatīt vairāk...</string>
+	<string name="details_description">Jūs varat iesniegt vai noraidīt piekrišanu, izvēloties vai atņemot atlasi atsevišķiem datu izmantošanas mērķiem un pārdevējiem.</string>
+	<string name="go_back">Atgriezties</string>
+	<string name="save">SAVE</string>
+	<string name="check_all">Izvēlēties visus</string>
+	<string name="uncheck_all">Un-atlasiet visu</string>
+	<string name="buy">Izmēģinājuma versija. Nospiest, lai pirktu</string>
+	<string name="buy_msg">Saglabāta GDPR piekrišanas virkne! Un paldies par produkta izmēģināšanu! Šī GDPR stuff nebija viegli. Lūdzu, atbalstiet mūs, iegādājoties mūsu SDK, iegādājoties vienreizēju maksu @ http://gdpr-sdk.com Kad iegādājaties, mēs nosūtīsim jums atslēgu. Pa to laiku jūtieties brīvi turpināt novērtēt!</string>
 
 </resources>

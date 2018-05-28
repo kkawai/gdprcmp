@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="XX_app_name">GdprCmpLib</string>
-	<string name="gdpr_cmp_activity_label" translatable="false">Einwilligung Management</string>
-	<string name="gdpr_cmp_consent_description" translatable="false">Am 25. Mai 2018 tritt die DSGVO, auch bekannt als Datenschutz-Grundverordnung, in Kraft. Dieses Gesetz dient dem allgemeinen Schutz von Daten und Privatsphäre für alle Personen innerhalb der EU. Mit \ &quot;Zustimmung \&quot; erlauben Sie dieser Anwendung, Ihre persönlichen Daten, falls zutreffend, zu Zwecken wie, aber nicht ausschließlich, für personalisierte Werbung zu verwenden. Mit &quot;Nicht zustimmen&quot; erlauben Sie nicht, dass Anbieter Ihre persönlichen Daten für diese Zwecke verwenden.</string>
-	<string name="i_consent" translatable="false">Ich bin damit einverstanden</string>
-	<string name="i_do_not_consent" translatable="false">Ich stimme nicht zu</string>
-	<string name="details" translatable="false">Mehr Details...</string>
-	<string name="details_description" translatable="false">Sie können die Zustimmung erteilen oder ablehnen, indem Sie die Kontrollkästchen aktivieren oder deaktivieren. Im Folgenden finden Sie eine Liste der Datennutzungszwecke gefolgt von einer Liste der offiziellen Werbepartner.</string>
-	<string name="go_back" translatable="false">Geh zurück</string>
-	<string name="save" translatable="false">SPAREN</string>
-	<string name="check_all" translatable="false">Alle überprüfen</string>
-	<string name="uncheck_all" translatable="false">Alle deaktivieren</string>
-	<string name="XX_sample_multi">Text und Zeug \ n Und mehr</string>
-	<string name="buy" translatable="false">Probeversion. Tippe, um zu kaufen</string>
-	<string name="buy_msg" translatable="false">Gespeicherte GSPR-Zustimmungszeichenfolge! Und danke, dass du das Produkt ausprobiert hast! Dieses DSGD-Zeug war nicht einfach. Bitte unterstützen Sie uns beim Kauf unserer SDK mit einer einmaligen Gebühr @ http://gdpr-sdk.com Sobald Sie kaufen, senden wir Ihnen einen Schlüssel. In der Zwischenzeit können Sie gerne weiter bewerten!</string>
+	<string name="NAL_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label">Einwilligung Management</string>
+	<string name="gdpr_cmp_consent_description">Am 25. Mai 2018 tritt die DSGVO, auch bekannt als Datenschutz-Grundverordnung, in Kraft. Dieses Gesetz dient dem allgemeinen Schutz von Daten und Privatsphäre für alle Personen innerhalb der EU. Wenn Sie zustimmen, gestatten Sie dieser Anwendung, Ihre personenbezogenen Daten gegebenenfalls für Zwecke wie, aber nicht ausschließlich für personalisierte Werbung, zu verwenden. Wenn Sie nicht zustimmen, erlauben Sie den Anbietern nicht, Ihre persönlichen Daten für diese Zwecke zu verwenden.</string>
+	<string name="i_consent">Ich bin damit einverstanden</string>
+	<string name="i_do_not_consent">Ich stimme nicht zu</string>
+	<string name="details">Mehr Details...</string>
+	<string name="details_description">Sie können die Zustimmung erteilen oder ablehnen, indem Sie einzelne Datennutzungszwecke und -anbieter auswählen oder aufheben.</string>
+	<string name="go_back">Geh zurück</string>
+	<string name="save">SPAREN</string>
+	<string name="check_all">Wählen Sie Alle</string>
+	<string name="uncheck_all">Alles wiederufen</string>
+	<string name="buy">Probeversion. Drücken Sie, um zu kaufen</string>
+	<string name="buy_msg">Gespeicherte GSPR-Zustimmungszeichenfolge! Und danke, dass du das Produkt ausprobiert hast! Dieses DSGD-Zeug war nicht einfach. Bitte unterstützen Sie uns beim Kauf unseres SDK mit einer einmaligen Gebühr @ http://gdpr-sdk.com Sobald Sie kaufen, senden wir Ihnen einen Schlüssel. In der Zwischenzeit können Sie gerne weiter bewerten!</string>
 
 </resources>

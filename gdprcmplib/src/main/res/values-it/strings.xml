@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="XX_app_name">GdprCmpLib</string>
-	<string name="gdpr_cmp_activity_label" translatable="false">Gestione del consenso</string>
-	<string name="gdpr_cmp_consent_description" translatable="false">A partire dal 25 maggio 2018, GDPR, noto anche come regolamento generale sulla protezione dei dati, ha effetto. Questa legge è per la protezione generale dei dati e della privacy per tutti gli individui all&#39;interno dell&#39;UE. Con \ &#39;Consenso \&#39; consenti a questa applicazione di utilizzare i tuoi dati personali, se applicabile, per scopi quali, ma non esclusivi, annunci pubblicitari personalizzati. Con \ &#39;Non Consenso \&#39; non permetti ai venditori di utilizzare i tuoi dati personali per questi scopi.</string>
-	<string name="i_consent" translatable="false">Acconsento</string>
-	<string name="i_do_not_consent" translatable="false">Non ho il consenso</string>
-	<string name="details" translatable="false">Più dettagli...</string>
-	<string name="details_description" translatable="false">Puoi dare o rifiutare il consenso controllando o deselezionando le caselle. Di seguito è riportato un elenco di scopi di utilizzo dei dati seguito da un elenco dei partner pubblicitari ufficiali.</string>
-	<string name="go_back" translatable="false">Torna indietro</string>
-	<string name="save" translatable="false">SALVARE</string>
-	<string name="check_all" translatable="false">Seleziona tutto</string>
-	<string name="uncheck_all" translatable="false">Deseleziona tutto</string>
-	<string name="XX_sample_multi">Testo e cose \ n E altro ancora</string>
-	<string name="buy" translatable="false">Versione di prova. Tocca per acquistare</string>
-	<string name="buy_msg" translatable="false">Stringa di consenso GDPR salvata! E grazie per aver provato il prodotto! Questo materiale GDPR non è stato facile. Sosteneteci per favore acquistate comprando il nostro sdk con una commissione una tantum @ http://gdpr-sdk.com Una volta acquistato, vi invieremo una chiave. Nel frattempo, sentiti libero di continuare a valutare!</string>
+	<string name="NAL_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label">Gestione del consenso</string>
+	<string name="gdpr_cmp_consent_description">A partire dal 25 maggio 2018, GDPR, noto anche come regolamento generale sulla protezione dei dati, ha effetto. Questa legge è per la protezione generale dei dati e della privacy per tutti gli individui all&#39;interno dell&#39;UE. Consentendo di consentire a questa Applicazione di utilizzare i dati personali dell&#39;utente, se applicabile, per scopi quali, ma non esclusivi, annunci pubblicitari personalizzati. Non acconsentendo, non autorizzi i venditori a utilizzare i tuoi dati personali per questi scopi.</string>
+	<string name="i_consent">Acconsento</string>
+	<string name="i_do_not_consent">Non ho il consenso</string>
+	<string name="details">Più dettagli...</string>
+	<string name="details_description">È possibile dare o rifiutare il consenso selezionando o deselezionando i singoli scopi e fornitori di utilizzo dei dati.</string>
+	<string name="go_back">Torna indietro</string>
+	<string name="save">SALVARE</string>
+	<string name="check_all">Seleziona tutto</string>
+	<string name="uncheck_all">Deseleziona tutto</string>
+	<string name="buy">Versione di prova. Premere per acquistare</string>
+	<string name="buy_msg">Stringa di consenso GDPR salvata! E grazie per aver provato il prodotto! Questo materiale GDPR non è stato facile. Sosteneteci per favore acquistate l&#39;acquisto del nostro SDK con una commissione una tantum @ http://gdpr-sdk.com Una volta acquistato, vi invieremo una chiave. Nel frattempo, sentiti libero di continuare a valutare!</string>
 
 </resources>

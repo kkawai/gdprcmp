@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="XX_app_name">GdprCmpLib</string>
-	<string name="gdpr_cmp_activity_label" translatable="false">Nõusoleku juhtimine</string>
-	<string name="gdpr_cmp_consent_description" translatable="false">Alates 25. maist 2018 jõustub GDPR, mida tuntakse ka kui üldist andmekaitse määrust. Käesolev seadus on mõeldud andmete ja eraelu puutumatuse üldiseks kaitseks kõikidele üksikisikutele ELis. Kui nõustute, lubate sellel rakendusel kasutada oma isikuandmeid, kui see on asjakohane, sellistel eesmärkidel nagu isikupärastatud reklaamid, kuid mitte ainult. Kui te ei nõustu, ei luba müüjad teie isikuandmeid sel eesmärgil kasutada.</string>
-	<string name="i_consent" translatable="false">Ma nõustun</string>
-	<string name="i_do_not_consent" translatable="false">Ma ei nõustu</string>
-	<string name="details" translatable="false">Rohkem detaile...</string>
-	<string name="details_description" translatable="false">Saate nõusoleku anda või tagasi lükata, kontrollides või tühjendades lahtreid. Alljärgnevalt on loetletud andmekasutuse eesmärgid, millele järgneb ametlike reklaamipartnerite nimekiri.</string>
-	<string name="go_back" translatable="false">Mine tagasi</string>
-	<string name="save" translatable="false">SAVE</string>
-	<string name="check_all" translatable="false">Kontrollige kõiki</string>
-	<string name="uncheck_all" translatable="false">Kontrollige kõiki valikuid</string>
-	<string name="XX_sample_multi">Tekst ja asjad \ n Ja veel</string>
-	<string name="buy" translatable="false">Prooviversioon. Puudutage ostmiseks</string>
-	<string name="buy_msg" translatable="false">Salvestatud GDPR-i nõusoleku string! Ja tänan teid toote proovimise eest! See GDPR kraam ei olnud lihtne. Palun toetage meid osta, ostes meie sdk ühekordse tasuga @ http://gdpr-sdk.com Kui olete ostnud, saadame teile võti. Vahepeal võite jätkata hindamist!</string>
+	<string name="NAL_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label">Nõusoleku juhtimine</string>
+	<string name="gdpr_cmp_consent_description">Alates 25. maist 2018 jõustub GDPR, mida tuntakse ka kui üldist andmekaitse määrust. Käesolev seadus on mõeldud andmete ja eraelu puutumatuse üldiseks kaitseks kõikidele üksikisikutele ELis. Nõustudes lubate sellel rakendusel kasutada teie isikuandmeid, kui see on asjakohane, sellistel eesmärkidel nagu isikupärastatud reklaamid, kuid mitte ainult. Kui te ei nõustu, ei luba müüjad teie isikuandmeid nendel eesmärkidel kasutada.</string>
+	<string name="i_consent">Ma nõustun</string>
+	<string name="i_do_not_consent">Ma ei nõustu</string>
+	<string name="details">Rohkem detaile...</string>
+	<string name="details_description">Võite nõusoleku anda või keelduda, valides või tühistades individuaalse andmekasutuse eesmärgid ja müüjad.</string>
+	<string name="go_back">Mine tagasi</string>
+	<string name="save">SAVE</string>
+	<string name="check_all">Vali kõik</string>
+	<string name="uncheck_all">Un-vali kõik</string>
+	<string name="buy">Prooviversioon. Vajuta, et osta</string>
+	<string name="buy_msg">Salvestatud GDPR-i nõusoleku string! Ja tänan teid toote proovimise eest! See GDPR kraam ei olnud lihtne. Palun toetage meid ostma meie SDK ostmine ühekordse tasuga @ http://gdpr-sdk.com Kui olete ostnud, saadame teile võti. Vahepeal võite jätkata hindamist!</string>
 
 </resources>

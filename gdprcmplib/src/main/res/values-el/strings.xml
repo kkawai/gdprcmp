@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="XX_app_name">GdprCmpLib</string>
-	<string name="gdpr_cmp_activity_label" translatable="false">Διαχείριση Συναίνεσης</string>
-	<string name="gdpr_cmp_consent_description" translatable="false">Από τις 25 Μαΐου 2018, ισχύει η GDPR, γνωστή και ως κανονισμός γενικής προστασίας δεδομένων. Ο νόμος αυτός αφορά τη γενική προστασία των δεδομένων και της ιδιωτικής ζωής για όλα τα άτομα εντός της ΕΕ. Με την &#39;&#39; Συγκατάθεση &#39;&#39; επιτρέπετε σε αυτή την εφαρμογή να χρησιμοποιεί τα προσωπικά σας δεδομένα, αν υπάρχουν, για σκοπούς όπως, αλλά όχι αποκλειστικά, εξατομικευμένες διαφημίσεις. Με \ &#39;Δεν συναινούν \&#39; δεν επιτρέπετε στους πωλητές να χρησιμοποιούν τα προσωπικά σας δεδομένα για αυτούς τους σκοπούς.</string>
-	<string name="i_consent" translatable="false">Συναινώ</string>
-	<string name="i_do_not_consent" translatable="false">Δεν συμφωνώ</string>
-	<string name="details" translatable="false">Περισσότερες λεπτομέρειες...</string>
-	<string name="details_description" translatable="false">Μπορείτε να δώσετε ή να απορρίψετε τη συγκατάθεσή σας ελέγχοντας ή αποεπιλέγοντας τα πλαίσια. Ακολουθεί μια λίστα με τους σκοπούς χρήσης δεδομένων που ακολουθείται από μια λίστα των επίσημων διαφημιστικών συνεργατών.</string>
-	<string name="go_back" translatable="false">Πήγαινε πίσω</string>
-	<string name="save" translatable="false">ΑΠΟΘΗΚΕΥΣΕΤΕ</string>
-	<string name="check_all" translatable="false">Ελεγξε τα ολα</string>
-	<string name="uncheck_all" translatable="false">Αποεπιλογή όλων</string>
-	<string name="XX_sample_multi">Κείμενο και πράγματα \ n Και πολλά άλλα</string>
-	<string name="buy" translatable="false">Δοκιμαστική έκδοση. Αγγίξτε για να αγοράσετε</string>
-	<string name="buy_msg" translatable="false">Αποθηκευμένη συμβολοσειρά συγκατάθεσης GDPR! Και σας ευχαριστώ που δοκιμάσατε το προϊόν! Αυτό το υλικό GDPR δεν ήταν εύκολο. Παρακαλούμε να μας υποστηρίξετε να αγοράσετε το sdk μας με μια εφάπαξ χρέωση @ http://gdpr-sdk.com Μόλις αγοράσετε θα σας στείλουμε ένα κλειδί. Εν τω μεταξύ, αισθανθείτε ελεύθερος να συνεχίσετε την αξιολόγηση!</string>
+	<string name="NAL_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label">Διαχείριση Συναίνεσης</string>
+	<string name="gdpr_cmp_consent_description">Από τις 25 Μαΐου 2018, ισχύει η GDPR, γνωστή και ως κανονισμός γενικής προστασίας δεδομένων. Ο νόμος αυτός αφορά τη γενική προστασία των δεδομένων και της ιδιωτικής ζωής για όλα τα άτομα εντός της ΕΕ. Με τη συγκατάθεσή σας, επιτρέπετε σε αυτή την εφαρμογή να χρησιμοποιεί τα προσωπικά σας δεδομένα, κατά περίπτωση, για σκοπούς όπως, αλλά όχι αποκλειστικά, εξατομικευμένες διαφημίσεις. Με τη μη αποδοχή δεν επιτρέπετε στους πωλητές να χρησιμοποιούν τα προσωπικά σας δεδομένα για αυτούς τους σκοπούς.</string>
+	<string name="i_consent">Συναινώ</string>
+	<string name="i_do_not_consent">Δεν συμφωνώ</string>
+	<string name="details">Περισσότερες λεπτομέρειες...</string>
+	<string name="details_description">Μπορείτε να δώσετε ή να απορρίψετε τη συγκατάθεσή σας, επιλέγοντας ή αποεπιλέγοντας τους σκοπούς και τους προμηθευτές μεμονωμένων δεδομένων.</string>
+	<string name="go_back">Πήγαινε πίσω</string>
+	<string name="save">ΑΠΟΘΗΚΕΥΣΕΤΕ</string>
+	<string name="check_all">Επιλογή όλων</string>
+	<string name="uncheck_all">Un-Επιλογή όλων</string>
+	<string name="buy">Δοκιμαστική έκδοση. Πατήστε για να το αγοράσετε</string>
+	<string name="buy_msg">Αποθηκευμένη συμβολοσειρά συγκατάθεσης GDPR! Και σας ευχαριστώ που δοκιμάσατε το προϊόν! Αυτό το υλικό GDPR δεν ήταν εύκολο. Υποστηρίξτε μας να αγοράσετε την αγορά του SDK με μια εφάπαξ χρέωση @ http://gdpr-sdk.com Μόλις αγοράσετε θα σας στείλουμε ένα κλειδί. Εν τω μεταξύ, αισθανθείτε ελεύθερος να συνεχίσετε την αξιολόγηση!</string>
 
 </resources>

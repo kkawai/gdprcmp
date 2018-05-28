@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="XX_app_name">GdprCmpLib</string>
-	<string name="gdpr_cmp_activity_label" translatable="false">Hozzájáruláskezelés</string>
-	<string name="gdpr_cmp_consent_description" translatable="false">2018. május 25-től hatályba lép a GDPR, amelyet általános adatvédelmi rendeletnek is neveznek. Ez a törvény az EU-ban minden személy számára biztosítja az adatok és a magánélet védelmét. A \ &quot;Engedélyezés \&quot; segítségével engedélyezi, hogy az alkalmazás személyes adatait felhasználja, ha alkalmazható, például a személyre szabott hirdetésekre. A \ &#39;Nem engedélyezve \ &quot;nem engedélyezi a gyártók számára, hogy személyes adatait felhasználják e célból.</string>
-	<string name="i_consent" translatable="false">Hozzájárulok</string>
-	<string name="i_do_not_consent" translatable="false">Nem engedek bele</string>
-	<string name="details" translatable="false">További részletek...</string>
-	<string name="details_description" translatable="false">Engedélyezheti vagy elutasíthatja a hozzájárulást a négyzetek ellenőrzésével vagy ellenőrzésével. Az alábbiakban felsoroljuk az adatok felhasználásának célját, majd a hivatalos hirdetési partnerek listáját.</string>
-	<string name="go_back" translatable="false">menjen vissza</string>
-	<string name="save" translatable="false">MENTÉS</string>
-	<string name="check_all" translatable="false">Ellenőrizni mind</string>
-	<string name="uncheck_all" translatable="false">Minden választás törlése</string>
-	<string name="XX_sample_multi">Szöveg és dolgok \ n És még sok más</string>
-	<string name="buy" translatable="false">Próbaverzió. Érintse meg a vásárlást</string>
-	<string name="buy_msg" translatable="false">Mentett GDPR hozzájárulási string! És köszönöm, hogy kipróbálta a terméket! Ez a GDPR nem volt könnyű. Kérjük, hogy támogasson minket vásárlással vásárlási sdk egy egyszeri díj @ http://gdpr-sdk.com Miután megvásárolta, küldünk neked egy kulcsot. Addig is bátran végezzen értékelést!</string>
+	<string name="NAL_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label">Hozzájáruláskezelés</string>
+	<string name="gdpr_cmp_consent_description">2018. május 25-től hatályba lép a GDPR, amelyet általános adatvédelmi rendeletnek is neveznek. Ez a törvény az EU-ban minden személy számára biztosítja az adatok és a magánélet védelmét. Megegyezéssel engedélyezi, hogy az alkalmazás személyes adatait felhasználja, adott esetben olyan célokra, mint a személyre szabott hirdetések. Ha nem engedélyezi, nem engedélyezi az értékesítők számára, hogy személyes adatait felhasználhassák e célból.</string>
+	<string name="i_consent">Hozzájárulok</string>
+	<string name="i_do_not_consent">Nem engedek bele</string>
+	<string name="details">További részletek...</string>
+	<string name="details_description">Engedélyezheti vagy elutasíthatja a hozzájárulást az egyes adatkezelési célok kiválasztásával vagy megszüntetésével.</string>
+	<string name="go_back">menjen vissza</string>
+	<string name="save">MENTÉS</string>
+	<string name="check_all">Mindet kiválaszt</string>
+	<string name="uncheck_all">Minden kijelölés megszüntetése</string>
+	<string name="buy">Próbaverzió. Nyomja meg a vásárlást</string>
+	<string name="buy_msg">Mentett GDPR hozzájárulási string! És köszönöm, hogy kipróbálta a terméket! Ez a GDPR nem volt könnyű. Kérjük, támogasson minket, hogy megvásároljuk SDK-junkat egyszeri díjjal @ http://gdpr-sdk.com Miután megvásárolta, küldünk neked egy kulcsot. Addig is bátran végezzen értékelést!</string>
 
 </resources>

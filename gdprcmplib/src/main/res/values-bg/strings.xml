@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="XX_app_name">GdprCmpLib</string>
-	<string name="gdpr_cmp_activity_label" translatable="false">Управление на съгласието</string>
-	<string name="gdpr_cmp_consent_description" translatable="false">Към 25 май 2018 г. влиза в сила GDPR, известен също като Общ регламент за защита на данните. Този закон е за общата защита на данните и неприкосновеността на личния живот на всички лица в рамките на ЕС. С \ &quot;Съгласие \&quot; разрешавате на това приложение да използва личните ви данни, ако е приложимо, за цели като например, но не само за персонализирани реклами. С &quot;Несъгласие&quot; не позволявате на продавачите да използват личните ви данни за тези цели.</string>
-	<string name="i_consent" translatable="false">Съгласен съм</string>
-	<string name="i_do_not_consent" translatable="false">Не съм съгласен</string>
-	<string name="details" translatable="false">Повече информация...</string>
-	<string name="details_description" translatable="false">Можете да дадете или откажете съгласието си, като проверите или премахнете отметката от квадратчетата. Следва списък с целите за използване на данни, последван от списък с официалните рекламни партньори.</string>
-	<string name="go_back" translatable="false">Върни се</string>
-	<string name="save" translatable="false">SAVE</string>
-	<string name="check_all" translatable="false">Провери всичко</string>
-	<string name="uncheck_all" translatable="false">Отметнете всичко</string>
-	<string name="XX_sample_multi">Текст и неща \ n И още</string>
-	<string name="buy" translatable="false">Пробна версия. Докоснете за покупка</string>
-	<string name="buy_msg" translatable="false">Запазеният низ на съгласие за GDPR! Благодарим ви, че опитахте продукта! Това GDPR неща не беше лесно. Моля, подкрепете ни купуваме закупуването на нашия SDK с еднократна такса @ http://gdpr-sdk.com След като закупите, ще ви изпратим ключ. Междувременно можете да продължите да оценявате!</string>
+	<string name="NAL_app_name">GdprCmpLib</string>
+	<string name="gdpr_cmp_activity_label">Управление на съгласието</string>
+	<string name="gdpr_cmp_consent_description">Към 25 май 2018 г. влиза в сила GDPR, известен също като Общ регламент за защита на данните. Този закон е за общата защита на данните и неприкосновеността на личния живот на всички лица в рамките на ЕС. Със съгласието ви позволявате на това приложение да използва личните ви данни, ако е приложимо, за цели като например, но не само за персонализирани реклами. Като не сте съгласни, не позволявате на продавачите да използват личните ви данни за тези цели.</string>
+	<string name="i_consent">Съгласен съм</string>
+	<string name="i_do_not_consent">Не съм съгласен</string>
+	<string name="details">Повече информация...</string>
+	<string name="details_description">Можете да дадете или откажете съгласието си, като изберете или изключите отделни цели за използване на данни и доставчици.</string>
+	<string name="go_back">Върни се</string>
+	<string name="save">SAVE</string>
+	<string name="check_all">Избери всички</string>
+	<string name="uncheck_all">Деселектирайте всички</string>
+	<string name="buy">Пробна версия. Натиснете, за да закупите</string>
+	<string name="buy_msg">Запазеният низ на съгласие за GDPR! Благодарим ви, че опитахте продукта! Това GDPR неща не беше лесно. Моля, подкрепете ни да купите купуването на нашия комплект за разработване на софтуер с еднократна такса @ http://gdpr-sdk.com След като купите, ще ви изпратим ключ. Междувременно можете да продължите да оценявате!</string>
 
 </resources>
