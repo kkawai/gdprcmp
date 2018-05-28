@@ -13,6 +13,6 @@
 	<string name="check_all">Mindet kiválaszt</string>
 	<string name="uncheck_all">Minden kijelölés megszüntetése</string>
 	<string name="buy">Próbaverzió. Nyomja meg a vásárlást</string>
-	<string name="buy_msg">Mentett GDPR hozzájárulási string! És köszönöm, hogy kipróbálta a terméket! Ez a GDPR nem volt könnyű. Kérjük, támogasson minket, hogy megvásároljuk SDK-junkat egyszeri díjjal @ http://gdpr-sdk.com Miután megvásárolta, küldünk neked egy kulcsot. Addig is bátran végezzen értékelést!</string>
+	<string name="buy_msg">Mentett GDPR hozzájárulási string! És köszönöm, hogy kipróbálta a terméket! Ez a GDPR nem volt könnyű. Kérjük, támogasson minket, hogy vásároljunk SDK-t egyszeri díjjal a www.gdpr-sdk.com címen. Miután megvásárolta, egy kulcsot küldünk neked. Addig is bátran végezzen értékelést!</string>
 
 </resources>

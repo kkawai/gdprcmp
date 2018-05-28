@@ -23,6 +23,6 @@
     <string name="buy">Trial Version. Press to purchase</string>
     <string name="buy_msg">Saved GDPR consent string! And thank you for trying the product!
         This GDPR stuff was not easy.  Please support us buy buying our SDK with
-        a one-time fee @ http://gdpr-sdk.com  Once you purchase we will send you a key.
+        a one-time fee at www.gdpr-sdk.com  Once you purchase we will send you a key.
         In the meantime, feel free to continue evaluating!</string>
 </resources>

@@ -13,6 +13,6 @@
 	<string name="check_all">Valitse kaikki</string>
 	<string name="uncheck_all">Un-Valitse kaikki</string>
 	<string name="buy">Kokeiluversio. Osta painamalla</string>
-	<string name="buy_msg">Tallennettu GDPR suostumus merkkijono! Kiitos tuotteesta! Tämä GDPR-kama ei ollut helppoa. Pyydämme tukemaan meitä ostamaan SDKamme kertaluonteisella maksulla @ http://gdpr-sdk.com Kun ostat me lähetämme sinulle avaimen. Sillä välin voit vapaasti jatkaa arviointia!</string>
+	<string name="buy_msg">Tallennettu GDPR suostumus merkkijono! Kiitos tuotteesta! Tämä GDPR-kama ei ollut helppoa. Pyydämme meitä ostamaan SDK: n ostaminen yhden kerran maksulla osoitteessa www.gdpr-sdk.com Kun ostat me lähetämme sinulle avaimen. Sillä välin voit vapaasti jatkaa arviointia!</string>
 
 </resources>

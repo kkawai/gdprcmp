@@ -13,6 +13,6 @@
 	<string name="check_all">Izvēlēties visus</string>
 	<string name="uncheck_all">Un-atlasiet visu</string>
 	<string name="buy">Izmēģinājuma versija. Nospiest, lai pirktu</string>
-	<string name="buy_msg">Saglabāta GDPR piekrišanas virkne! Un paldies par produkta izmēģināšanu! Šī GDPR stuff nebija viegli. Lūdzu, atbalstiet mūs, iegādājoties mūsu SDK, iegādājoties vienreizēju maksu @ http://gdpr-sdk.com Kad iegādājaties, mēs nosūtīsim jums atslēgu. Pa to laiku jūtieties brīvi turpināt novērtēt!</string>
+	<string name="buy_msg">Saglabāta GDPR piekrišanas virkne! Un paldies par produkta izmēģināšanu! Šī GDPR stuff nebija viegli. Lūdzu, atbalstiet mūs iegādāties mūsu SDK ar vienreizēju maksu vietnē www.gdpr-sdk.com. Kad iegādāsieties, mēs nosūtīsim jums atslēgu. Pa to laiku jūtieties brīvi turpināt novērtēt!</string>
 
 </resources>

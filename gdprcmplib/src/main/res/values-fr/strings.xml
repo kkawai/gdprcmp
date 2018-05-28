@@ -3,16 +3,16 @@
 
 	<string name="NAL_app_name">GdprCmpLib</string>
 	<string name="gdpr_cmp_activity_label">Gestion du consentement</string>
-	<string name="gdpr_cmp_consent_description">En date du 25 mai 2018, le GDPR, également connu sous le nom de Règlement général sur la protection des données, prend effet. Cette loi est pour la protection générale des données et de la vie privée pour tous les individus au sein de l&#39;UE. En consentant, vous autorisez cette application à utiliser vos données personnelles, le cas échéant, à des fins telles que, mais pas exclusivement, des publicités personnalisées. En ne consentant pas, vous n&#39;autorisez pas les fournisseurs à utiliser vos données personnelles à ces fins.</string>
-	<string name="i_consent">J&#39;accepte</string>
+	<string name="gdpr_cmp_consent_description">En date du 25 mai 2018, le GDPR, également connu sous le nom de Règlement général sur la protection des données, prend effet. Cette loi est pour la protection générale des données et de la vie privée pour tous les individus au sein de l\'UE. En consentant, vous autorisez cette application à utiliser vos données personnelles, le cas échéant, à des fins telles que, mais pas exclusivement, des publicités personnalisées. En ne consentant pas, vous n\'autorisez pas les fournisseurs à utiliser vos données personnelles à ces fins.</string>
+	<string name="i_consent">J\'accepte</string>
 	<string name="i_do_not_consent">Je ne consens pas</string>
 	<string name="details">Plus de détails...</string>
-	<string name="details_description">Vous pouvez donner ou refuser votre consentement en sélectionnant ou en désélectionnant des objectifs d&#39;utilisation des données et des fournisseurs.</string>
+	<string name="details_description">Vous pouvez donner ou refuser votre consentement en sélectionnant ou en désélectionnant des objectifs d\'utilisation des données et des fournisseurs.</string>
 	<string name="go_back">Retourner</string>
 	<string name="save">ENREGISTRER</string>
 	<string name="check_all">Tout sélectionner</string>
 	<string name="uncheck_all">Tout déselectionner</string>
-	<string name="buy">Version d&#39;essai. Appuyez pour acheter</string>
-	<string name="buy_msg">Chaîne de consentement GDPR enregistrée! Et merci d&#39;essayer le produit! Ce truc GDPR n&#39;était pas facile. S&#39;il vous plaît nous soutenir acheter acheter notre SDK avec une taxe unique @ http://gdpr-sdk.com Une fois que vous achetez, nous vous enverrons une clé. En attendant, n&#39;hésitez pas à continuer à évaluer!</string>
+	<string name="buy">Version d\'essai. Appuyez pour acheter</string>
+	<string name="buy_msg">Chaîne de consentement GDPR enregistrée! Et merci d\'essayer le produit! Ce truc GDPR n\'était pas facile. S\'il vous plaît nous soutenir acheter acheter notre SDK avec une taxe unique sur www.gdpr-sdk.com Une fois que vous achetez, nous vous enverrons une clé. En attendant, n\'hésitez pas à continuer à évaluer!</string>
 
 </resources>

@@ -13,6 +13,6 @@
 	<string name="check_all">Selecteer alles</string>
 	<string name="uncheck_all">Alles ongedaan maken</string>
 	<string name="buy">Probeerversie. Druk om te kopen</string>
-	<string name="buy_msg">Opgeslagen GDPR-toestemmingsreeks! En bedankt voor het proberen van het product! Deze GDPR-dingen waren niet eenvoudig. Steun ons alsjeblieft en koop onze SDK met een eenmalige vergoeding @ http://gdpr-sdk.com Na aankoop kopen we je een sleutel. In de tussentijd, voel je vrij om door te gaan met evalueren!</string>
+	<string name="buy_msg">Opgeslagen GDPR-toestemmingsreeks! En bedankt voor het proberen van het product! Deze GDPR-dingen waren niet eenvoudig. Steun ons alsjeblieft en koop onze SDK met een eenmalige vergoeding op www.gdpr-sdk.com Na aankoop zullen we je een sleutel sturen. In de tussentijd, voel je vrij om door te gaan met evalueren!</string>
 
 </resources>

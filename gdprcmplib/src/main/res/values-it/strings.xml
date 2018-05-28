@@ -3,7 +3,7 @@
 
 	<string name="NAL_app_name">GdprCmpLib</string>
 	<string name="gdpr_cmp_activity_label">Gestione del consenso</string>
-	<string name="gdpr_cmp_consent_description">A partire dal 25 maggio 2018, GDPR, noto anche come regolamento generale sulla protezione dei dati, ha effetto. Questa legge è per la protezione generale dei dati e della privacy per tutti gli individui all&#39;interno dell&#39;UE. Consentendo di consentire a questa Applicazione di utilizzare i dati personali dell&#39;utente, se applicabile, per scopi quali, ma non esclusivi, annunci pubblicitari personalizzati. Non acconsentendo, non autorizzi i venditori a utilizzare i tuoi dati personali per questi scopi.</string>
+	<string name="gdpr_cmp_consent_description">A partire dal 25 maggio 2018, GDPR, noto anche come regolamento generale sulla protezione dei dati, ha effetto. Questa legge è per la protezione generale dei dati e della privacy per tutti gli individui all\'interno dell\'UE. Consentendo di consentire a questa Applicazione di utilizzare i dati personali dell\'utente, se applicabile, per scopi quali, ma non esclusivi, annunci pubblicitari personalizzati. Non acconsentendo, non autorizzi i venditori a utilizzare i tuoi dati personali per questi scopi.</string>
 	<string name="i_consent">Acconsento</string>
 	<string name="i_do_not_consent">Non ho il consenso</string>
 	<string name="details">Più dettagli...</string>
@@ -13,6 +13,6 @@
 	<string name="check_all">Seleziona tutto</string>
 	<string name="uncheck_all">Deseleziona tutto</string>
 	<string name="buy">Versione di prova. Premere per acquistare</string>
-	<string name="buy_msg">Stringa di consenso GDPR salvata! E grazie per aver provato il prodotto! Questo materiale GDPR non è stato facile. Sosteneteci per favore acquistate l&#39;acquisto del nostro SDK con una commissione una tantum @ http://gdpr-sdk.com Una volta acquistato, vi invieremo una chiave. Nel frattempo, sentiti libero di continuare a valutare!</string>
+	<string name="buy_msg">Stringa di consenso GDPR salvata! E grazie per aver provato il prodotto! Questo materiale GDPR non è stato facile. Sosteneteci di comprare comprando il nostro SDK con una tantum a www.gdpr-sdk.com Una volta acquistato, vi invieremo una chiave. Nel frattempo, sentiti libero di continuare a valutare!</string>
 
 </resources>

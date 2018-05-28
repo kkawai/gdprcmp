@@ -13,6 +13,6 @@
 	<string name="check_all">Vali kõik</string>
 	<string name="uncheck_all">Un-vali kõik</string>
 	<string name="buy">Prooviversioon. Vajuta, et osta</string>
-	<string name="buy_msg">Salvestatud GDPR-i nõusoleku string! Ja tänan teid toote proovimise eest! See GDPR kraam ei olnud lihtne. Palun toetage meid ostma meie SDK ostmine ühekordse tasuga @ http://gdpr-sdk.com Kui olete ostnud, saadame teile võti. Vahepeal võite jätkata hindamist!</string>
+	<string name="buy_msg">Salvestatud GDPR-i nõusoleku string! Ja tänan teid toote proovimise eest! See GDPR kraam ei olnud lihtne. Palun toetage meid osta meie SDK-i ühekordse tasu eest www.gdpr-sdk.com-ga. Kui olete ostnud, saadame teile võti. Vahepeal võite jätkata hindamist!</string>
 
 </resources>

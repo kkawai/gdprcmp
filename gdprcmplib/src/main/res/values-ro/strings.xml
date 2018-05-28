@@ -13,6 +13,6 @@
 	<string name="check_all">Selectează tot</string>
 	<string name="uncheck_all">Deselectează tot</string>
 	<string name="buy">Versiune de proba. Apăsați pentru a achiziționa</string>
-	<string name="buy_msg">Șirul de consimțământ GDPR salvat! Și vă mulțumesc că ați încercat produsul! Acest lucru GDPR nu a fost ușor. Vă rugăm să ne sprijiniți să cumpărați cumpărarea SDK-ului nostru cu o taxă unică @ http://gdpr-sdk.com Odată ce ați achiziționat vă vom trimite o cheie. Între timp, nu ezitați să continuați să evaluați!</string>
+	<string name="buy_msg">Șirul de consimțământ GDPR salvat! Și vă mulțumesc că ați încercat produsul! Acest lucru GDPR nu a fost ușor. Vă rugăm să ne sprijiniți cumpărați cumpărarea SDK-ului nostru cu o taxă unică la www.gdpr-sdk.com Odată ce ați cumpărat vă vom trimite o cheie. Între timp, nu ezitați să continuați să evaluați!</string>
 
 </resources>

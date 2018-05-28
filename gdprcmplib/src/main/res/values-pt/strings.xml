@@ -13,6 +13,6 @@
 	<string name="check_all">Selecionar tudo</string>
 	<string name="uncheck_all">Desmarque todos</string>
 	<string name="buy">Versão de teste. Pressione para comprar</string>
-	<string name="buy_msg">Salve a sequência de consentimento do GDPR! E obrigado por experimentar o produto! Este material GDPR não foi fácil. Por favor, ajudem-nos a comprar o nosso SDK com uma taxa única @ http://gdpr-sdk.com Depois de comprar, enviaremos uma chave. Enquanto isso, sinta-se à vontade para continuar avaliando!</string>
+	<string name="buy_msg">Salve a sequência de consentimento do GDPR! E obrigado por experimentar o produto! Este material GDPR não foi fácil. Por favor, ajudem-nos a comprar o nosso SDK com uma taxa única em www.gdpr-sdk.com Assim que comprar, enviaremos uma chave. Enquanto isso, sinta-se à vontade para continuar avaliando!</string>
 
 </resources>

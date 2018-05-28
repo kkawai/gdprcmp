@@ -13,6 +13,6 @@
 	<string name="check_all">Wählen Sie Alle</string>
 	<string name="uncheck_all">Alles wiederufen</string>
 	<string name="buy">Probeversion. Drücken Sie, um zu kaufen</string>
-	<string name="buy_msg">Gespeicherte GSPR-Zustimmungszeichenfolge! Und danke, dass du das Produkt ausprobiert hast! Dieses DSGD-Zeug war nicht einfach. Bitte unterstützen Sie uns beim Kauf unseres SDK mit einer einmaligen Gebühr @ http://gdpr-sdk.com Sobald Sie kaufen, senden wir Ihnen einen Schlüssel. In der Zwischenzeit können Sie gerne weiter bewerten!</string>
+	<string name="buy_msg">Gespeicherte GSPR-Zustimmungszeichenfolge! Und danke, dass du das Produkt ausprobiert hast! Dieses DSGD-Zeug war nicht einfach. Bitte unterstützen Sie uns beim Kauf unseres SDK mit einer einmaligen Gebühr unter www.gdpr-sdk.com. Sobald Sie kaufen, senden wir Ihnen einen Schlüssel. In der Zwischenzeit können Sie gerne weiter bewerten!</string>
 
 </resources>

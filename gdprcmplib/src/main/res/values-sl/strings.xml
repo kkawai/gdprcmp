@@ -13,6 +13,6 @@
 	<string name="check_all">Izberi vse</string>
 	<string name="uncheck_all">Odstrani vse</string>
 	<string name="buy">Preizkusna različica. Pritisnite za nakup</string>
-	<string name="buy_msg">Shranjeni niz strinjanja GDPR! In hvala, ker ste poskušali izdelek! To stanje BDP ni bilo enostavno. Prosimo, podkrepite nam, da kupite nakup SDK z enkratno pristojbino @ http://gdpr-sdk.com Ko boste kupili, vam bomo poslali ključ. V tem času lahko še naprej vrednotite!</string>
+	<string name="buy_msg">Shranjeni niz strinjanja GDPR! In hvala, ker ste poskušali izdelek! To stanje BDP ni bilo enostavno. Prosimo, podkrepite nam, da kupite nakup SDK-ja z enkratno pristojbino na www.gdpr-sdk.com Ko boste kupili, vam bomo poslali ključ. V tem času lahko še naprej vrednotite!</string>
 
 </resources>

@@ -13,6 +13,6 @@
 	<string name="check_all">Roghnú go léir</string>
 	<string name="uncheck_all">Un-Roghnaigh Gach</string>
 	<string name="buy">Leagan trialach. Brúigh a cheannach</string>
-	<string name="buy_msg">Sreang toilithe GDPR sábháilte! Agus buíochas leat as an táirge a iarraidh! Ní raibh na rudaí GDPR seo éasca. Tacaigh linn le ceannach ár SDK a cheannach le táille aonuaire @ http://gdpr-sdk.com Nuair a cheannaíonn tú, cuirfimid eochair duit. Idir an dá linn, bíodh leisce ort leanúint ar aghaidh ag meastóireacht!</string>
+	<string name="buy_msg">Sreang toilithe GDPR sábháilte! Agus buíochas leat as an táirge a iarraidh! Ní raibh na rudaí GDPR seo éasca. Tacaigh linn le ceannach ár SDK a cheannach le táille aonuaire ag www.gdpr-sdk.com Nuair a cheannaíonn tú, cuirfimid eochair duit. Idir an dá linn, bíodh leisce ort leanúint ar aghaidh ag meastóireacht!</string>
 
 </resources>

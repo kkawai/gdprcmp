@@ -13,6 +13,6 @@
 	<string name="check_all">Velg alle</string>
 	<string name="uncheck_all">Avmarker alt</string>
 	<string name="buy">Prøve versjon. Trykk for å kjøpe</string>
-	<string name="buy_msg">Lagret GDPR samtykke streng! Og takk for at du prøvde produktet! Dette GDPR-materialet var ikke lett. Vennligst støtte oss, kjøp å kjøpe vår SDK med engangsavgift @ http://gdpr-sdk.com Når du kjøper, sender vi deg en nøkkel. I mellomtiden, vær så snill å fortsette å evaluere!</string>
+	<string name="buy_msg">Lagret GDPR samtykke streng! Og takk for at du prøvde produktet! Dette GDPR-materialet var ikke lett. Vennligst støtte oss, kjøp å kjøpe vår SDK med engangsavgift på www.gdpr-sdk.com Når du kjøper, sender vi deg en nøkkel. I mellomtiden, vær så snill å fortsette å evaluere!</string>
 
 </resources>

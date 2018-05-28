@@ -13,6 +13,6 @@
 	<string name="check_all">Zaznacz wszystko</string>
 	<string name="uncheck_all">Odznacz wszystko</string>
 	<string name="buy">Wersja próbna. Naciśnij, aby kupić</string>
-	<string name="buy_msg">Zapisany łańcuch zgody na RWP! I dziękuję za wypróbowanie produktu! Te rzeczy z GDPR nie były łatwe. Prosimy o wsparcie nas, kupując nasz pakiet SDK za jednorazową opłatą @ http://gdpr-sdk.com Po dokonaniu zakupu wyślemy Ci klucz. W międzyczasie zachęcamy do dalszej oceny!</string>
+	<string name="buy_msg">Zapisany łańcuch zgody na RWP! I dziękuję za wypróbowanie produktu! Te rzeczy z GDPR nie były łatwe. Prosimy o wsparcie nas, kupując nasz pakiet SDK za jednorazową opłatą na stronie www.gdpr-sdk.com Po dokonaniu zakupu wyślemy Ci klucz. W międzyczasie zachęcamy do dalszej oceny!</string>
 
 </resources>

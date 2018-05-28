@@ -13,6 +13,6 @@
 	<string name="check_all">Vybrať všetko</string>
 	<string name="uncheck_all">Odznačiť všetko</string>
 	<string name="buy">Skúšobná verzia. Stlačte na nákup</string>
-	<string name="buy_msg">Uložený reťazec súhlasu GDPR! A ďakujem vám, že ste vyskúšali produkt! Tieto veci GDPR neboli jednoduché. Podporujte nás, prosím, kúpiť náš SDK jednorazovým poplatkom @ http://gdpr-sdk.com Po zakúpení vám zašleme kľúč. Medzitým neváhajte pokračovať v hodnotení!</string>
+	<string name="buy_msg">Uložený reťazec súhlasu GDPR! A ďakujem vám, že ste vyskúšali produkt! Tieto veci GDPR neboli jednoduché. Podporujte nás, prosím, kúpim našu SDK jednorazovým poplatkom na adrese www.gdpr-sdk.com Po zakúpení vám zašleme kľúč. Medzitým neváhajte pokračovať v hodnotení!</string>
 
 </resources>
