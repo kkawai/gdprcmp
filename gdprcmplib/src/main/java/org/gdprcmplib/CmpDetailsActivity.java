@@ -62,7 +62,7 @@ public class CmpDetailsActivity extends AppCompatActivity {
                         String langUrl=null;
                         if (!TextUtils.isEmpty(lang) && !lang.equalsIgnoreCase("en")) {
                             try {
-                                langUrl = Config.LANGUAGE_SPECIFIC_URL.replace(lang, "REPLACEME");
+                                langUrl = Config.LANGUAGE_SPECIFIC_URL.replace("REPLACEME", lang);
                                 langJSON = new HttpMessage(langUrl).getJSONObject();
                             }catch(Exception e) {
                                 MLog.e(TAG,"Failed to get language specific remote data for: "+langUrl);
