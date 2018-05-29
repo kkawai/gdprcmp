@@ -41,8 +41,19 @@ public class CmpActivity extends AppCompatActivity {
             protected GdprData doInBackground(Void... voids) {
                 try {
                     loadConsentString();
-                    JSONObject jsonObject = new HttpMessage(Config.VENDOR_LIST_URL).getJSONObject();
-                    d = new GdprData(jsonObject);
+                    String lang = (GDPRUtil.getLanguage(CmpActivity.this)+"").toLowerCase();
+                    JSONObject langJSON=null;
+                    String langUrl=null;
+                    if (!TextUtils.isEmpty(lang) && !lang.equalsIgnoreCase("en")) {
+                        try {
+                            langUrl = Config.LANGUAGE_SPECIFIC_URL.replace(lang, "REPLACEME");
+                            langJSON = new HttpMessage(langUrl).getJSONObject();
+                        }catch(Exception e) {
+                            MLog.e(TAG,"Failed to get language specific remote data for: "+langUrl);
+                        }
+                    }
+                    JSONObject vendorJSON = new HttpMessage(Config.VENDOR_LIST_URL).getJSONObject();
+                    d = new GdprData(vendorJSON, langJSON);
                     if (d != null && c != null) {
                         d.initStateWith(c);
                     }

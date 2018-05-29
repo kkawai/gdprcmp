@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -57,6 +56,21 @@ class GDPRUtil {
         EU_COUNTRIES.add("EE");
         EU_COUNTRIES.add("LV");
         EU_COUNTRIES.add("LU");
+    }
+
+    static String getLanguage(Context context) {
+        String languageCode = "";
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                languageCode = context.getResources().getConfiguration().getLocales().get(0).getLanguage();
+            } else {
+                languageCode = context.getResources().getConfiguration().locale.getLanguage();
+            }
+            return languageCode;
+        } catch (Exception e) {
+            MLog.e(TAG, "getLanguage() failed", e);
+        }
+        return languageCode;
     }
 
     private static boolean isGDPRRegion(Context context) {

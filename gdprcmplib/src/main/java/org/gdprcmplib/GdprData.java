@@ -22,13 +22,14 @@ class GdprData implements Serializable {
     private Map<Integer, GdprFeature> featuresMap = new HashMap<>(NUM_FEATURES);
     private List<GdprVendor> vendors = new ArrayList<>(500);
 
-    private SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
+    private final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
 
     private long lastUpdated;
     private int vendorListVersion=1;
-    public GdprData(JSONObject jsonObject) {
+    public GdprData(JSONObject vendorJSON, JSONObject langJSON) {
         try {
-            String s = jsonObject.optString("lastUpdated");
+            JSONObject primaryJSON = langJSON != null ? langJSON : vendorJSON;
+            String s = primaryJSON.optString("lastUpdated");
             if (s != null && s.contains("T")) {
                 s = s.substring(0,s.indexOf('T'));
                 try {
@@ -37,19 +38,19 @@ class GdprData implements Serializable {
                     MLog.e(TAG,"Could not parse date: "+s);
                 }
             }
-            vendorListVersion = jsonObject.optInt("vendorListVersion");
-            JSONArray purposesArr = jsonObject.optJSONArray("purposes");
+            vendorListVersion = primaryJSON.optInt("vendorListVersion");
+            JSONArray purposesArr = primaryJSON.optJSONArray("purposes");
             for (int i=0;purposesArr != null && i < purposesArr.length();i++) {
                 GdprPurpose p = new GdprPurpose(purposesArr.getJSONObject(i));
                 purposesMap.put(p.getId(),p);
                 purposes.add(p);
             }
-            JSONArray featuresArr = jsonObject.optJSONArray("features");
+            JSONArray featuresArr = primaryJSON.optJSONArray("features");
             for (int i=0;featuresArr != null && i < featuresArr.length();i++) {
                 GdprFeature f = new GdprFeature(featuresArr.getJSONObject(i));
                 featuresMap.put(f.getId(),f);
             }
-            JSONArray vendorsArr = jsonObject.optJSONArray("vendors");
+            JSONArray vendorsArr = vendorJSON.optJSONArray("vendors");
             for (int i=0;vendorsArr != null && i < vendorsArr.length();i++) {
                 GdprVendor vendor = new GdprVendor(vendorsArr.getJSONObject(i), purposesMap, featuresMap);
                 this.vendors.add(vendor);

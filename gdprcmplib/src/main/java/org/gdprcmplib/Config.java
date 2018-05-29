@@ -3,6 +3,7 @@ package org.gdprcmplib;
 final class Config {
     static final boolean IS_LOGGING_ENABLED = true;
     static final String VENDOR_LIST_URL = "https://vendorlist.consensu.org/vendorlist.json";
+    static final String LANGUAGE_SPECIFIC_URL = "https://vendorlist.consensu.org/purposes-REPLACEME.json";
     static final int CMP_ID = 1; //todo get real
     static final int CMP_VERSION = 2; //todo increment whenever you do release
     static final int CMP_SCREEN_ID_1 = 1;
