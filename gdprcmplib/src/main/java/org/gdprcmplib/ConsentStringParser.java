@@ -3,7 +3,6 @@ package org.gdprcmplib;
 import java.text.ParseException;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -636,6 +635,9 @@ class ConsentStringParser {
     }
 
     public void setVendors(List<GdprVendor> vendors) {
+        if (allowedVendors != null) {
+            allowedVendors.clear();
+        }
         Map<Integer, Boolean> map = new HashMap<>();
         for (GdprVendor vendor : vendors) {
             map.put(vendor.getId(), vendor.isAllowed());
@@ -647,6 +649,9 @@ class ConsentStringParser {
     }
 
     public void setPurposes(List<GdprPurpose> purposes) {
+        if (allowedPurposes != null) {
+            allowedPurposes.clear();
+        }
         for (int i=0;i < purposes.size();i++) {
             allowedPurposes.add(purposes.get(i).isAllowed());
         }

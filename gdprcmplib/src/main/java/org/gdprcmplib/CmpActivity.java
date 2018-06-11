@@ -148,7 +148,7 @@ public class CmpActivity extends AppCompatActivity {
         ConsentStringParser parser =
                 new ConsentStringParser(1, date, date,
                         Config.CMP_ID, Config.CMP_VERSION, Config.CMP_SCREEN_ID_1,
-                        Config.DEFAULT_CMP_LANGUAGE,
+                        GDPRUtil.getLanguage(this),
                         getVendorListVersion());
         parser.rangeConsent(getMaxConsentId(), isConsent, !isConsent);
         persist(parser, isConsent);

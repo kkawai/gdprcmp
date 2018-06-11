@@ -102,4 +102,8 @@ public class GdprCmp {
         GDPRUtil.clearGDPRSettings(context);
     }
 
+    public static boolean isPurposeAllowed(Context context, int purposeId) {
+        return GDPRUtil.isPurposeAllowed(context, purposeId);
+    }
+
 }

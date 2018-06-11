@@ -12,12 +12,12 @@ import static org.junit.Assert.assertTrue;
 
 public class ConsentStringParserTest {
 
-    List<GdprPurpose> getNewPurposes() {
+    List<GdprPurpose> getNewPurposes(boolean isAllow) {
         final int numTestPurposes = 12;
         List<GdprPurpose> purposes = new ArrayList<>(numTestPurposes);
         for (int i=0;i < numTestPurposes;i++) {
             GdprPurpose p = new GdprPurpose(i+1, "test purpose "+(i+1), "some description "+(i+1));
-            p.setAllowed(true);
+            p.setAllowed(isAllow);
             purposes.add(p);
         }
         return purposes;
@@ -98,7 +98,7 @@ public class ConsentStringParserTest {
                 updated, 20, 13, 4,
                 "EN", 5);
         parser.setVendorEncodingType(0);
-        List<GdprPurpose> purposes = getNewPurposes();
+        List<GdprPurpose> purposes = getNewPurposes(true);
         List<GdprVendor> vendors = getNewVendors();
         parser.setPurposes(purposes);
         parser.setVendors(vendors);
@@ -120,6 +120,11 @@ public class ConsentStringParserTest {
             assertEquals(vendors.get(i).isAllowed(), newParser.isVendorAllowed(i+1));
         }
         assertEquals(vendors.get(vendors.size()-1).getId(), newParser.getMaxVendorId());
+        assertEquals(true, parser.isPurposeAllowed(1));
+
+        parser.setPurposes(getNewPurposes(false));
+        assertEquals(false, parser.isPurposeAllowed(1));
+
     }
 
     @Test

@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -70,7 +71,14 @@ class GDPRUtil {
         } catch (Exception e) {
             MLog.e(TAG, "getLanguage() failed", e);
         }
+        if (TextUtils.isEmpty(languageCode) || length(languageCode) > 2) {
+            languageCode = "EN";
+        }
         return languageCode;
+    }
+
+    private static int length(String s) {
+        return s == null ? 0 : s.length();
     }
 
     private static boolean isGDPRRegion(Context context) {
@@ -173,6 +181,19 @@ class GDPRUtil {
             return ConsentStringParser.decode(myApiKey).equals(packageName);
         } catch (Exception e) {
             //Log.e(TAG, "Failed, Exception: " + e.getMessage());
+        }
+        return false;
+    }
+
+    static boolean isPurposeAllowed(Context context, int purposeId) {
+        String consentString = getGDPRConsentString(context);
+        if (consentString != null) {
+            try {
+                ConsentStringParser consentStringParser = new ConsentStringParser(consentString);
+                return consentStringParser.isPurposeAllowed(purposeId);
+            }catch (Exception e) {
+                MLog.e(TAG, "isPurposeAllowed: " + e.getMessage());
+            }
         }
         return false;
     }
