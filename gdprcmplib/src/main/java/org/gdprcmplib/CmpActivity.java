@@ -65,7 +65,7 @@ public class CmpActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     MLog.e(TAG, "doInBackground() failed", e);
                 }
-                return null;
+                return d;
             }
 
             @Override
