@@ -44,15 +44,20 @@ public class CmpDetailsActivity extends AppCompatActivity {
         } catch (Exception e) {
             MLog.e(TAG, "onCreate() trapped exception while getting CMP_ALLOW_BACK_BUTTON from intent", e);
         }
+        getData();
+        UiUtils.setBuyButton(findViewById(R.id.mainView));
+    }
 
+    private void getData() {
         new AsyncTask<Void, Void, GdprData>() {
             @Override
             protected GdprData doInBackground(Void... voids) {
+                GdprData data = null;
                 try {
                     loadConsentString();
                     if (getIntent().hasExtra("d")) {
                         MLog.d(TAG,"got serialized d from intent");
-                        d = (GdprData) getIntent().getSerializableExtra("d");
+                        data = (GdprData) getIntent().getSerializableExtra("d");
                         //if we got d from intent, then it was already initialized
                         //with the rangeConsent string
                     } else {
@@ -69,23 +74,23 @@ public class CmpDetailsActivity extends AppCompatActivity {
                             }
                         }
                         JSONObject vendorJSON = new HttpMessage(Config.VENDOR_LIST_URL).getJSONObject();
-                        d = new GdprData(vendorJSON, langJSON);
-                        if (d != null && c != null) {
-                            d.initStateWith(c);
+                        data = new GdprData(vendorJSON, langJSON);
+                        if (data != null && c != null) {
+                            data.initStateWith(c);
                         }
-                        if (d != null && c == null) {
-                            d.setDefaultConsent(defaultConsentAll);
+                        if (data != null && c == null) {
+                            data.setDefaultConsent(defaultConsentAll);
                         }
-                        return d;
+                        return data;
                     }
-                    if (d != null) {
-                        if (d.isAll(true)) {
+                    if (data != null) {
+                        if (data.isAll(true)) {
                             updateToggleButtonState(true);
-                        } else if (d.isAll(false)) {
+                        } else if (data.isAll(false)) {
                             updateToggleButtonState(false);
                         }
                     }
-                    return d;
+                    return data;
                 } catch (Exception e) {
                     MLog.e(TAG, "doInBackground() failed", e);
                 }
@@ -94,14 +99,14 @@ public class CmpDetailsActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(GdprData gdprData) {
-                if (d == null) {
+                if (gdprData == null) {
                     finish(CmpActivityResult.RESULT_COULD_NOT_FETCH_VENDOR_LIST);
                     return;
                 }
+                d = gdprData;
                 renderUI();
             }
         }.execute();
-        UiUtils.setBuyButton(findViewById(R.id.mainView));
     }
 
     private void renderUI() {

@@ -35,10 +35,16 @@ public class CmpActivity extends AppCompatActivity {
         } catch (Exception e) {
             MLog.e(TAG, "onCreate() trapped exception while getting CMP_ALLOW_BACK_BUTTON from intent", e);
         }
+        fetchGdprData();
+        UiUtils.setBuyButton(findViewById(R.id.mainView));
+    }
+
+    private void fetchGdprData() {
 
         new AsyncTask<Void, Void, GdprData>() {
             @Override
             protected GdprData doInBackground(Void... voids) {
+                GdprData data = null;
                 try {
                     loadConsentString();
                     String lang = (GDPRUtil.getLanguage(CmpActivity.this)+"").toLowerCase();
@@ -54,18 +60,18 @@ public class CmpActivity extends AppCompatActivity {
                         }
                     }
                     JSONObject vendorJSON = new HttpMessage(Config.VENDOR_LIST_URL).getJSONObject();
-                    d = new GdprData(vendorJSON, langJSON);
-                    if (d != null && c != null) {
-                        d.initStateWith(c);
+                    data = new GdprData(vendorJSON, langJSON);
+                    if (data != null && c != null) {
+                        data.initStateWith(c);
                     }
-                    if (d != null && c == null) {
-                        d.setDefaultConsent(defaultConsentAll);
+                    if (data != null && c == null) {
+                        data.setDefaultConsent(defaultConsentAll);
                     }
-                    return d;
+                    return data;
                 } catch (Exception e) {
                     MLog.e(TAG, "doInBackground() failed", e);
                 }
-                return d;
+                return data;
             }
 
             @Override
@@ -74,9 +80,9 @@ public class CmpActivity extends AppCompatActivity {
                     finish(CmpActivityResult.RESULT_COULD_NOT_FETCH_VENDOR_LIST);
                     return;
                 }
+                d = data;
             }
         }.execute();
-        UiUtils.setBuyButton(findViewById(R.id.mainView));
     }
 
     private void finish(int resultCode) {

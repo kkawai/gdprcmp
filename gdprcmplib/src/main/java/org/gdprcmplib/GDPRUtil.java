@@ -169,6 +169,11 @@ class GDPRUtil {
     }
 
     static boolean isValidSdkKey(Activity activity) {
+
+        if (Config.IS_FREE_FOR_ALL) {
+            return true;
+        }
+
         try {
             String sb = "";
             for (int i = 0; i < ConsentStringParser.arr.length; i++) {
