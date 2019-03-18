@@ -10,7 +10,7 @@ ext {
     libraryDescription = 'GDPR IAB Compliant SDK for Android.  Recently added language specific'
     siteUrl = 'http://gdpr-sdk.com'
     gitUrl = 'https://github.com/gdprsdk'
-    libraryVersion = '1.0.8'  //CHANGE
+    libraryVersion = '1.0.9'  //CHANGE
     developerId = 'gdprsdk'
     developerName = 'The GDPR Guy'
     developerEmail = 'kkawai2@gmail.com'

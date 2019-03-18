@@ -24,3 +24,6 @@
 -keep class org.gdprcmplib.CmpActivity { *; }
 -keep class org.gdprcmplib.CmpDetailsActivity { *; }
 -keep class org.gdprcmplib.CmpActivityResult { *; }
+
+-keepattributes Exceptions, MethodParameters
+-keepparameternames
